@@ -1,3 +1,4 @@
+using System;
 using CozyGame.scene;
 using Godot;
 using Vector2 = Godot.Vector2;
@@ -5,39 +6,69 @@ using Vector2 = Godot.Vector2;
 public partial class Cow : CharacterBody2D
 {
 	private AnimatedSprite2D _animatedSprite2D;
-	private RandomMover _randomHoriMover;
-	private RandomMover _randomVertMover;
+	private RandomOneAxisMover _randomOneAxisXMover;
+	private RandomOneAxisMover _randomOneAxisYMover;
+	private Random _rng;
+	private SkittishMover _skittishMover;
 
 	[Export] public int MaxMoveDuration = 100;
-	[Export] public float MaxSpeedX = 100.0f;
-	[Export] public float MaxSpeedY = 50.0f;
+	[Export] public int MaxRunDuration = 100;
+	[Export] public float MaxRunSpeed = 80.0f;
+	[Export] public float MaxXSpeed = 100.0f;
+	[Export] public float MaxYSpeed = 50.0f;
 	[Export] public int MinMoveDuration = 20;
+	[Export] public int MinRunDuration = 20;
+	[Export] public float MinRunSpeed = 30.0f;
+	[Export] public float SkittishRadius = 100;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		_randomHoriMover = new RandomMover(MinMoveDuration, MaxMoveDuration, -MaxSpeedX, MaxSpeedX);
-		_randomVertMover = new RandomMover(MinMoveDuration, MaxMoveDuration, -MaxSpeedY, MaxSpeedY);
+		_randomOneAxisXMover = new RandomOneAxisMover(MinMoveDuration, MaxMoveDuration, -MaxXSpeed, MaxXSpeed);
+		_randomOneAxisYMover = new RandomOneAxisMover(MinMoveDuration, MaxMoveDuration, -MaxYSpeed, MaxYSpeed);
+		_skittishMover =
+			new SkittishMover(this, SkittishRadius, MinRunDuration, MaxRunDuration, MinRunSpeed, MaxRunSpeed);
+		_rng = new Random();
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_randomHoriMover.NextMove(out var horiMove))
-			MoveHorizontal(horiMove);
-		if (_randomVertMover.NextMove(out var vertMove))
-			MoveVertical(vertMove);
+		var move = Vector2.Zero;
+
+		if (_skittishMover.NextMove(out var skittishMove))
+			move += skittishMove;
+
+		if (_randomOneAxisXMover.NextMove(out var randomXMove))
+		{
+			move.X += randomXMove;
+			move.Y += randomXMove * (float)_rng.NextDouble() * 0.2f;
+		}
+
+		if (_randomOneAxisYMover.NextMove(out var randomYMove))
+		{
+			move.Y += randomYMove;
+			move.X += randomXMove * (float)_rng.NextDouble() * 0.2f;
+		}
+
+		if (move != Vector2.Zero)
+		{
+			GD.Print($"Moving {move}");
+			MoveX(move.X);
+			MoveY(move.Y);
+		}
+
 		MoveAndSlide();
 	}
 
-	private void MoveHorizontal(float speed)
+	private void MoveX(float speed)
 	{
 		Velocity = speed * Vector2.Right;
 		_animatedSprite2D.Scale = new Vector2(speed > 0f ? 1f : -1f, 1f);
 		_animatedSprite2D.Play("right");
 	}
 
-	private void MoveVertical(float speed)
+	private void MoveY(float speed)
 	{
 		Velocity = new Vector2(Velocity.X, speed);
 	}

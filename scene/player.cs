@@ -2,13 +2,20 @@ using Godot;
 
 public partial class Player : CharacterBody2D
 {
+	private static Player _singleton;
 	private AnimatedSprite2D _animatedSprite2D;
 
 	[Export] public float Speed = 100.0f;
 
+	public static Vector2 GetPlayerPosition()
+	{
+		return _singleton.Position;
+	}
+
 	public override void _Ready()
 	{
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_singleton = this;
 	}
 
 	public override void _PhysicsProcess(double delta)
