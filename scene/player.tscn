@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://qth75vb37jpa"]
+
+[ext_resource type="Texture2D" uid="uid://c6ykscqqat3mn" path="res://tile/SproutLands/Characters/Basic Charakter Spritesheet.png" id="1_pa0d8"]
+[ext_resource type="Script" path="res://scene/player.cs" id="1_us4dx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5sx3"]
+size = Vector2(16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68r0b"]
+atlas = ExtResource("1_pa0d8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xs05t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68r0b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_us4dx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_x5sx3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_xs05t")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(4, 4)
