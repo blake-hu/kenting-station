@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using CozyGame.Interface;
 
 namespace CozyGame.scene;
 
-public class RandomMover
+public class RandomMover : IMoveOneAxis
 {
     private readonly IEnumerator<float?> _enumerator;
     private readonly int _maxTicksPerMove;
