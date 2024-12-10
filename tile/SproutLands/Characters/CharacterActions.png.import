@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xgbqbd36orel"
-path="res://.godot/imported/Water Plants.png-6984948a07f401f606c3d1f77964fe5a.ctex"
+uid="uid://640q51ve5qve"
+path="res://.godot/imported/CharacterActions.png-1632d298f721446fcd2d1aaa64fd99ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/HanaCaraka/Props/Water Plants.png"
-dest_files=["res://.godot/imported/Water Plants.png-6984948a07f401f606c3d1f77964fe5a.ctex"]
+source_file="res://Tile/SproutLands/Characters/CharacterActions.png"
+dest_files=["res://.godot/imported/CharacterActions.png-1632d298f721446fcd2d1aaa64fd99ce.ctex"]
 
 [params]
 

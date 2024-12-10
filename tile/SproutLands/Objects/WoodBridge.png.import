@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm5kpw6uqhvia"
-path="res://.godot/imported/Winter - simplified.png-54191ecc184696fb354839249bcb5655.ctex"
+uid="uid://b2ouifombruml"
+path="res://.godot/imported/WoodBridge.png-a33fea0b79f0a9f322640e9076040d01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/HanaCaraka/Tileset/Winter - simplified.png"
-dest_files=["res://.godot/imported/Winter - simplified.png-54191ecc184696fb354839249bcb5655.ctex"]
+source_file="res://Tile/SproutLands/Objects/WoodBridge.png"
+dest_files=["res://.godot/imported/WoodBridge.png-a33fea0b79f0a9f322640e9076040d01.ctex"]
 
 [params]
 

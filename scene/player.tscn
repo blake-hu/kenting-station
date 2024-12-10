@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://qth75vb37jpa"]
 
-[ext_resource type="Texture2D" uid="uid://c6ykscqqat3mn" path="res://tile/SproutLands/Characters/Basic Charakter Spritesheet.png" id="1_pa0d8"]
-[ext_resource type="Script" path="res://scene/player.cs" id="1_us4dx"]
+[ext_resource type="Texture2D" uid="uid://c6ykscqqat3mn" path="res://Tile/SproutLands/Characters/Character.png" id="1_pa0d8"]
+[ext_resource type="Script" path="res://Scene/Player.cs" id="1_us4dx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5sx3"]
 size = Vector2(16, 18)
@@ -173,4 +173,4 @@ offset = Vector2(0, -8)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 y_sort_enabled = true
-zoom = Vector2(10, 10)
+zoom = Vector2(8, 8)

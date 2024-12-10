@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://55ist1b4hr5x"
-path="res://.godot/imported/Bitmask references 2.png-4bd91936473a825e6f45730adbefeefc.ctex"
+path="res://.godot/imported/Bitmask references 2.png-b33b4ea7963f9de598c190685c12b497.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Tilesets/Bitmask references 2.png"
-dest_files=["res://.godot/imported/Bitmask references 2.png-4bd91936473a825e6f45730adbefeefc.ctex"]
+source_file="res://Tile/SproutLands/Tilesets/Bitmask references 2.png"
+dest_files=["res://.godot/imported/Bitmask references 2.png-b33b4ea7963f9de598c190685c12b497.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://640q51ve5qve"
-path="res://.godot/imported/Basic Charakter Actions.png-b1d28f72b6e56391321b88c894b13819.ctex"
+uid="uid://cg0wfibh54chh"
+path="res://.godot/imported/Summer.png-8bb39483a907f73ce824f0a0b9556e32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Characters/Basic Charakter Actions.png"
-dest_files=["res://.godot/imported/Basic Charakter Actions.png-b1d28f72b6e56391321b88c894b13819.ctex"]
+source_file="res://Tile/HanaCaraka/Tileset/Summer.png"
+dest_files=["res://.godot/imported/Summer.png-8bb39483a907f73ce824f0a0b9556e32.ctex"]
 
 [params]
 

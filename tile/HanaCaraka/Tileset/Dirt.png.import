@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tx6eeys3wftq"
-path="res://.godot/imported/Free_Chicken_House.png-7078fc04168307d50f79a1ecbde8c7b2.ctex"
+uid="uid://3ews0hxiypgy"
+path="res://.godot/imported/Dirt.png-4301b2711353b1a2918b8c399c60f327.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Objects/Free_Chicken_House.png"
-dest_files=["res://.godot/imported/Free_Chicken_House.png-7078fc04168307d50f79a1ecbde8c7b2.ctex"]
+source_file="res://Tile/HanaCaraka/Tileset/Dirt.png"
+dest_files=["res://.godot/imported/Dirt.png-4301b2711353b1a2918b8c399c60f327.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clcrdrit45aqa"
-path="res://.godot/imported/Basic_Grass_Biom_things.png-e32930f5dcbe6ee754f61b282f1d63aa.ctex"
+uid="uid://cm5kpw6uqhvia"
+path="res://.godot/imported/Winter.png-9fe632533863b395beb58b562658f43c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Objects/Basic_Grass_Biom_things.png"
-dest_files=["res://.godot/imported/Basic_Grass_Biom_things.png-e32930f5dcbe6ee754f61b282f1d63aa.ctex"]
+source_file="res://Tile/HanaCaraka/Tileset/Winter.png"
+dest_files=["res://.godot/imported/Winter.png-9fe632533863b395beb58b562658f43c.ctex"]
 
 [params]
 

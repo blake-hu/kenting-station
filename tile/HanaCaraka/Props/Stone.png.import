@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbmlh48cys6sc"
-path="res://.godot/imported/Simple_Milk_and_grass_item.png-80ee397a6d361861ecdbf11794ea210c.ctex"
+uid="uid://44y2vvsx7d5s"
+path="res://.godot/imported/Stone.png-69937f55e5797e5903c2f03007b1794d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Objects/Simple_Milk_and_grass_item.png"
-dest_files=["res://.godot/imported/Simple_Milk_and_grass_item.png-80ee397a6d361861ecdbf11794ea210c.ctex"]
+source_file="res://Tile/HanaCaraka/Props/Stone.png"
+dest_files=["res://.godot/imported/Stone.png-69937f55e5797e5903c2f03007b1794d.ctex"]
 
 [params]
 

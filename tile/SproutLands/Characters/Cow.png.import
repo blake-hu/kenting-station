@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhsk2kh3w3p4g"
-path="res://.godot/imported/Tufts and Lumps.png-528c69cc411cc27fd28fd444eeece02a.ctex"
+uid="uid://dgvy0ffjcdswd"
+path="res://.godot/imported/Cow.png-78740746a48db32b6c5d55ca47085680.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/HanaCaraka/Tileset/Tufts and Lumps.png"
-dest_files=["res://.godot/imported/Tufts and Lumps.png-528c69cc411cc27fd28fd444eeece02a.ctex"]
+source_file="res://Tile/SproutLands/Characters/Cow.png"
+dest_files=["res://.godot/imported/Cow.png-78740746a48db32b6c5d55ca47085680.ctex"]
 
 [params]
 

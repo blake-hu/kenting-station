@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg0wfibh54chh"
-path="res://.godot/imported/Summer - simplified.png-0503666d240b2ccead11aeb22c663f53.ctex"
+uid="uid://cbmlh48cys6sc"
+path="res://.godot/imported/MilkGrassItem.png-31d6bbcf4caa3a923e2e91da4faf8548.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/HanaCaraka/Tileset/Summer - simplified.png"
-dest_files=["res://.godot/imported/Summer - simplified.png-0503666d240b2ccead11aeb22c663f53.ctex"]
+source_file="res://Tile/SproutLands/Objects/MilkGrassItem.png"
+dest_files=["res://.godot/imported/MilkGrassItem.png-31d6bbcf4caa3a923e2e91da4faf8548.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3ews0hxiypgy"
-path="res://.godot/imported/Dirt - simplified.png-fa3e42fa1a098efbeb1169b2f5fb029a.ctex"
+uid="uid://cwr8hskle808f"
+path="res://.godot/imported/Palette.png-07f3c20cbd116aea13dcdbd776c2fa2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/HanaCaraka/Tileset/Dirt - simplified.png"
-dest_files=["res://.godot/imported/Dirt - simplified.png-fa3e42fa1a098efbeb1169b2f5fb029a.ctex"]
+source_file="res://Tile/SproutLands/ColorPalette/Palette.png"
+dest_files=["res://.godot/imported/Palette.png-07f3c20cbd116aea13dcdbd776c2fa2f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6ykscqqat3mn"
-path="res://.godot/imported/Basic Charakter Spritesheet.png-dd991b093f1b3e8fe0f9b896b6234f09.ctex"
+uid="uid://xgbqbd36orel"
+path="res://.godot/imported/WaterPlants.png-b7167ceecfdc0526370252604ac6fe16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Characters/Basic Charakter Spritesheet.png"
-dest_files=["res://.godot/imported/Basic Charakter Spritesheet.png-dd991b093f1b3e8fe0f9b896b6234f09.ctex"]
+source_file="res://Tile/HanaCaraka/Props/WaterPlants.png"
+dest_files=["res://.godot/imported/WaterPlants.png-b7167ceecfdc0526370252604ac6fe16.ctex"]
 
 [params]
 

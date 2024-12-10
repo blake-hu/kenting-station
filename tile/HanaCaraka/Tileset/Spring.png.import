@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drakulcbkk08d"
-path="res://.godot/imported/Fall - simplified.png-a6d48406b9a2356f001b084558571340.ctex"
+uid="uid://dv75jwynd7fct"
+path="res://.godot/imported/Spring.png-9435d3a046bd3df88eec161936bc95cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/HanaCaraka/Tileset/Fall - simplified.png"
-dest_files=["res://.godot/imported/Fall - simplified.png-a6d48406b9a2356f001b084558571340.ctex"]
+source_file="res://Tile/HanaCaraka/Tileset/Spring.png"
+dest_files=["res://.godot/imported/Spring.png-9435d3a046bd3df88eec161936bc95cf.ctex"]
 
 [params]
 

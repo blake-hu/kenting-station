@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=9 format=4 uid="uid://ba08oviccnkt4"]
 
-[ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://tile/HanaCaraka/Tileset/Dirt - simplified.png" id="1_frrng"]
-[ext_resource type="Texture2D" uid="uid://kpuccv5lvj1y" path="res://tile/HanaCaraka/Props/Tree.png" id="2_3a40k"]
-[ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://scene/player.tscn" id="2_uagh0"]
+[ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="1_frrng"]
+[ext_resource type="Texture2D" uid="uid://kpuccv5lvj1y" path="res://Tile/HanaCaraka/Props/Tree.png" id="2_3a40k"]
+[ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/player.tscn" id="2_uagh0"]
+[ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/cow.tscn" id="4_rh6xk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xsmwo"]
 resource_name = "Tree"
@@ -53,6 +54,10 @@ y_sort_enabled = true
 [node name="Player" parent="." instance=ExtResource("2_uagh0")]
 z_as_relative = false
 position = Vector2(310, 244)
+
+[node name="Cow" parent="." instance=ExtResource("4_rh6xk")]
+y_sort_enabled = true
+position = Vector2(240, 236)
 
 [node name="Trees" type="TileMapLayer" parent="."]
 y_sort_enabled = true

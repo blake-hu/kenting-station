@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6heah65udv8i"
-path="res://.godot/imported/Basic_Plants.png-7da5631e78761fc6bf8022eb879f1939.ctex"
+uid="uid://c6ykscqqat3mn"
+path="res://.godot/imported/Character.png-2cc1b2e4019bb500c470b4480a31b0f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Objects/Basic_Plants.png"
-dest_files=["res://.godot/imported/Basic_Plants.png-7da5631e78761fc6bf8022eb879f1939.ctex"]
+source_file="res://Tile/SproutLands/Characters/Character.png"
+dest_files=["res://.godot/imported/Character.png-2cc1b2e4019bb500c470b4480a31b0f6.ctex"]
 
 [params]
 

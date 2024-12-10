@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://44y2vvsx7d5s"
-path="res://.godot/imported/Stone and Rock.png-537daf0bbf4a8a80e9775ba092cba69e.ctex"
+uid="uid://dlm5xqnsht4ua"
+path="res://.godot/imported/PaletteSnip.PNG-9222036c2cc23ecd2c49b0b84365698d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/HanaCaraka/Props/Stone and Rock.png"
-dest_files=["res://.godot/imported/Stone and Rock.png-537daf0bbf4a8a80e9775ba092cba69e.ctex"]
+source_file="res://Tile/SproutLands/ColorPalette/PaletteSnip.PNG"
+dest_files=["res://.godot/imported/PaletteSnip.PNG-9222036c2cc23ecd2c49b0b84365698d.ctex"]
 
 [params]
 

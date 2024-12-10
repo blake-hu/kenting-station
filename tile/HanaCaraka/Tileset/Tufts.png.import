@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlm5xqnsht4ua"
-path="res://.godot/imported/Sprout Lands defautlt palette snip.PNG-2de5cf00c40bdce9d903aeb22573e3cc.ctex"
+uid="uid://dhsk2kh3w3p4g"
+path="res://.godot/imported/Tufts.png-ef625dc60bbf2dcf6f13cc23d8ebeebe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Sprout Lands color pallet/Sprout Lands defautlt palette snip.PNG"
-dest_files=["res://.godot/imported/Sprout Lands defautlt palette snip.PNG-2de5cf00c40bdce9d903aeb22573e3cc.ctex"]
+source_file="res://Tile/HanaCaraka/Tileset/Tufts.png"
+dest_files=["res://.godot/imported/Tufts.png-ef625dc60bbf2dcf6f13cc23d8ebeebe.ctex"]
 
 [params]
 

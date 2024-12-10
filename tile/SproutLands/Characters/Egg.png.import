@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv75jwynd7fct"
-path="res://.godot/imported/Spring - simplified.png-09c0520f59e3124f2ad1ed27de295f7e.ctex"
+uid="uid://b2w6ckpdwumpu"
+path="res://.godot/imported/Egg.png-780c6fe50f7e7717ebc2c5255bbc28e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/HanaCaraka/Tileset/Spring - simplified.png"
-dest_files=["res://.godot/imported/Spring - simplified.png-09c0520f59e3124f2ad1ed27de295f7e.ctex"]
+source_file="res://Tile/SproutLands/Characters/Egg.png"
+dest_files=["res://.godot/imported/Egg.png-780c6fe50f7e7717ebc2c5255bbc28e5.ctex"]
 
 [params]
 

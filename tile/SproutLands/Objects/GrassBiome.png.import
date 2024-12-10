@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwr8hskle808f"
-path="res://.godot/imported/Sprout Lands defautlt palette.png-548b702502e1e5038f56614bf09e7d36.ctex"
+uid="uid://clcrdrit45aqa"
+path="res://.godot/imported/GrassBiome.png-009441b8100cd72e9a4bf226cd06823f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Sprout Lands color pallet/Sprout Lands defautlt palette.png"
-dest_files=["res://.godot/imported/Sprout Lands defautlt palette.png-548b702502e1e5038f56614bf09e7d36.ctex"]
+source_file="res://Tile/SproutLands/Objects/GrassBiome.png"
+dest_files=["res://.godot/imported/GrassBiome.png-009441b8100cd72e9a4bf226cd06823f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl36m1n0ah32g"
-path="res://.godot/imported/Basic_tools_and_meterials.png-06f250071197ac5b90780ae8777583f2.ctex"
+uid="uid://6heah65udv8i"
+path="res://.godot/imported/Plants.png-496395757e4057d0e5c7b13b14646c13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile/SproutLands/Objects/Basic_tools_and_meterials.png"
-dest_files=["res://.godot/imported/Basic_tools_and_meterials.png-06f250071197ac5b90780ae8777583f2.ctex"]
+source_file="res://Tile/SproutLands/Objects/Plants.png"
+dest_files=["res://.godot/imported/Plants.png-496395757e4057d0e5c7b13b14646c13.ctex"]
 
 [params]
 
