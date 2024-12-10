@@ -2,7 +2,7 @@ using Godot;
 
 namespace CozyGame.Interface;
 
-public interface IMoveTwoAxis
+public interface ITwoAxisMover
 {
     public bool NextMove(out Vector2 moveValues);
 }

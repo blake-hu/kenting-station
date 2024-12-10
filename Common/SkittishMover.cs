@@ -3,10 +3,10 @@ using Godot;
 
 namespace CozyGame.scene;
 
-public class SkittishMover : IMoveTwoAxis
+public class SkittishMover : ITwoAxisMover
 {
     private readonly CharacterBody2D _character;
-    private readonly RandomOneAxisMover _randomOneAxisMover;
+    private readonly RandomOneAxisMoverMover _randomOneAxisMoverMover;
     private readonly float _triggerRadius;
 
     public SkittishMover(
@@ -17,7 +17,8 @@ public class SkittishMover : IMoveTwoAxis
         float minRunSpeed,
         float maxRunSpeed)
     {
-        _randomOneAxisMover = new RandomOneAxisMover(minTicksPerRun, maxTicksPerRun, minRunSpeed, maxRunSpeed);
+        _randomOneAxisMoverMover =
+            new RandomOneAxisMoverMover(minTicksPerRun, maxTicksPerRun, minRunSpeed, maxRunSpeed);
         _triggerRadius = triggerRadius;
         _character = character;
     }
@@ -31,10 +32,9 @@ public class SkittishMover : IMoveTwoAxis
         var distance = playerToCharacter.Length();
         if (distance > _triggerRadius) return false;
 
-        if (_randomOneAxisMover.NextMove(out var speed))
+        if (_randomOneAxisMoverMover.NextMove(out var speed))
         {
             moveValues = playerToCharacter.Normalized() * speed;
-            GD.Print($"Skittish move: {moveValues}");
             return true;
         }
 

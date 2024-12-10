@@ -1,6 +1,6 @@
 namespace CozyGame.Interface;
 
-public interface IMoveOneAxis
+public interface IOneAxisMover
 {
     public bool NextMove(out float moveValue);
 }
