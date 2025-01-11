@@ -54,22 +54,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-y_sort_enabled = true
+[node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_723xs")
-MaxMoveDuration = 150
-MaxRunDuration = 50
-MaxRunSpeed = 120.0
-MinMoveDuration = 30
-MinRunSpeed = 60.0
-SkittishRadius = 15.0
+MaxXWalkSpeed = 50.0
+MaxYWalkSpeed = 30.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ptegv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_tn7so")
 animation = &"right"

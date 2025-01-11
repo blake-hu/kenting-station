@@ -4,7 +4,7 @@ using CozyGame.Interface;
 
 namespace CozyGame.scene;
 
-public class RandomOneAxisMoverMover : IOneAxisMover
+public class RandomOneAxisMover : IOneAxisMover
 {
     private readonly IEnumerator<float?> _enumerator;
     private readonly int _maxTicksPerMove;
@@ -15,7 +15,7 @@ public class RandomOneAxisMoverMover : IOneAxisMover
 
     // TODO: Implement IDisposable and Dispose the IEnumerator<>?
 
-    public RandomOneAxisMoverMover(int minTicksPerMove, int maxTicksPerMove, float minOutput, float maxOutput)
+    public RandomOneAxisMover(int minTicksPerMove, int maxTicksPerMove, float minOutput, float maxOutput)
     {
         _minTicksPerMove = minTicksPerMove;
         _maxTicksPerMove = maxTicksPerMove;
