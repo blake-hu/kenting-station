@@ -4,7 +4,7 @@ using Godot;
 
 namespace CozyGame.scene;
 
-public class OnlinePlayers : IUpdatingCharacterGroup
+public class OnlinePlayers : IUpdatingGroup<CharacterBody2D>
 {
     private readonly HashSet<Player> _onlinePlayers;
 

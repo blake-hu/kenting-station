@@ -6,14 +6,14 @@ namespace CozyGame.scene;
 
 public class SkittishMover : ITwoAxisMover
 {
-    private readonly IList<IUpdatingCharacterGroup> _enemyCharacterGroups;
+    private readonly IList<IUpdatingGroup<CharacterBody2D>> _enemyCharacterGroups;
     private readonly RandomOneAxisMover _randomOneAxisMover;
     private readonly CharacterBody2D _skittishCharacter;
     private readonly float _triggerRadius;
 
     public SkittishMover(
         CharacterBody2D skittishCharacter,
-        List<IUpdatingCharacterGroup> enemyCharacterGroups,
+        List<IUpdatingGroup<CharacterBody2D>> enemyCharacterGroups,
         float triggerRadius,
         int minTicksPerRun,
         int maxTicksPerRun,
