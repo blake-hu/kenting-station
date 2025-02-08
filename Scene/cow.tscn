@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://di2i2ghhd7gyp"]
 
-[ext_resource type="Script" path="res://Scene/Cow.cs" id="1_723xs"]
+[ext_resource type="Script" path="res://Entity/Cow.cs" id="1_723xs"]
 [ext_resource type="Texture2D" uid="uid://dgvy0ffjcdswd" path="res://Tile/SproutLands/Characters/Cow.png" id="1_nh67y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptegv"]
@@ -55,6 +55,8 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 30
 script = ExtResource("1_723xs")
 MaxXWalkSpeed = 50.0
 MaxYWalkSpeed = 30.0

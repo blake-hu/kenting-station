@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://qth75vb37jpa"]
 
 [ext_resource type="Texture2D" uid="uid://c6ykscqqat3mn" path="res://Tile/SproutLands/Characters/Character.png" id="1_pa0d8"]
-[ext_resource type="Script" path="res://Scene/Player.cs" id="1_us4dx"]
+[ext_resource type="Script" path="res://Entity/Player.cs" id="1_us4dx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5sx3"]
 size = Vector2(16, 18)
@@ -155,6 +155,8 @@ animations = [{
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 y_sort_enabled = true
+collision_layer = 2
+collision_mask = 254
 script = ExtResource("1_us4dx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -171,3 +173,8 @@ offset = Vector2(0, -8)
 [node name="Camera2D" type="Camera2D" parent="."]
 y_sort_enabled = true
 zoom = Vector2(8, 8)
+
+[node name="WeaponHitDetector" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+target_position = Vector2(20, 0)
+collision_mask = 26
