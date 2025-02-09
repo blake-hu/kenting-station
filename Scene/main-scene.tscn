@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=11 format=4 uid="uid://ba08oviccnkt4"]
 
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="1_frrng"]
 [ext_resource type="Texture2D" uid="uid://kpuccv5lvj1y" path="res://Tile/HanaCaraka/Props/Tree.png" id="2_3a40k"]
 [ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/player.tscn" id="2_uagh0"]
 [ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/cow.tscn" id="4_rh6xk"]
 [ext_resource type="PackedScene" uid="uid://br7yvclghewdu" path="res://Scene/tree.tscn" id="5_qwunf"]
+[ext_resource type="Script" path="res://Scene/CowSpawner.cs" id="6_ooymg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xsmwo"]
 resource_name = "Tree"
@@ -85,3 +86,10 @@ position = Vector2(421, 238)
 
 [node name="Tree2" parent="." instance=ExtResource("5_qwunf")]
 position = Vector2(483, 238)
+
+[node name="AllSpawners" type="Node2D" parent="."]
+
+[node name="CowSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("6_ooymg")
+
+[node name="TreeSpawner" type="Node2D" parent="AllSpawners"]
