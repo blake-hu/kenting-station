@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://br7yvclghewdu"]
+
+[ext_resource type="Texture2D" uid="uid://kpuccv5lvj1y" path="res://Tile/HanaCaraka/Props/Tree.png" id="1_yy7vb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q2x1"]
+size = Vector2(18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se04j"]
+atlas = ExtResource("1_yy7vb")
+region = Rect2(32, 0, 32, 48)
+
+[node name="Tree" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 122
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6q2x1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+texture = SubResource("AtlasTexture_se04j")
