@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=11 format=4 uid="uid://ba08oviccnkt4"]
 
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="1_frrng"]
+[ext_resource type="Script" path="res://Scene/MobContainer.cs" id="1_lotmo"]
 [ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/player.tscn" id="2_uagh0"]
 [ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/cow.tscn" id="4_rh6xk"]
 [ext_resource type="PackedScene" uid="uid://br7yvclghewdu" path="res://Scene/tree.tscn" id="5_qwunf"]
+[ext_resource type="Script" path="res://Scene/WorldBoundary.cs" id="6_4dclk"]
 [ext_resource type="Script" path="res://Scene/CowSpawner.cs" id="6_ooymg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63oqm"]
@@ -37,6 +39,9 @@ normal = Vector2(0, 1)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+
+[node name="MobContainer" type="Node2D" parent="."]
+script = ExtResource("1_lotmo")
 
 [node name="Player" parent="." instance=ExtResource("2_uagh0")]
 z_as_relative = false
@@ -79,6 +84,7 @@ autostart = true
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 255
+script = ExtResource("6_4dclk")
 
 [node name="NorthBorder" type="CollisionShape2D" parent="WorldBoundary"]
 position = Vector2(0, -280)

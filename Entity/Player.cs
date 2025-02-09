@@ -3,66 +3,68 @@ using Godot;
 
 public partial class Player : CharacterBody2D
 {
-	private AnimatedSprite2D _animatedSprite2D;
-	private RayCast2D _weaponHitDetector;
+    private AnimatedSprite2D _animatedSprite2D;
+    private RayCast2D _weaponHitDetector;
 
-	[Export] public float Speed = 100.0f;
+    [Export] public float Speed = 100.0f;
 
-	public override void _Ready()
-	{
-		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		_weaponHitDetector = GetNode<RayCast2D>("WeaponHitDetector");
-		OnlinePlayers.RegisterPlayer(this);
-	}
+    public override void _Ready()
+    {
+        _animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        _weaponHitDetector = GetNode<RayCast2D>("WeaponHitDetector");
+        OnlinePlayers.RegisterPlayer(this);
+    }
 
-	public override void _PhysicsProcess(double delta)
-	{
-		Move();
-		MovementUpdate();
-		DetectWeaponHit();
-	}
+    public override void _PhysicsProcess(double delta)
+    {
+        Move();
+        MovementUpdate();
+        DetectWeaponHit();
+    }
 
-	private void DetectWeaponHit()
-	{
-		if (Input.IsActionJustPressed("mouse_left"))
-		{
-			var collider = _weaponHitDetector.GetCollider();
-			GD.Print("Attacked: " + collider);
-			collider.Free();
-		}
-	}
+    private void DetectWeaponHit()
+    {
+        if (Input.IsActionJustPressed("mouse_left"))
+        {
+            var collider = _weaponHitDetector.GetCollider();
+            if (collider == null)
+                return;
+            GD.Print("Attacked: " + collider);
+            collider.Free();
+        }
+    }
 
-	private void MovementUpdate()
-	{
-		if (Input.IsActionPressed("left"))
-		{
-			_animatedSprite2D.Play("left");
-			_weaponHitDetector.TargetPosition = new Vector2(-20, 0);
-		}
-		else if (Input.IsActionPressed("right"))
-		{
-			_animatedSprite2D.Play("right");
-			_weaponHitDetector.TargetPosition = new Vector2(20, 0);
-		}
-		else if (Input.IsActionPressed("up"))
-		{
-			_animatedSprite2D.Play("up");
-			_weaponHitDetector.TargetPosition = new Vector2(0, -20);
-		}
-		else if (Input.IsActionPressed("down"))
-		{
-			_animatedSprite2D.Play("down");
-			_weaponHitDetector.TargetPosition = new Vector2(0, 20);
-		}
-		else
-		{
-			_animatedSprite2D.Play("stationary");
-		}
-	}
+    private void MovementUpdate()
+    {
+        if (Input.IsActionPressed("left"))
+        {
+            _animatedSprite2D.Play("left");
+            _weaponHitDetector.TargetPosition = new Vector2(-20, 0);
+        }
+        else if (Input.IsActionPressed("right"))
+        {
+            _animatedSprite2D.Play("right");
+            _weaponHitDetector.TargetPosition = new Vector2(20, 0);
+        }
+        else if (Input.IsActionPressed("up"))
+        {
+            _animatedSprite2D.Play("up");
+            _weaponHitDetector.TargetPosition = new Vector2(0, -20);
+        }
+        else if (Input.IsActionPressed("down"))
+        {
+            _animatedSprite2D.Play("down");
+            _weaponHitDetector.TargetPosition = new Vector2(0, 20);
+        }
+        else
+        {
+            _animatedSprite2D.Play("stationary");
+        }
+    }
 
-	private void Move()
-	{
-		Velocity = Input.GetVector("left", "right", "up", "down") * Speed;
-		MoveAndSlide();
-	}
+    private void Move()
+    {
+        Velocity = Input.GetVector("left", "right", "up", "down") * Speed;
+        MoveAndSlide();
+    }
 }
