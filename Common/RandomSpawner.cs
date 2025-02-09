@@ -45,8 +45,10 @@ public class RandomSpawner : ISpawnerStrategy
 
     private Vector2 GetSpawnLocation()
     {
-        var x = _rng.Next((int)WorldBoundary.X.Item1, (int)WorldBoundary.X.Item2);
-        var y = _rng.Next((int)WorldBoundary.Y.Item1, (int)WorldBoundary.Y.Item2);
+        var boundaryLower = WorldBoundary.Boundary.Lower;
+        var boundaryUpper = WorldBoundary.Boundary.Upper;
+        var x = _rng.Next((int)boundaryLower.X, (int)boundaryUpper.X);
+        var y = _rng.Next((int)boundaryLower.Y, (int)boundaryUpper.Y);
         return new Vector2(x, y);
     }
 }
