@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using CozyGame.Interface;
 
@@ -7,11 +6,10 @@ namespace CozyGame.Common;
 public class RandomOneAxisMover : IOneAxisMover
 {
     private readonly IEnumerator<float?> _enumerator;
+    private readonly float _maxOutput;
     private readonly int _maxTicksPerMove;
     private readonly float _minOutput;
     private readonly int _minTicksPerMove;
-    private readonly float _outputRange;
-    private readonly Random _rng = new();
 
     // TODO: Implement IDisposable and Dispose the IEnumerator<>?
 
@@ -20,7 +18,7 @@ public class RandomOneAxisMover : IOneAxisMover
         _minTicksPerMove = minTicksPerMove;
         _maxTicksPerMove = maxTicksPerMove;
         _minOutput = minOutput;
-        _outputRange = maxOutput - minOutput;
+        _maxOutput = maxOutput;
         _enumerator = Enumerator();
     }
 
@@ -41,10 +39,10 @@ public class RandomOneAxisMover : IOneAxisMover
     {
         while (true) // infinite iterator
         {
-            var moveDurationTicks = _rng.Next(_minTicksPerMove, _maxTicksPerMove);
+            var moveDurationTicks = (int)RandomScalar.GeneratePositive(_minTicksPerMove, _maxTicksPerMove);
             for (var i = 0; i < moveDurationTicks; i++) yield return null;
 
-            yield return (float)_rng.NextDouble() * _outputRange + _minOutput;
+            yield return RandomScalar.Generate(_minOutput, _maxOutput);
         }
     }
 }
