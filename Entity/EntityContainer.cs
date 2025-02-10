@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +10,12 @@ namespace CozyGame.Entity;
 // parameterized by different entity types derived from Node2D
 public interface IEntityContainer<out TEntity> where TEntity : Node2D
 {
+    public void Tick();
 }
 
 public class EntityContainer<TEntity> : IEntityContainer<TEntity> where TEntity : Node2D
 {
     private readonly Dictionary<EntityId, TEntity> _activeEntities = new();
-    private readonly ChunkedEntityCounter<TEntity> _chunkedCounter;
 
     public EntityContainer()
     {
@@ -24,8 +23,15 @@ public class EntityContainer<TEntity> : IEntityContainer<TEntity> where TEntity 
 
     public EntityContainer(ChunkedEntityCounter<TEntity> chunkedCounter)
     {
-        _chunkedCounter = chunkedCounter;
+        ChunkedCounter = chunkedCounter;
         chunkedCounter.RegisterEntityDict(_activeEntities);
+    }
+
+    public ChunkedEntityCounter<TEntity> ChunkedCounter { get; }
+
+    public void Tick()
+    {
+        ChunkedCounter?.Tick();
     }
 
     public bool TryAddEntity(TEntity entity)
@@ -37,24 +43,6 @@ public class EntityContainer<TEntity> : IEntityContainer<TEntity> where TEntity 
     {
         var id = (EntityId)entity.Name;
         return _activeEntities.Remove(id);
-    }
-
-    private void CheckChunkedCounterAvailable()
-    {
-        if (_chunkedCounter == null)
-            throw new Exception($"No ChunkedEntityCounter available for {typeof(EntityContainer<TEntity>)}");
-    }
-
-    public uint[,] GetChunkedCountsCached()
-    {
-        CheckChunkedCounterAvailable();
-        return _chunkedCounter.CachedCounts;
-    }
-
-    public void RefreshChunkedCounts()
-    {
-        CheckChunkedCounterAvailable();
-        _chunkedCounter.RefreshCounts();
     }
 
     public override string ToString()

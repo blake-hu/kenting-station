@@ -10,9 +10,11 @@ public partial class EntityService : Node2D
 {
     private readonly Dictionary<Type, IEntityContainer<Node2D>> _entityContainers = new()
     {
-        { typeof(Cow), new EntityContainer<Cow>(new ChunkedEntityCounter<Cow>(16)) },
-        { typeof(Tree), new EntityContainer<Tree>() }
+        { typeof(Cow), new EntityContainer<Cow>(new ChunkedEntityCounter<Cow>(128, 200)) },
+        { typeof(Tree), new EntityContainer<Tree>(new ChunkedEntityCounter<Tree>(256, 400)) }
     };
+
+    [Export] public int CounterTimeToLive;
 
     public static EntityService Singleton { get; private set; }
 
@@ -20,11 +22,16 @@ public partial class EntityService : Node2D
     public override void _Ready()
     {
         Singleton = this;
+        if (CounterTimeToLive < 0)
+            throw new Exception(
+                $"TimeToLive for ChunkedEntityCounter is {CounterTimeToLive}, but must be non-negative.");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        foreach (var container in _entityContainers.Values)
+            container.Tick();
     }
 
     public EntityContainer<TEntity> GetContainer<TEntity>() where TEntity : Node2D

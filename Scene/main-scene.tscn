@@ -73,6 +73,7 @@ tile_set = SubResource("TileSet_4kr52")
 
 [node name="EntityService" type="Node2D" parent="."]
 script = ExtResource("3_lm2sx")
+CounterTimeToLive = 200
 
 [node name="AllSpawners" type="Node2D" parent="."]
 

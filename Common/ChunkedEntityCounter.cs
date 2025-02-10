@@ -1,32 +1,91 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Godot;
 
 namespace CozyGame.Common;
 
-public class ChunkedEntityCounter<T>
+public class ChunkedEntityCounter<TEntity> where TEntity : Node2D
 {
-    private Dictionary<EntityId, T> _entityDict;
+    private readonly Dictionary<ChunkCoordinate, uint> _cachedCounts = new();
+    private readonly object _lock = new();
 
-    public ChunkedEntityCounter(uint numChunks)
+    public readonly uint ChunkSize;
+    private Dictionary<EntityId, TEntity> _entityDict;
+    private uint _timeSinceUpdate;
+
+    public ChunkedEntityCounter(uint chunkSize)
     {
-        CachedCounts = new uint[numChunks, numChunks];
+        ChunkSize = chunkSize;
     }
 
-    public uint[,] CachedCounts { get; }
-
-
-    public void RegisterEntityDict(Dictionary<EntityId, T> dict)
+    public ChunkedEntityCounter(uint chunkSize, uint timeToLive)
     {
+        ChunkSize = chunkSize;
+        AutoUpdate = true;
+        TimeToLive = timeToLive;
+    }
+
+    public bool AutoUpdate { get; set; }
+    public uint TimeToLive { get; set; }
+
+    private Dictionary<ChunkCoordinate, uint> CachedCounts
+    {
+        get
+        {
+            lock (_lock)
+            {
+                return _cachedCounts;
+            }
+        }
+    }
+
+
+    public void RegisterEntityDict(Dictionary<EntityId, TEntity> dict)
+    {
+        if (_entityDict is not null)
+            throw new Exception(
+                "ChunkEntityCounter: Attempted to set non-empty _entityDict. Entity dict should only be initialized once");
         _entityDict = dict;
     }
 
-    public void RefreshCounts()
+    public void Tick()
     {
-        throw new NotImplementedException();
+        _timeSinceUpdate++;
+        if (AutoUpdate && _timeSinceUpdate >= TimeToLive)
+        {
+            UpdateCounts();
+            _timeSinceUpdate = 0;
+            GD.Print(ToString());
+        }
     }
 
-    public void GetChunkBoundaries(Chunk chunk)
+    public void UpdateCounts()
     {
-        throw new NotImplementedException();
+        lock (_lock)
+        {
+            _cachedCounts.Clear();
+            foreach (var entity in _entityDict.Values)
+            {
+                var (chunkCoord, chunkSize) = Chunk.GetChunk(entity.Position, ChunkSize);
+                var (chunkX, chunkY) = chunkCoord;
+                _cachedCounts.TryAdd(chunkCoord, 0);
+                _cachedCounts[new ChunkCoordinate(chunkX, chunkY)] += 1;
+            }
+        }
+    }
+
+    public override string ToString()
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine($"---- ChunkedEntityCounter<{typeof(TEntity)}> ----");
+        lock (_lock)
+        {
+            foreach (var kvp in _cachedCounts.OrderBy(kvp => kvp.Value).Reverse())
+                sb.AppendLine($"- {kvp.Key}: {kvp.Value}");
+        }
+
+        return sb.ToString();
     }
 }
