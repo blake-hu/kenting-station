@@ -9,10 +9,11 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEn
 {
     private readonly Random _rng = new();
     protected PackedScene _entityScene;
+    protected float _maxSpawnTime;
+    protected float _minSpawnTime;
 
     private float _nextSpawnPeriod;
     protected Rect2 _spawnArea;
-    protected Vector2I _spawnPeriod;
     private float _tickCounter;
 
     // Called when the node enters the scene tree for the first time.
@@ -24,13 +25,13 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEn
 
     private void ValidateSpawnPeriod()
     {
-        var first = _spawnPeriod.X;
-        var second = _spawnPeriod.Y;
-        if (first > second)
+        if (_minSpawnTime > _maxSpawnTime)
             throw new ArgumentException(
-                $"First value ({first}) of SpawnPeriodRange must be smaller than second value ({second}).");
-        if (first < 0.0f)
-            throw new ArgumentException($"First value ({first}) of SpawnPeriodRange must be a positive value.");
+                $"First value ({_minSpawnTime}) of SpawnPeriodRange must be smaller than _maxSpawnTime value ({_maxSpawnTime}).");
+        if (_minSpawnTime < 0.0f)
+            throw new ArgumentException($"First value ({_minSpawnTime}) of SpawnPeriodRange must be a positive value.");
+        if (_minSpawnTime < 5.0f)
+            throw new Exception($"Min spawn time for {typeof(TEntity)} is unusually fast. Are you sure?");
     }
 
 
@@ -74,6 +75,6 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEn
 
     private float GetSpawnPeriod()
     {
-        return _rng.Next(_spawnPeriod.X, _spawnPeriod.Y);
+        return _rng.Next((int)_minSpawnTime, (int)_maxSpawnTime);
     }
 }

@@ -79,13 +79,15 @@ script = ExtResource("3_lm2sx")
 [node name="CowSpawner" type="Node2D" parent="AllSpawners"]
 script = ExtResource("4_jiyhv")
 EntityScene = ExtResource("4_rh6xk")
-SpawnPeriod = Vector2i(200, 500)
+MinSpawnTime = 300.0
+MaxSpawnTime = 600.0
 SpawnArea = Rect2(-100, -100, 200, 200)
 
 [node name="TreeSpawner" type="Node2D" parent="AllSpawners"]
 script = ExtResource("6_gwypi")
 EntityScene = ExtResource("5_qwunf")
-SpawnPeriod = Vector2i(500, 1500)
+MinSpawnTime = 500.0
+MaxSpawnTime = 1500.0
 SpawnArea = Rect2(-200, -200, 400, 400)
 
 [node name="Player" parent="." instance=ExtResource("2_uagh0")]
