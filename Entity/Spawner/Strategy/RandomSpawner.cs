@@ -6,8 +6,8 @@ namespace CozyGame.Entity.Spawner.Strategy;
 
 public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEntity<TEntity>
 {
-    private float _nextSpawnPeriod;
-    private float _tickCounter;
+    private int _nextSpawnPeriod;
+    private int _tickCounter;
 
     [Export] public PackedScene EntityScene;
     [Export] public float MaxSpawnTime;
@@ -17,7 +17,7 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEn
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _nextSpawnPeriod = RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
+        _nextSpawnPeriod = (int)RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
     }
 
 
@@ -28,7 +28,7 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEn
         {
             var spawnLocation = RandomLocation.Generate(SpawnArea);
             EntityService.Singleton.Spawn<TEntity>(EntityScene, spawnLocation);
-            _nextSpawnPeriod = RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
+            _nextSpawnPeriod = (int)RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
             _tickCounter = 0;
         }
         else
