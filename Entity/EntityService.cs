@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using CozyGame.scene;
 using Godot;
+using Tree = CozyGame.Entity.Tree;
 
 public partial class EntityService : Node2D
 {
     private readonly Dictionary<Type, IEntityContainer<Node2D>> _entityContainers = new()
     {
-        { typeof(Cow), new EntityContainer<Cow>() }
+        { typeof(Cow), new EntityContainer<Cow>() },
+        { typeof(Tree), new EntityContainer<Tree>() }
     };
 
     public static EntityService Instance { get; private set; }

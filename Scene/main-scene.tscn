@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=12 format=4 uid="uid://ba08oviccnkt4"]
 
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="1_frrng"]
 [ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/player.tscn" id="2_uagh0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/cow.tscn" id="4_rh6xk"]
 [ext_resource type="PackedScene" uid="uid://br7yvclghewdu" path="res://Scene/tree.tscn" id="5_qwunf"]
 [ext_resource type="Script" path="res://Global/WorldBoundary.cs" id="6_4dclk"]
+[ext_resource type="Script" path="res://Scene/TreeSpawner.cs" id="6_gwypi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wg2kq"]
 normal = Vector2(0, 1)
@@ -79,13 +80,13 @@ script = ExtResource("3_lm2sx")
 script = ExtResource("4_jiyhv")
 EntityScene = ExtResource("4_rh6xk")
 SpawnPeriod = Vector2i(200, 500)
-SpawnArea = Rect2(-100, 100, 200, 200)
+SpawnArea = Rect2(-100, -100, 200, 200)
+
+[node name="TreeSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("6_gwypi")
+EntityScene = ExtResource("5_qwunf")
+SpawnPeriod = Vector2i(500, 1500)
+SpawnArea = Rect2(-200, -200, 400, 400)
 
 [node name="Player" parent="." instance=ExtResource("2_uagh0")]
 z_as_relative = false
-
-[node name="Tree1" parent="." instance=ExtResource("5_qwunf")]
-position = Vector2(111, -6)
-
-[node name="Tree2" parent="." instance=ExtResource("5_qwunf")]
-position = Vector2(173, -6)
