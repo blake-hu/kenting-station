@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=13 format=4 uid="uid://ba08oviccnkt4"]
 
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="1_frrng"]
 [ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/player.tscn" id="2_uagh0"]
 [ext_resource type="Script" path="res://Entity/EntityService.cs" id="3_lm2sx"]
-[ext_resource type="Script" path="res://Entity/CowSpawner.cs" id="4_jiyhv"]
+[ext_resource type="Script" path="res://Entity/HighDensityCowSpawner.cs" id="4_3pbpy"]
 [ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/cow.tscn" id="4_rh6xk"]
+[ext_resource type="Script" path="res://Entity/RandomCowSpawner.cs" id="5_ansb4"]
 [ext_resource type="PackedScene" uid="uid://br7yvclghewdu" path="res://Scene/tree.tscn" id="5_qwunf"]
 [ext_resource type="Script" path="res://Global/WorldBoundary.cs" id="6_4dclk"]
-[ext_resource type="Script" path="res://Scene/TreeSpawner.cs" id="6_gwypi"]
+[ext_resource type="Script" path="res://Entity/RandomTreeSpawner.cs" id="6_y7dk6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wg2kq"]
 normal = Vector2(0, 1)
@@ -77,19 +78,25 @@ CounterTimeToLive = 200
 
 [node name="AllSpawners" type="Node2D" parent="."]
 
-[node name="CowSpawner" type="Node2D" parent="AllSpawners"]
-script = ExtResource("4_jiyhv")
+[node name="DensityCowSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("4_3pbpy")
 EntityScene = ExtResource("4_rh6xk")
-MinSpawnTime = 300.0
-MaxSpawnTime = 600.0
-SpawnArea = Rect2(-100, -100, 200, 200)
+MinSpawnTime = 500.0
+MaxSpawnTime = 1000.0
 
-[node name="TreeSpawner" type="Node2D" parent="AllSpawners"]
-script = ExtResource("6_gwypi")
+[node name="RandomCowSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("5_ansb4")
+EntityScene = ExtResource("4_rh6xk")
+MinSpawnTime = 500.0
+MaxSpawnTime = 1500.0
+SpawnArea = Rect2(-280, -280, 560, 560)
+
+[node name="RandomTreeSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("6_y7dk6")
 EntityScene = ExtResource("5_qwunf")
 MinSpawnTime = 500.0
 MaxSpawnTime = 1500.0
-SpawnArea = Rect2(-200, -200, 400, 400)
+SpawnArea = Rect2(-280, -280, 560, 560)
 
 [node name="Player" parent="." instance=ExtResource("2_uagh0")]
 z_as_relative = false

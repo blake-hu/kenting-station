@@ -30,7 +30,7 @@ public class ChunkedEntityCounter<TEntity> where TEntity : Node2D
     public bool AutoUpdate { get; set; }
     public uint TimeToLive { get; set; }
 
-    private Dictionary<ChunkCoordinate, uint> CachedCounts
+    public Dictionary<ChunkCoordinate, uint> CachedCounts
     {
         get
         {
