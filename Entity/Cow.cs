@@ -13,7 +13,6 @@ public partial class Cow : CharacterBody2D, IEntity<Cow>
     private EntityContainer<Cow> _entityContainer;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
-    private Random _rng;
     private SkittishMover _skittishMover;
 
     [Export] public float DiagonalWalk;
@@ -54,7 +53,6 @@ public partial class Cow : CharacterBody2D, IEntity<Cow>
         _skittishMover =
             new SkittishMover(this, enemyGroups, SkittishRadius, MinRunDuration, MaxRunDuration, MinRunSpeed,
                 MaxRunSpeed);
-        _rng = new Random();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -67,14 +65,14 @@ public partial class Cow : CharacterBody2D, IEntity<Cow>
         {
             move.X += randomXMove;
             // For more realistic movement, also move slightly up/down when moving horizontally
-            move.Y += randomXMove * (float)_rng.NextDouble() * DiagonalWalk;
+            move.Y += randomXMove * RandomScalar.Generate(-DiagonalWalk, DiagonalWalk);
         }
 
         if (_randomOneAxisYMover.NextMove(out var randomYMove))
         {
             move.Y += randomYMove;
             // For more realistic movement, also move slightly left/right when moving vertically
-            move.X += randomYMove * (float)_rng.NextDouble() * DiagonalWalk;
+            move.X += randomYMove * RandomScalar.Generate(-DiagonalWalk, DiagonalWalk);
         }
 
         if (move != Vector2.Zero)
