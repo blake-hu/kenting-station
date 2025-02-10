@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CozyGame.Common;
+using CozyGame.Interface;
 using Godot;
 
 namespace CozyGame.Entity;
@@ -46,6 +47,20 @@ public partial class EntityService : Node2D
         }
 
         throw new Exception($"Key error in EntityService: Could not find EntityContainer for {typeof(TEntity)}");
+    }
+
+    public void Spawn<TEntity>(PackedScene entityScene, Vector2 spawnLocation) where TEntity : Node2D, IEntity<TEntity>
+    {
+        var entity = entityScene.Instantiate<TEntity>();
+        entity.Position = spawnLocation;
+        entity.Name = new EntityId(entity.Name);
+        Singleton.AddChild(entity);
+        var container = Singleton.GetContainer<TEntity>();
+        if (!container.TryAddEntity(entity))
+            throw new Exception($"Internal error: Unable to add entity {entity.Name} to container");
+        entity.RegisterEntityContainer(container);
+        GD.Print($"Spawned {entity.Name} at location {spawnLocation}");
+        GD.Print(Singleton.ToString());
     }
 
     public override string ToString()

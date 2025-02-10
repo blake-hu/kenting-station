@@ -1,5 +1,4 @@
 using System;
-using CozyGame.Common;
 using CozyGame.Interface;
 using Godot;
 
@@ -40,7 +39,7 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEn
     {
         if (_tickCounter >= _nextSpawnPeriod)
         {
-            Spawn();
+            EntityService.Singleton.Spawn<TEntity>(_entityScene, GetSpawnLocation());
             _nextSpawnPeriod = GetSpawnPeriod();
             _tickCounter = 0;
         }
@@ -48,22 +47,6 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEn
         {
             _tickCounter++;
         }
-    }
-
-    private void Spawn()
-    {
-        var entity = _entityScene.Instantiate<TEntity>();
-        var entityType = entity.GetType();
-        var spawnLocation = GetSpawnLocation();
-        entity.Position = spawnLocation;
-        entity.Name = new EntityId(entity.Name);
-        EntityService.Singleton.AddChild(entity);
-        var container = EntityService.Singleton.GetContainer<TEntity>();
-        if (!container.TryAddEntity(entity))
-            throw new Exception($"Internal error: Unable to add entity {entity.Name} to container");
-        entity.RegisterEntityContainer(container);
-        GD.Print($"Spawned {entity.Name} at location {spawnLocation} after {_nextSpawnPeriod} ticks");
-        GD.Print(EntityService.Singleton.ToString());
     }
 
     private Vector2 GetSpawnLocation()
