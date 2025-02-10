@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CozyGame.scene;
+using CozyGame.Common;
 using Godot;
-using Tree = CozyGame.Entity.Tree;
+
+namespace CozyGame.Entity;
 
 public partial class EntityService : Node2D
 {
     private readonly Dictionary<Type, IEntityContainer<Node2D>> _entityContainers = new()
     {
-        { typeof(Cow), new EntityContainer<Cow>() },
+        { typeof(Cow), new EntityContainer<Cow>(new ChunkedEntityCounter<Cow>(16)) },
         { typeof(Tree), new EntityContainer<Tree>() }
     };
 

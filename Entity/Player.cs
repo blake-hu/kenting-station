@@ -1,7 +1,9 @@
 using System;
+using CozyGame.Common;
 using CozyGame.Interface;
-using CozyGame.scene;
 using Godot;
+
+namespace CozyGame.Entity;
 
 public partial class Player : CharacterBody2D
 {

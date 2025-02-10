@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using CozyGame.Common;
 using CozyGame.Interface;
-using CozyGame.scene;
 using Godot;
 using Vector2 = Godot.Vector2;
+
+namespace CozyGame.Entity;
 
 public partial class Cow : CharacterBody2D, IEntity<Cow>
 {

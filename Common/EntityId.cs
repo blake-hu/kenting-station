@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace CozyGame.scene;
+namespace CozyGame.Common;
 
 // Defined as record struct to ensure that equality comparison is done using ID value, not using object reference (like for classes)
 public record struct EntityId

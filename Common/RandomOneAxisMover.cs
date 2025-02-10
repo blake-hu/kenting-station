@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using CozyGame.Interface;
 
-namespace CozyGame.scene;
+namespace CozyGame.Common;
 
 public class RandomOneAxisMover : IOneAxisMover
 {

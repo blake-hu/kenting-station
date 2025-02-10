@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using CozyGame.Interface;
 using Godot;
 
-namespace CozyGame.scene;
+namespace CozyGame.Common;
 
 public class SkittishMover : ITwoAxisMover
 {

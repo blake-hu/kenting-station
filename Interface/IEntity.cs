@@ -1,4 +1,4 @@
-using CozyGame.scene;
+using CozyGame.Entity;
 using Godot;
 
 namespace CozyGame.Interface;

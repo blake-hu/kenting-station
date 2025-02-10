@@ -1,6 +1,5 @@
 using System;
 using CozyGame.Interface;
-using CozyGame.scene;
 using Godot;
 
 namespace CozyGame.Entity;
