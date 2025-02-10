@@ -43,6 +43,7 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 255
 script = ExtResource("6_4dclk")
+Boundary = Rect2(-280, -280, 560, 560)
 
 [node name="NorthBorder" type="CollisionShape2D" parent="WorldBoundary"]
 position = Vector2(0, -280)
