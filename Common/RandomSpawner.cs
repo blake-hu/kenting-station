@@ -1,54 +1,69 @@
 using System;
-using CozyGame.Interface;
 using Godot;
 
-namespace CozyGame.scene;
-
-public class RandomSpawner : ISpawnerStrategy
+public partial class RandomSpawner : Node2D
 {
-    private readonly Random _rng;
-    private readonly float _spawnPeriodTicks;
-    private PackedScene _entityScene;
-    private float _tickCounter;
+	private readonly Random _rng = new();
+	private float _nextSpawnPeriod;
+	private float _tickCounter;
 
-    public RandomSpawner(float spawnPeriodTicks)
-    {
-        _spawnPeriodTicks = spawnPeriodTicks;
-        _rng = new Random();
-    }
+	[Export] public PackedScene EntityScene;
+	[Export] public Rect2 SpawnArea;
+	[Export] public Vector2I SpawnPeriod;
 
-    public void RegisterSceneToSpawn(PackedScene entityScene)
-    {
-        _entityScene = entityScene;
-    }
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		ValidateSpawnPeriod();
+		_nextSpawnPeriod = GetSpawnPeriod();
+	}
 
-    public void Tick(double delta)
-    {
-        if (_tickCounter >= _spawnPeriodTicks)
-        {
-            Spawn();
-            _tickCounter = 0;
-        }
-        else
-        {
-            _tickCounter++;
-        }
-    }
+	private void ValidateSpawnPeriod()
+	{
+		var first = SpawnPeriod.X;
+		var second = SpawnPeriod.Y;
+		if (first > second)
+			throw new ArgumentException(
+				$"First value ({first}) of SpawnPeriodRange must be smaller than second value ({second}).");
+		if (first < 0.0f)
+			throw new ArgumentException($"First value ({first}) of SpawnPeriodRange must be a positive value.");
+	}
 
-    private void Spawn()
-    {
-        var entity = _entityScene.Instantiate<Node2D>();
-        var spawnLocation = GetSpawnLocation();
-        entity.Position = spawnLocation;
-        MobContainer.Instance.AddChild(entity);
-    }
 
-    private Vector2 GetSpawnLocation()
-    {
-        var boundaryLower = WorldBoundary.Boundary.Lower;
-        var boundaryUpper = WorldBoundary.Boundary.Upper;
-        var x = _rng.Next((int)boundaryLower.X, (int)boundaryUpper.X);
-        var y = _rng.Next((int)boundaryLower.Y, (int)boundaryUpper.Y);
-        return new Vector2(x, y);
-    }
+// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		if (_tickCounter >= _nextSpawnPeriod)
+		{
+			Spawn();
+			_nextSpawnPeriod = GetSpawnPeriod();
+			_tickCounter = 0;
+		}
+		else
+		{
+			_tickCounter++;
+		}
+	}
+
+	private void Spawn()
+	{
+		var entity = EntityScene.Instantiate<Node2D>();
+		var spawnLocation = GetSpawnLocation();
+		entity.Position = spawnLocation;
+		entity.Name += "-" + Guid.NewGuid();
+		MobContainer.Instance.AddChild(entity);
+		GD.Print($"Spawned {entity.Name} at location {spawnLocation} after {_nextSpawnPeriod} ticks");
+	}
+
+	private Vector2 GetSpawnLocation()
+	{
+		var x = _rng.Next((int)SpawnArea.Position.X, (int)SpawnArea.End.X);
+		var y = _rng.Next((int)SpawnArea.Position.Y, (int)SpawnArea.End.Y);
+		return new Vector2(x, y);
+	}
+
+	private float GetSpawnPeriod()
+	{
+		return _rng.Next(SpawnPeriod.X, SpawnPeriod.Y);
+	}
 }
