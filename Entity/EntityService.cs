@@ -14,12 +14,12 @@ public partial class EntityService : Node2D
         { typeof(Tree), new EntityContainer<Tree>() }
     };
 
-    public static EntityService Instance { get; private set; }
+    public static EntityService Singleton { get; private set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Instance = this;
+        Singleton = this;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
