@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using CozyGame.Common;
 using CozyGame.Interface;
@@ -8,9 +7,7 @@ namespace CozyGame.Entity.Spawner.Strategy;
 
 public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, IEntity<TEntity>
 {
-    private readonly Random _rng = new();
     private ChunkedEntityCounter<TEntity> _chunkedCounter;
-
     private float _nextSpawnPeriod;
     private float _tickCounter;
 
@@ -21,23 +18,10 @@ public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, IE
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        ValidateSpawnPeriod();
-        _nextSpawnPeriod = GetSpawnPeriod();
+        _nextSpawnPeriod = RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
         var entityContainer = EntityService.Singleton.GetContainer<TEntity>();
         _chunkedCounter = entityContainer.ChunkedCounter;
     }
-
-    private void ValidateSpawnPeriod()
-    {
-        if (MinSpawnTime > MaxSpawnTime)
-            throw new ArgumentException(
-                $"First value ({MinSpawnTime}) of SpawnPeriodRange must be smaller than MaxSpawnTime value ({MaxSpawnTime}).");
-        if (MinSpawnTime < 0.0f)
-            throw new ArgumentException($"First value ({MinSpawnTime}) of SpawnPeriodRange must be a positive value.");
-        if (MinSpawnTime < 5.0f)
-            throw new Exception($"Min spawn time for {typeof(TEntity)} is unusually fast. Are you sure?");
-    }
-
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
@@ -45,7 +29,7 @@ public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, IE
         if (_tickCounter >= _nextSpawnPeriod && GetSpawnLocation(out var location))
         {
             EntityService.Singleton.Spawn<TEntity>(EntityScene, location);
-            _nextSpawnPeriod = GetSpawnPeriod();
+            _nextSpawnPeriod = RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
             _tickCounter = 0;
         }
         else
@@ -70,10 +54,5 @@ public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, IE
         var spawnArea = new Chunk(densestChunk, chunkSize).Boundary();
         location = RandomLocation.Generate(spawnArea);
         return true;
-    }
-
-    private float GetSpawnPeriod()
-    {
-        return _rng.Next((int)MinSpawnTime, (int)MaxSpawnTime);
     }
 }

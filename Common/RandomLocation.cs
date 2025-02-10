@@ -3,7 +3,7 @@ using Godot;
 
 namespace CozyGame.Common;
 
-public class RandomLocation
+public static class RandomLocation
 {
     private static readonly Random Rng = new();
 
