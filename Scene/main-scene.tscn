@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="1_frrng"]
 [ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/player.tscn" id="2_uagh0"]
 [ext_resource type="Script" path="res://Entity/EntityService.cs" id="3_lm2sx"]
-[ext_resource type="Script" path="res://Entity/HighDensityCowSpawner.cs" id="4_3pbpy"]
+[ext_resource type="Script" path="res://Entity/Spawner/Instance/CowDensitySpawner.cs" id="4_ak6eu"]
 [ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/cow.tscn" id="4_rh6xk"]
-[ext_resource type="Script" path="res://Entity/RandomCowSpawner.cs" id="5_ansb4"]
+[ext_resource type="Script" path="res://Entity/Spawner/Instance/CowRandomSpawner.cs" id="5_l8egh"]
 [ext_resource type="PackedScene" uid="uid://br7yvclghewdu" path="res://Scene/tree.tscn" id="5_qwunf"]
 [ext_resource type="Script" path="res://Global/WorldBoundary.cs" id="6_4dclk"]
-[ext_resource type="Script" path="res://Entity/RandomTreeSpawner.cs" id="6_y7dk6"]
+[ext_resource type="Script" path="res://Entity/Spawner/Instance/TreeRandomSpawner.cs" id="6_um5te"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wg2kq"]
 normal = Vector2(0, 1)
@@ -78,24 +78,24 @@ CounterTimeToLive = 200
 
 [node name="AllSpawners" type="Node2D" parent="."]
 
-[node name="DensityCowSpawner" type="Node2D" parent="AllSpawners"]
-script = ExtResource("4_3pbpy")
+[node name="CowDensitySpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("4_ak6eu")
 EntityScene = ExtResource("4_rh6xk")
-MinSpawnTime = 500.0
-MaxSpawnTime = 1000.0
+MaxSpawnTime = 600.0
+MinSpawnTime = 300.0
 
-[node name="RandomCowSpawner" type="Node2D" parent="AllSpawners"]
-script = ExtResource("5_ansb4")
+[node name="CowRandomSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("5_l8egh")
 EntityScene = ExtResource("4_rh6xk")
+MaxSpawnTime = 2000.0
 MinSpawnTime = 500.0
-MaxSpawnTime = 1500.0
 SpawnArea = Rect2(-280, -280, 560, 560)
 
-[node name="RandomTreeSpawner" type="Node2D" parent="AllSpawners"]
-script = ExtResource("6_y7dk6")
+[node name="TreeRandomSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("6_um5te")
 EntityScene = ExtResource("5_qwunf")
-MinSpawnTime = 500.0
 MaxSpawnTime = 1500.0
+MinSpawnTime = 500.0
 SpawnArea = Rect2(-280, -280, 560, 560)
 
 [node name="Player" parent="." instance=ExtResource("2_uagh0")]
