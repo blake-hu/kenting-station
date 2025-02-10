@@ -1,4 +1,5 @@
 using System;
+using CozyGame.scene;
 using Godot;
 
 public partial class RandomSpawner : Node2D
@@ -50,7 +51,7 @@ public partial class RandomSpawner : Node2D
 		var entity = EntityScene.Instantiate<Node2D>();
 		var spawnLocation = GetSpawnLocation();
 		entity.Position = spawnLocation;
-		entity.Name += "-" + Guid.NewGuid();
+		entity.Name = new EntityId(entity.Name);
 		MobContainer.Instance.AddChild(entity);
 		GD.Print($"Spawned {entity.Name} at location {spawnLocation} after {_nextSpawnPeriod} ticks");
 	}

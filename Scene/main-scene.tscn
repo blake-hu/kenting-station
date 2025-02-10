@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=11 format=4 uid="uid://ba08oviccnkt4"]
 
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="1_frrng"]
 [ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/player.tscn" id="2_uagh0"]
 [ext_resource type="Script" path="res://Entity/MobContainer.cs" id="3_0fqw1"]
+[ext_resource type="Script" path="res://Common/RandomSpawner.cs" id="4_abe36"]
 [ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/cow.tscn" id="4_rh6xk"]
 [ext_resource type="PackedScene" uid="uid://br7yvclghewdu" path="res://Scene/tree.tscn" id="5_qwunf"]
 [ext_resource type="Script" path="res://Global/WorldBoundary.cs" id="6_4dclk"]
@@ -73,6 +74,12 @@ tile_set = SubResource("TileSet_4kr52")
 script = ExtResource("3_0fqw1")
 
 [node name="AllSpawners" type="Node2D" parent="."]
+
+[node name="CowSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("4_abe36")
+EntityScene = ExtResource("4_rh6xk")
+SpawnArea = Rect2(-100, 100, 200, 200)
+SpawnPeriod = Vector2i(50, 200)
 
 [node name="Player" parent="." instance=ExtResource("2_uagh0")]
 z_as_relative = false
