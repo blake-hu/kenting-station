@@ -3,7 +3,8 @@ using Godot;
 
 namespace CozyGame.scene;
 
-public class EntityId
+// Defined as record struct to ensure that equality comparison is done using ID value, not using object reference (like for classes)
+public record struct EntityId
 {
     private string _id;
 
@@ -12,8 +13,9 @@ public class EntityId
         _id = entityName + "#" + Guid.NewGuid();
     }
 
-    private EntityId()
+    public EntityId()
     {
+        _id = "";
     }
 
     public override string ToString()
@@ -23,15 +25,11 @@ public class EntityId
 
     public static implicit operator string(EntityId id)
     {
-        if (id == null)
-            return null;
         return id.ToString();
     }
 
     public static implicit operator StringName(EntityId id)
     {
-        if (id == null)
-            return null;
         return id.ToString();
     }
 

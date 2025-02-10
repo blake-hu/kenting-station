@@ -1,3 +1,5 @@
+using System;
+using CozyGame.Interface;
 using CozyGame.scene;
 using Godot;
 
@@ -29,8 +31,9 @@ public partial class Player : CharacterBody2D
             var collider = _weaponHitDetector.GetCollider();
             if (collider == null)
                 return;
-            GD.Print("Attacked: " + collider);
-            collider.Free();
+            if (collider is not IEntity entity)
+                throw new Exception($"Player attacked collider ({collider}) that was not an IEntity");
+            entity.Die();
         }
     }
 

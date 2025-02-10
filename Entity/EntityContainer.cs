@@ -20,6 +20,12 @@ public class EntityContainer<TEntity> : IEntityContainer<TEntity> where TEntity 
         return _activeEntities.TryAdd(entity.Name, entity);
     }
 
+    public bool TryRemoveEntity(TEntity entity)
+    {
+        var id = (EntityId)entity.Name;
+        return _activeEntities.Remove(id);
+    }
+
     public override string ToString()
     {
         var sb = new StringBuilder();

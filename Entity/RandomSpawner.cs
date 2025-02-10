@@ -1,10 +1,11 @@
 using System;
+using CozyGame.Interface;
 using CozyGame.scene;
 using Godot;
 
 namespace CozyGame.Entity;
 
-public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D
+public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEntity<TEntity>
 {
     private readonly Random _rng = new();
     protected PackedScene _entityScene;
@@ -59,6 +60,7 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D
         var container = EntityService.Instance.GetContainer<TEntity>();
         if (!container.TryAddEntity(entity))
             throw new Exception($"Internal error: Unable to add entity {entity.Name} to container");
+        entity.RegisterEntityContainer(container);
         GD.Print($"Spawned {entity.Name} at location {spawnLocation} after {_nextSpawnPeriod} ticks");
         GD.Print(EntityService.Instance.ToString());
     }

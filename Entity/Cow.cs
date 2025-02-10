@@ -5,9 +5,10 @@ using CozyGame.scene;
 using Godot;
 using Vector2 = Godot.Vector2;
 
-public partial class Cow : CharacterBody2D
+public partial class Cow : CharacterBody2D, IEntity<Cow>
 {
     private AnimatedSprite2D _animatedSprite2D;
+    private EntityContainer<Cow> _entityContainer;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
     private Random _rng;
@@ -23,6 +24,20 @@ public partial class Cow : CharacterBody2D
     [Export] public float MinRunSpeed = 30f;
     [Export] public int MinWalkDuration = 20;
     [Export] public float SkittishRadius = 100f;
+
+    public void RegisterEntityContainer(EntityContainer<Cow> container)
+    {
+        _entityContainer = container;
+    }
+
+    public void Die()
+    {
+        if (!_entityContainer.TryRemoveEntity(this))
+            throw new Exception(
+                $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
+        GD.Print($"{Name} was killed");
+        QueueFree();
+    }
 
 
     // Called when the node enters the scene tree for the first time.
