@@ -9,6 +9,14 @@ public static class Rect2Ex
     // Useful for enforcing WorldBoundary
     public static Vector2 ClosestPointWithinRect(Rect2 rect, Vector2 point)
     {
-        return Vector2.Zero; // Should fail
+        if (point.X < rect.Position.X)
+            point.X = rect.Position.X;
+        if (point.X > rect.End.X)
+            point.X = rect.End.X;
+        if (point.Y < rect.Position.Y)
+            point.Y = rect.Position.Y;
+        if (point.Y > rect.End.Y)
+            point.Y = rect.End.Y;
+        return point;
     }
 }
