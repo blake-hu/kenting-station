@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://qth75vb37jpa"]
+[gd_scene load_steps=24 format=3 uid="uid://qth75vb37jpa"]
 
 [ext_resource type="Texture2D" uid="uid://c6ykscqqat3mn" path="res://Tile/SproutLands/Characters/Character.png" id="1_pa0d8"]
 [ext_resource type="Script" path="res://Entity/Player.cs" id="1_us4dx"]
+[ext_resource type="Script" path="res://Entity/UnfreezeArea.cs" id="3_ts374"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5sx3"]
 size = Vector2(16, 18)
@@ -153,6 +154,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7oeo"]
+radius = 50.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
@@ -178,3 +182,12 @@ zoom = Vector2(8, 8)
 position = Vector2(0, -8)
 target_position = Vector2(20, 0)
 collision_mask = 26
+
+[node name="UnfreezeArea" type="Area2D" parent="."]
+collision_layer = 257
+collision_mask = 122
+script = ExtResource("3_ts374")
+
+[node name="UnfreezeCircle" type="CollisionShape2D" parent="UnfreezeArea"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_e7oeo")

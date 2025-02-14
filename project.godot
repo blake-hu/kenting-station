@@ -63,6 +63,7 @@ mouse_left={
 2d_physics/layer_6="collectible"
 2d_physics/layer_7="projectile"
 2d_physics/layer_8="hazard"
+2d_physics/layer_9="detector"
 
 [rendering]
 
