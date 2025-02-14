@@ -1,3 +1,4 @@
+using CozyGame.Interface;
 using Godot;
 
 public partial class UnfreezeArea : Area2D
@@ -7,7 +8,12 @@ public partial class UnfreezeArea : Area2D
     {
         // Entities spawned within UnfreezeArea will correctly trigger BodyEntered event
         BodyEntered += OnBodyEntered;
+
+        // However, entities that are spawned outside UnfreezeArea do not trigger BodyExited event
+        // To work around this, all IFreeze entities should start out frozen
+        // EntityService.Spawn() enforces this rule
         BodyExited += OnBodyExited;
+
         Monitoring = true;
     }
 
@@ -18,11 +24,11 @@ public partial class UnfreezeArea : Area2D
 
     private static void OnBodyEntered(Node2D body)
     {
-        GD.Print($"{body.Name} entered unfreeze area");
+        if (body is IFreeze frozenBody) frozenBody.Unfreeze();
     }
 
     private static void OnBodyExited(Node2D body)
     {
-        GD.Print($"{body.Name} exited unfreeze area");
+        if (body is IFreeze unfrozenBody) unfrozenBody.Freeze();
     }
 }

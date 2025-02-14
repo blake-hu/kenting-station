@@ -54,6 +54,11 @@ public partial class EntityService : Node2D
         var entity = entityScene.Instantiate<TEntity>();
         entity.Position = spawnLocation;
         entity.Name = new EntityId(entity.Name);
+
+        // Because entities spawned outside UnfreezeArea do not trigger BodyExited event,
+        // all freezable entities must start out frozen 
+        if (entity is IFreeze freezableEntity) freezableEntity.Freeze();
+
         Singleton.AddChild(entity);
         var container = Singleton.GetContainer<TEntity>();
         if (!container.TryAddEntity(entity))

@@ -155,7 +155,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e7oeo"]
-radius = 50.0
+radius = 100.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 y_sort_enabled = true
