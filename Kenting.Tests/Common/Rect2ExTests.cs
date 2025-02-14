@@ -13,7 +13,7 @@ public class Rect2ExTests
         [Random(-10, 10, 10)] double y)
     {
         var point = new Vector2((float)x, (float)y);
-        Assert.AreEqual(point, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(point, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -22,7 +22,7 @@ public class Rect2ExTests
         [Values(-10, 10)] double y)
     {
         var point = new Vector2((float)x, (float)y);
-        Assert.AreEqual(point, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(point, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -32,7 +32,7 @@ public class Rect2ExTests
     {
         var point = new Vector2((float)x, (float)y);
         var closest = new Vector2(-10, (float)y);
-        Assert.AreEqual(closest, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(closest, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -42,7 +42,7 @@ public class Rect2ExTests
     {
         var point = new Vector2((float)x, (float)y);
         var closest = new Vector2(10, (float)y);
-        Assert.AreEqual(closest, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(closest, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -52,7 +52,7 @@ public class Rect2ExTests
     {
         var point = new Vector2((float)x, (float)y);
         var closest = new Vector2((float)x, -10);
-        Assert.AreEqual(closest, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(closest, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -62,7 +62,7 @@ public class Rect2ExTests
     {
         var point = new Vector2((float)x, (float)y);
         var closest = new Vector2((float)x, 10);
-        Assert.AreEqual(closest, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(closest, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -72,7 +72,7 @@ public class Rect2ExTests
     {
         var point = new Vector2((float)x, (float)y);
         var closest = new Vector2(-10, -10);
-        Assert.AreEqual(closest, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(closest, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -82,7 +82,7 @@ public class Rect2ExTests
     {
         var point = new Vector2((float)x, (float)y);
         var closest = new Vector2(10, -10);
-        Assert.AreEqual(closest, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(closest, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -92,7 +92,7 @@ public class Rect2ExTests
     {
         var point = new Vector2((float)x, (float)y);
         var closest = new Vector2(-10, 10);
-        Assert.AreEqual(closest, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(closest, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 
     [Test]
@@ -102,6 +102,6 @@ public class Rect2ExTests
     {
         var point = new Vector2((float)x, (float)y);
         var closest = new Vector2(10, 10);
-        Assert.AreEqual(closest, Rect2Ex.ClosestPointWithinRect(Rect, point));
+        Assert.That(closest, Is.EqualTo(Rect2Ex.ClosestPointWithinRect(Rect, point)));
     }
 }
