@@ -1,6 +1,6 @@
 using Godot;
 
-namespace CozyGame.Interface;
+namespace Kenting.Interface;
 
 public interface ITwoAxisMover
 {

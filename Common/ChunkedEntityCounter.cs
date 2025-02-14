@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CozyGame.Entity;
 using Godot;
+using Kenting.Entity;
 
-namespace CozyGame.Common;
+namespace Kenting.Common;
 
 public class ChunkedEntityCounter<TEntity> where TEntity : Node2D
 {

@@ -1,24 +1,24 @@
 using System;
-using CozyGame.Interface;
 using Godot;
+using Kenting.Interface;
 
-namespace CozyGame.Entity;
+namespace Kenting.Entity;
 
 public partial class Tree : StaticBody2D, IEntity<Tree>
 {
-	private EntityContainer<Tree> _entityContainer;
+    private EntityContainer<Tree> _entityContainer;
 
-	public void RegisterEntityContainer(EntityContainer<Tree> container)
-	{
-		_entityContainer = container;
-	}
+    public void RegisterEntityContainer(EntityContainer<Tree> container)
+    {
+        _entityContainer = container;
+    }
 
-	public void Die()
-	{
-		if (!_entityContainer.TryRemoveEntity(this))
-			throw new Exception(
-				$"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
-		GD.Print($"{Name} was killed");
-		QueueFree();
-	}
+    public void Die()
+    {
+        if (!_entityContainer.TryRemoveEntity(this))
+            throw new Exception(
+                $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
+        GD.Print($"{Name} was killed");
+        QueueFree();
+    }
 }

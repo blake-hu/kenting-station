@@ -1,6 +1,6 @@
 using System;
 
-namespace CozyGame.Common;
+namespace Kenting.Common;
 
 public static class RandomScalar
 {

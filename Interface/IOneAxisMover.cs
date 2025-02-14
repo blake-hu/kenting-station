@@ -1,4 +1,4 @@
-namespace CozyGame.Interface;
+namespace Kenting.Interface;
 
 public interface IOneAxisMover
 {

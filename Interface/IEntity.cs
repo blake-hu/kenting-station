@@ -1,7 +1,7 @@
-using CozyGame.Entity;
 using Godot;
+using Kenting.Entity;
 
-namespace CozyGame.Interface;
+namespace Kenting.Interface;
 
 public interface IEntity<TEntity> : IEntity where TEntity : Node2D
 {

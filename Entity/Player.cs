@@ -1,9 +1,9 @@
 using System;
-using CozyGame.Common;
-using CozyGame.Interface;
 using Godot;
+using Kenting.Common;
+using Kenting.Interface;
 
-namespace CozyGame.Entity;
+namespace Kenting.Entity;
 
 public partial class Player : CharacterBody2D
 {

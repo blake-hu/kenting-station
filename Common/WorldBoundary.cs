@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Kenting.Common;
+
 public partial class WorldBoundary : StaticBody2D
 {
 	public static WorldBoundary Singleton;

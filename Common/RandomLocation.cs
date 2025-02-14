@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace CozyGame.Common;
+namespace Kenting.Common;
 
 public static class RandomLocation
 {

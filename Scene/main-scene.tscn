@@ -1,5 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://ba08oviccnkt4"]
 
+[ext_resource type="Script" path="res://Common/WorldBoundary.cs" id="1_cj6bj"]
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="1_frrng"]
 [ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/player.tscn" id="2_uagh0"]
 [ext_resource type="Script" path="res://Entity/EntityService.cs" id="3_lm2sx"]
@@ -7,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/cow.tscn" id="4_rh6xk"]
 [ext_resource type="Script" path="res://Entity/Spawner/Instance/CowRandomSpawner.cs" id="5_l8egh"]
 [ext_resource type="PackedScene" uid="uid://br7yvclghewdu" path="res://Scene/tree.tscn" id="5_qwunf"]
-[ext_resource type="Script" path="res://Global/WorldBoundary.cs" id="6_4dclk"]
 [ext_resource type="Script" path="res://Entity/Spawner/Instance/TreeRandomSpawner.cs" id="6_um5te"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wg2kq"]
@@ -45,7 +45,7 @@ y_sort_enabled = true
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 255
-script = ExtResource("6_4dclk")
+script = ExtResource("1_cj6bj")
 Boundary = Rect2(-280, -280, 560, 560)
 
 [node name="NorthBorder" type="CollisionShape2D" parent="WorldBoundary"]

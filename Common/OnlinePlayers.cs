@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using CozyGame.Entity;
-using CozyGame.Interface;
 using Godot;
+using Kenting.Entity;
+using Kenting.Interface;
 
-namespace CozyGame.Common;
+namespace Kenting.Common;
 
 public class OnlinePlayers : IUpdatingGroup<CharacterBody2D>
 {

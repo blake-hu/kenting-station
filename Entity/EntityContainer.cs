@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CozyGame.Common;
 using Godot;
+using Kenting.Common;
 
-namespace CozyGame.Entity;
+namespace Kenting.Entity;
 
 // Interface added to allow TEntity type parameter to be covariant so that EntityService can store EntityContainers
 // parameterized by different entity types derived from Node2D

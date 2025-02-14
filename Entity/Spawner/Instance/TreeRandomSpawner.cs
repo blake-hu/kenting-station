@@ -1,6 +1,6 @@
-using CozyGame.Entity.Spawner.Strategy;
+using Kenting.Entity.Spawner.Strategy;
 
-namespace CozyGame.Entity.Spawner.Instance;
+namespace Kenting.Entity.Spawner.Instance;
 
 public partial class TreeRandomSpawner : RandomSpawner<Tree>
 {

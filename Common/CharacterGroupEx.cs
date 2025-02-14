@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-namespace CozyGame.Common;
+namespace Kenting.Common;
 
 public static class CharacterGroupEx
 {

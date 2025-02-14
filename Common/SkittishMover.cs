@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using CozyGame.Interface;
 using Godot;
+using Kenting.Interface;
 
-namespace CozyGame.Common;
+namespace Kenting.Common;
 
 public class SkittishMover : ITwoAxisMover
 {

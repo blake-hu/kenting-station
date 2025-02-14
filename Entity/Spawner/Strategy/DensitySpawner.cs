@@ -1,9 +1,9 @@
 using System.Linq;
-using CozyGame.Common;
-using CozyGame.Interface;
 using Godot;
+using Kenting.Common;
+using Kenting.Interface;
 
-namespace CozyGame.Entity.Spawner.Strategy;
+namespace Kenting.Entity.Spawner.Strategy;
 
 public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, IEntity<TEntity>
 {

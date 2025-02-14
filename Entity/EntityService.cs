@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CozyGame.Common;
-using CozyGame.Interface;
 using Godot;
+using Kenting.Common;
+using Kenting.Interface;
 
-namespace CozyGame.Entity;
+namespace Kenting.Entity;
 
 public partial class EntityService : Node2D
 {

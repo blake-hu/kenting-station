@@ -1,5 +1,5 @@
-using CozyGame.Interface;
 using Godot;
+using Kenting.Interface;
 
 public partial class UnfreezeArea : Area2D
 {

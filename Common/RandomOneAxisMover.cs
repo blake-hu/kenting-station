@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using CozyGame.Interface;
+using Kenting.Interface;
 
-namespace CozyGame.Common;
+namespace Kenting.Common;
 
 public class RandomOneAxisMover : IOneAxisMover
 {
