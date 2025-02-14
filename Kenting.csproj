@@ -7,7 +7,6 @@
         <RootNamespace>Kenting</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Global\"/>
         <Folder Include="Scene\"/>
     </ItemGroup>
 </Project>
