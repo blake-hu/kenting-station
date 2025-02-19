@@ -17,6 +17,10 @@ public partial class EntityService : Node2D
 
     [Export] public int CounterTimeToLive;
 
+    private EntityService() // prevent public instantiation
+    {
+    }
+
     public static EntityService Singleton { get; private set; }
 
     // Called when the node enters the scene tree for the first time.
@@ -66,7 +70,7 @@ public partial class EntityService : Node2D
         if (!container.TryAddEntity(entity))
             throw new Exception($"Internal error: Unable to add entity {entity.Name} to container");
         entity.RegisterEntityContainer(container);
-        
+
         // DEBUG
         GD.Print($"Spawned {entity.Name} at location {boundedSpawnLocation}");
         GD.Print(Singleton.ToString());
