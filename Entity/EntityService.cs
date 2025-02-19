@@ -4,6 +4,7 @@ using System.Text;
 using Godot;
 using Kenting.Common;
 using Kenting.Interface;
+using KentingStation.Exception;
 
 namespace Kenting.Entity;
 
@@ -45,12 +46,12 @@ public partial class EntityService : Node2D
         {
             if (container is EntityContainer<TEntity> concreteContainer)
                 return concreteContainer;
-            throw new Exception(
-                $"Internal error: Could not cast IEntityContainer<Node2D>> {container} to EntityContainer<{typeof(TEntity)}>." +
-                $"This is likely because EntityService is not correctly configured.");
+            throw new KentingInvalidCastException(nameof(EntityService), nameof(container),
+                typeof(EntityContainer<TEntity>).ToString(),
+                $"This is likely because the dictionary in {nameof(EntityService)} was not properly configured");
         }
 
-        throw new Exception($"Key error in EntityService: Could not find EntityContainer for {typeof(TEntity)}");
+        throw new KentingKeyNotFoundException(nameof(EntityService), typeof(TEntity).ToString(), _entityContainers);
     }
 
     public void Spawn<TEntity>(PackedScene entityScene, Vector2 spawnLocation) where TEntity : Node2D, IEntity<TEntity>
