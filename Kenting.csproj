@@ -10,6 +10,7 @@
         <Folder Include="Scene\"/>
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
         <PackageReference Include="NUnit" Version="3.14.0"/>
     </ItemGroup>
 </Project>

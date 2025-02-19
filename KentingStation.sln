@@ -1,8 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kenting", "Kenting.csproj", "{0BB6C7AB-B7D0-4180-8BB3-250D3532BD27}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kenting.Tests", "Kenting.Tests\Kenting.Tests.csproj", "{D013DBE1-1C2D-4509-ADF2-E7B209C46878}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentingStation", "KentingStation.csproj", "{76858413-BF58-4091-B47C-5A2722191217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,17 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BB6C7AB-B7D0-4180-8BB3-250D3532BD27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BB6C7AB-B7D0-4180-8BB3-250D3532BD27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BB6C7AB-B7D0-4180-8BB3-250D3532BD27}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{0BB6C7AB-B7D0-4180-8BB3-250D3532BD27}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{0BB6C7AB-B7D0-4180-8BB3-250D3532BD27}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{0BB6C7AB-B7D0-4180-8BB3-250D3532BD27}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-		{D013DBE1-1C2D-4509-ADF2-E7B209C46878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D013DBE1-1C2D-4509-ADF2-E7B209C46878}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D013DBE1-1C2D-4509-ADF2-E7B209C46878}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D013DBE1-1C2D-4509-ADF2-E7B209C46878}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{D013DBE1-1C2D-4509-ADF2-E7B209C46878}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
-		{D013DBE1-1C2D-4509-ADF2-E7B209C46878}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{76858413-BF58-4091-B47C-5A2722191217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76858413-BF58-4091-B47C-5A2722191217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76858413-BF58-4091-B47C-5A2722191217}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{76858413-BF58-4091-B47C-5A2722191217}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{76858413-BF58-4091-B47C-5A2722191217}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{76858413-BF58-4091-B47C-5A2722191217}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
