@@ -52,8 +52,10 @@ public partial class EntityService : Node2D
     public void Spawn<TEntity>(PackedScene entityScene, Vector2 spawnLocation) where TEntity : Node2D, IEntity<TEntity>
     {
         var entity = entityScene.Instantiate<TEntity>();
-        entity.Position = spawnLocation;
         entity.Name = new EntityId(entity.Name);
+
+        var boundedSpawnLocation = Rect2Ex.ClosestPointWithin(WorldBoundary.Singleton.Boundary, spawnLocation);
+        entity.Position = boundedSpawnLocation;
 
         // Because entities spawned outside UnfreezeArea do not trigger BodyExited event,
         // all freezable entities must start out frozen 
@@ -64,7 +66,9 @@ public partial class EntityService : Node2D
         if (!container.TryAddEntity(entity))
             throw new Exception($"Internal error: Unable to add entity {entity.Name} to container");
         entity.RegisterEntityContainer(container);
-        GD.Print($"Spawned {entity.Name} at location {spawnLocation}");
+        
+        // DEBUG
+        GD.Print($"Spawned {entity.Name} at location {boundedSpawnLocation}");
         GD.Print(Singleton.ToString());
     }
 
