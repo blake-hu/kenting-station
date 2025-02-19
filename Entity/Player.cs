@@ -9,6 +9,7 @@ public partial class Player : CharacterBody2D
 {
     private AnimatedSprite2D _animatedSprite2D;
     private RayCast2D _weaponHitDetector;
+    private Inventory _inventory;
 
     [Export] public float Speed = 100.0f;
 
@@ -16,6 +17,8 @@ public partial class Player : CharacterBody2D
     {
         _animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _weaponHitDetector = GetNode<RayCast2D>("WeaponHitDetector");
+        _inventory = new Inventory(3, 9);
+        
         OnlinePlayers.RegisterPlayer(this);
     }
 
