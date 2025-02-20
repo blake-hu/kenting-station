@@ -1,5 +1,8 @@
-[gd_scene format=3 uid="uid://b3u1jcuq11ywk"]
+[gd_scene load_steps=2 format=3 uid="uid://b3u1jcuq11ywk"]
+
+[ext_resource type="Script" path="res://UI/InventoryButton.cs" id="1_etk72"]
 
 [node name="InventoryButton" type="Button"]
 size_flags_horizontal = 3
 expand_icon = true
+script = ExtResource("1_etk72")
