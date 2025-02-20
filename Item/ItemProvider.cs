@@ -27,10 +27,10 @@ public class ItemProvider
             var genericItem = itemFactory.GetInstance();
             if (genericItem is TItem item)
                 return item;
-            throw new KentingInvalidCastException(nameof(ItemProvider), nameof(genericItem), typeof(TItem).ToString(),
+            throw new KsInvalidCastException(nameof(ItemProvider), nameof(genericItem), typeof(TItem).ToString(),
                 $"This is likely because the dictionary in {nameof(ItemProvider)} was not properly configured.");
         }
 
-        throw new KentingKeyNotFoundException(nameof(ItemProvider), typeof(TItem).ToString(), _db);
+        throw new KsKeyNotFoundException(nameof(ItemProvider), typeof(TItem).ToString(), _db);
     }
 }

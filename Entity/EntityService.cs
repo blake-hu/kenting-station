@@ -46,12 +46,12 @@ public partial class EntityService : Node2D
         {
             if (container is EntityContainer<TEntity> concreteContainer)
                 return concreteContainer;
-            throw new KentingInvalidCastException(nameof(EntityService), nameof(container),
+            throw new KsInvalidCastException(nameof(EntityService), nameof(container),
                 typeof(EntityContainer<TEntity>).ToString(),
                 $"This is likely because the dictionary in {nameof(EntityService)} was not properly configured");
         }
 
-        throw new KentingKeyNotFoundException(nameof(EntityService), typeof(TEntity).ToString(), _entityContainers);
+        throw new KsKeyNotFoundException(nameof(EntityService), typeof(TEntity).ToString(), _entityContainers);
     }
 
     public void Spawn<TEntity>(PackedScene entityScene, Vector2 spawnLocation) where TEntity : Node2D, IEntity<TEntity>
