@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://qth75vb37jpa"]
+[gd_scene load_steps=25 format=3 uid="uid://qth75vb37jpa"]
 
 [ext_resource type="Texture2D" uid="uid://c6ykscqqat3mn" path="res://Tile/SproutLands/Characters/Character.png" id="1_pa0d8"]
 [ext_resource type="Script" path="res://Entity/Player.cs" id="1_us4dx"]
 [ext_resource type="Script" path="res://Entity/UnfreezeArea.cs" id="3_ts374"]
+[ext_resource type="PackedScene" uid="uid://1kqi0c6nldqc" path="res://Scene/Hud.tscn" id="4_m6y8m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5sx3"]
 size = Vector2(16, 18)
@@ -191,3 +192,5 @@ script = ExtResource("3_ts374")
 [node name="UnfreezeCircle" type="CollisionShape2D" parent="UnfreezeArea"]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_e7oeo")
+
+[node name="Hud" parent="." instance=ExtResource("4_m6y8m")]
