@@ -5,7 +5,7 @@ using Kenting.Interface;
 
 namespace Kenting.Entity.Spawner.Strategy;
 
-public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, IEntity<TEntity>
+public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, ITrackedEntity<TEntity>
 {
     private ChunkedEntityCounter<TEntity> _chunkedCounter;
     private int _nextSpawnPeriod;

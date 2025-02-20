@@ -7,7 +7,7 @@ using Vector2 = Godot.Vector2;
 
 namespace Kenting.Entity;
 
-public partial class Cow : CharacterBody2D, IEntity<Cow>, IFreeze
+public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
 {
     private AnimatedSprite2D _animatedSprite2D;
     private EntityContainer<Cow> _entityContainer;
@@ -27,6 +27,19 @@ public partial class Cow : CharacterBody2D, IEntity<Cow>, IFreeze
     [Export] public int MinWalkDuration = 20;
     [Export] public float SkittishRadius = 100f;
 
+    public bool Freeze()
+    {
+        _frozen = true;
+        _animatedSprite2D?.Stop();
+        return true;
+    }
+
+    public bool Unfreeze()
+    {
+        _frozen = false;
+        return true;
+    }
+
     public void RegisterEntityContainer(EntityContainer<Cow> container)
     {
         _entityContainer = container;
@@ -42,19 +55,6 @@ public partial class Cow : CharacterBody2D, IEntity<Cow>, IFreeze
                 $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
         GD.Print($"{Name} was killed");
         QueueFree();
-    }
-
-    public bool Freeze()
-    {
-        _frozen = true;
-        _animatedSprite2D?.Stop();
-        return true;
-    }
-
-    public bool Unfreeze()
-    {
-        _frozen = false;
-        return true;
     }
 
 

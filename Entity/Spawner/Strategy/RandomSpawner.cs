@@ -4,7 +4,7 @@ using Kenting.Interface;
 
 namespace Kenting.Entity.Spawner.Strategy;
 
-public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, IEntity<TEntity>
+public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, ITrackedEntity<TEntity>
 {
     private int _nextSpawnPeriod;
     private int _tickCounter;

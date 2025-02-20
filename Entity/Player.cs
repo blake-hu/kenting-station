@@ -1,7 +1,7 @@
 using System;
 using Godot;
 using Kenting.Common;
-using Kenting.Interface;
+using KentingStation.Interface;
 
 namespace Kenting.Entity;
 
@@ -36,7 +36,7 @@ public partial class Player : CharacterBody2D
             var collider = _weaponHitDetector.GetCollider();
             if (collider == null)
                 return;
-            if (collider is not IEntity entity)
+            if (collider is not IKillableEntity entity)
                 throw new Exception($"Player attacked collider ({collider}) that was not an IEntity");
             entity.Die();
         }

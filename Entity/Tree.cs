@@ -4,7 +4,7 @@ using Kenting.Interface;
 
 namespace Kenting.Entity;
 
-public partial class Tree : StaticBody2D, IEntity<Tree>
+public partial class Tree : StaticBody2D, ITrackedEntity<Tree>
 {
     private EntityContainer<Tree> _entityContainer;
 

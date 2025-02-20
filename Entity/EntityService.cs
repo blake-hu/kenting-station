@@ -55,7 +55,8 @@ public partial class EntityService : Node2D
         throw new KsKeyNotFoundException(nameof(EntityService), typeof(TEntity).ToString(), _entityContainers);
     }
 
-    public void Spawn<TEntity>(PackedScene entityScene, Vector2 spawnLocation) where TEntity : Node2D, IEntity<TEntity>
+    public void Spawn<TEntity>(PackedScene entityScene, Vector2 spawnLocation)
+        where TEntity : Node2D, ITrackedEntity<TEntity>
     {
         var entity = entityScene.Instantiate<TEntity>();
         entity.Name = new EntityId(entity.Name);
