@@ -1,13 +1,16 @@
 using Godot;
 using Kenting.Common;
 using KentingStation.Exception;
+using KentingStation.Item;
 
 namespace KentingStation.UI;
 
 public partial class InventoryButton : Button
 {
+    private readonly JarCounter _counter = new();
     private InventoryButtonId _buttonId;
     private Inventory _inventory;
+    private IItem _item;
     public bool IsActive { get; set; }
 
     public void Register(Inventory inventory, InventoryButtonId buttonId)
@@ -16,6 +19,18 @@ public partial class InventoryButton : Button
             throw new KsReregistrationException(nameof(_inventory));
         _buttonId = buttonId;
         _inventory = inventory;
+    }
+
+    public bool SetItem(IItem newItem)
+    {
+        if (newItem is null)
+            return false;
+        if (_counter.Count > 0)
+            return false; // cannot set to new item if there are still items left
+        _item = newItem;
+        _counter.ResetMaxCapacity(newItem);
+        Icon = newItem.GetDisplayTexture();
+        return true;
     }
 
     // Called when the node enters the scene tree for the first time.

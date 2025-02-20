@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using KentingStation.Exception;
+using KentingStation.Item;
 using KentingStation.UI;
 
 namespace Kenting.Common;
@@ -10,7 +11,16 @@ public record struct InventoryButtonId(int Row, int Col);
 public class Inventory
 {
     private InventoryButtonId _activeButton = new(0, 0);
+
     private InventoryButton[,] _buttonArray;
+    // TODO: Add cache of item positions to allow us to add items to existing item stacks faster
+    // TODO: Add priority queue of free inventory slots to allows us to add new items faster
+
+    // TODO: Write algorithm for adding an item to inventory using above two data structures
+    public bool AddItem(IItem item, int count)
+    {
+        throw new NotImplementedException();
+    }
 
     public void RegisterButtonArray(InventoryButton[,] newButtonArray)
     {

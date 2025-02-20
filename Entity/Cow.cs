@@ -32,6 +32,7 @@ public partial class Cow : CharacterBody2D, IEntity<Cow>, IFreeze
         _entityContainer = container;
     }
 
+    // TODO Top Priority: Spawn beef item drop when cow dies
     public void Die()
     {
         if (!_entityContainer.TryRemoveEntity(this))

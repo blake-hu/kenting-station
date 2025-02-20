@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Kenting.Entity;
 
@@ -8,6 +9,11 @@ public class Sword : IItem
     public int MaxCountPerStack()
     {
         return 1;
+    }
+
+    public Texture2D GetDisplayTexture()
+    {
+        throw new NotImplementedException();
     }
 
     public bool LeftClick(Player player)
