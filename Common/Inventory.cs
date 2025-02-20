@@ -30,6 +30,10 @@ public class Inventory
             throw new Exception(
                 $"newButtonArray has invalid dimensions [{newButtonArray.GetLength(0)},{newButtonArray.GetLength(1)}].");
         _buttonArray = newButtonArray;
+
+        // DEBUG
+        _buttonArray[0, 0].SetItem(ItemProvider.Singleton.Get<Beef>()); // Icon should be an egg
+        _buttonArray[0, 1].SetItem(ItemProvider.Singleton.Get<Sword>()); // Icon should be a chicken coop
     }
 
     public void UpdateActiveButton(InventoryButtonId newActiveButtonId)

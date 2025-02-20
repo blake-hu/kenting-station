@@ -5,9 +5,9 @@ namespace KentingStation.Item;
 
 public class Beef : IItem
 {
-    private readonly Texture2D _texture;
+    private readonly ImageTexture _texture;
 
-    public Beef()
+    public Beef() // Do not construct directly, use ItemProvider instead
     {
         // TODO Low Priority: Find beef texture
         var image = Image.LoadFromFile("res://Asset/SproutLands/Objects/EggItem.png");

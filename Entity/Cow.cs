@@ -33,6 +33,8 @@ public partial class Cow : CharacterBody2D, IEntity<Cow>, IFreeze
     }
 
     // TODO Top Priority: Spawn beef item drop when cow dies
+    // - Extend IFactory implementations to also create item entities 
+    // - Return factory instances rather than item products in ItemProvider 
     public void Die()
     {
         if (!_entityContainer.TryRemoveEntity(this))
