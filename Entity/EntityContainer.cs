@@ -3,15 +3,9 @@ using System.Linq;
 using System.Text;
 using Godot;
 using Kenting.Common;
+using KentingStation.Interface;
 
 namespace Kenting.Entity;
-
-// Interface added to allow TEntity type parameter to be covariant so that EntityService can store EntityContainers
-// parameterized by different entity types derived from Node2D
-public interface IEntityContainer<out TEntity> where TEntity : Node2D
-{
-    public void Tick();
-}
 
 public class EntityContainer<TEntity> : IEntityContainer<TEntity> where TEntity : Node2D
 {

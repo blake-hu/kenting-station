@@ -5,6 +5,7 @@ using Godot;
 using Kenting.Common;
 using Kenting.Interface;
 using KentingStation.Exception;
+using KentingStation.Interface;
 
 namespace Kenting.Entity;
 
