@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://1kqi0c6nldqc"]
+
+[ext_resource type="PackedScene" uid="uid://b3u1jcuq11ywk" path="res://Scene/InventoryButton.tscn" id="1_ftvnq"]
+[ext_resource type="Texture2D" uid="uid://cdke47g2cv3lo" path="res://Tile/SproutLands/Objects/EggItem.png" id="1_hj4vl"]
+
+[node name="Hud" type="CanvasLayer"]
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.32
+anchor_top = 0.9
+anchor_right = 0.68
+anchor_bottom = 0.97
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="InventoryButton1" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")
+
+[node name="InventoryButton2" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")
+
+[node name="InventoryButton3" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")
+
+[node name="InventoryButton4" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")
+
+[node name="InventoryButton5" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")
+
+[node name="InventoryButton6" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")
+
+[node name="InventoryButton7" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")
+
+[node name="InventoryButton8" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")
+
+[node name="InventoryButton9" parent="BoxContainer" instance=ExtResource("1_ftvnq")]
+layout_mode = 2
+icon = ExtResource("1_hj4vl")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=14 format=4 uid="uid://ba08oviccnkt4"]
 
 [ext_resource type="Script" path="res://Common/WorldBoundary.cs" id="1_lfuxk"]
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Tile/HanaCaraka/Tileset/Dirt.png" id="2_4ct2n"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Entity/Spawner/Instance/TreeRandomSpawner.cs" id="7_ijoqk"]
 [ext_resource type="PackedScene" uid="uid://br7yvclghewdu" path="res://Scene/Tree.tscn" id="8_ecmn3"]
 [ext_resource type="PackedScene" uid="uid://qth75vb37jpa" path="res://Scene/Player.tscn" id="9_2bnbu"]
+[ext_resource type="PackedScene" uid="uid://1kqi0c6nldqc" path="res://Scene/Hud.tscn" id="10_qyfiy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wg2kq"]
 normal = Vector2(0, 1)
@@ -100,3 +101,5 @@ SpawnArea = Rect2(-280, -280, 560, 560)
 
 [node name="Player" parent="." instance=ExtResource("9_2bnbu")]
 z_as_relative = false
+
+[node name="Hud" parent="." instance=ExtResource("10_qyfiy")]
