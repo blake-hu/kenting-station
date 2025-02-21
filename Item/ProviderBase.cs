@@ -1,31 +1,27 @@
+using System;
 using System.Collections.Generic;
 using Kenting.Interface;
 using KentingStation.Exception;
 
 namespace KentingStation.Item;
 
-public abstract class ProviderBase<TProductId, TProduct>
+public abstract class ProviderBase<TProduct>
 {
-    private readonly string _className = nameof(ProviderBase<TProductId, TProduct>);
-    protected abstract Dictionary<TProductId, IFactory<TProduct>> FactoryDict { get; init; }
+    private readonly string _className = nameof(ProviderBase<TProduct>);
 
-    public TProduct Get(TProductId id)
+    protected abstract Dictionary<Type, IFactory<TProduct>> FactoryDict { get; init; }
+
+    public T Get<T>() where T : class, TProduct
     {
-        if (FactoryDict.TryGetValue(id, out var itemFactory))
+        if (FactoryDict.TryGetValue(typeof(T), out var itemFactory))
         {
             var genericItem = itemFactory.GetInstance();
-            return genericItem;
+            if (genericItem is T item)
+                return item;
+            throw new KsInvalidCastException(_className, nameof(genericItem), typeof(T).ToString(),
+                $"This is likely because the dictionary in {_className} was not properly configured.");
         }
 
-        throw new KsKeyNotFoundException(_className, id.ToString(), FactoryDict);
-    }
-
-    public T Get<T>(TProductId id) where T : class, TProduct
-    {
-        var genericItem = Get(id);
-        if (genericItem is T item)
-            return item;
-        throw new KsInvalidCastException(_className, nameof(genericItem), typeof(T).ToString(),
-            $"This is likely because the dictionary in {_className} was not properly configured.");
+        throw new KsKeyNotFoundException(_className, nameof(TProduct), FactoryDict);
     }
 }
