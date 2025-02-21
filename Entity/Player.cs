@@ -3,6 +3,7 @@ using Godot;
 using Kenting.Common;
 using KentingStation.Interface;
 using KentingStation.Item;
+using KentingStation.UI;
 
 namespace Kenting.Entity;
 

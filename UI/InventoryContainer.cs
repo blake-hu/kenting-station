@@ -1,6 +1,7 @@
 using Godot;
 using Kenting.Common;
-using KentingStation.UI;
+
+namespace KentingStation.UI;
 
 public partial class InventoryContainer : BoxContainer
 {

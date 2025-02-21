@@ -1,6 +1,7 @@
 using Godot;
 using Kenting.Common;
-using KentingStation.Item;
+
+namespace KentingStation.Item;
 
 public partial class ItemDropService : Node2D
 {
