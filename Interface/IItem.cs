@@ -5,6 +5,8 @@ namespace KentingStation.Item;
 
 public interface IItem
 {
+    public ItemType ItemType();
+
     public int MaxCountPerStack();
 
     public Texture2D GetDisplayTexture();

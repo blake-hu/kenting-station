@@ -13,6 +13,11 @@ public class Beef : IItem
         _texture = ResourceLoader.Load<CompressedTexture2D>("res://Asset/SproutLands/Objects/EggItem.png");
     }
 
+    public ItemType ItemType()
+    {
+        return Item.ItemType.Beef;
+    }
+
     public int MaxCountPerStack()
     {
         return 64;
