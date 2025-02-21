@@ -1,17 +1,16 @@
-using System;
 using System.Collections.Generic;
 using Kenting.Common;
 using Kenting.Interface;
 
 namespace KentingStation.Item;
 
-public class ItemProvider : ProviderBase<IItem>
+public class ItemProvider : ProviderBase<ItemType, IItem>
 {
     public static ItemProvider Singleton { get; } = new();
 
-    protected override Dictionary<Type, IFactory<IItem>> FactoryDict { get; init; } = new()
+    protected override Dictionary<ItemType, IFactory<IItem>> FactoryDict { get; init; } = new()
     {
-        { typeof(Beef), new LazySingletonFactory<Beef>() },
-        { typeof(Sword), new NewInstanceFactory<Sword>() }
+        { ItemType.Beef, new LazySingletonFactory<Beef>() },
+        { ItemType.Sword, new NewInstanceFactory<Sword>() }
     };
 }

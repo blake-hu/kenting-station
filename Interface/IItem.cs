@@ -3,7 +3,6 @@ using Kenting.Entity;
 
 namespace KentingStation.Item;
 
-// TODO To Consider: Add ItemId enum to replace typeof(item) calls 
 public interface IItem
 {
     public int MaxCountPerStack();

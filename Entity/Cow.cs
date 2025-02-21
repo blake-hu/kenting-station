@@ -51,7 +51,7 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
         if (!_entityContainer.TryRemoveEntity(this))
             throw new Exception(
                 $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
-        var beef = ItemProvider.Singleton.Get<Beef>();
+        var beef = ItemProvider.Singleton.Get<Beef>(ItemType.Beef);
         ItemDropService.Singleton.Spawn(beef, 1, Position);
         GD.Print($"{Name} was killed");
         QueueFree();
