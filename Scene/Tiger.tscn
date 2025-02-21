@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4hbfik82j13l"]
+
+[ext_resource type="Script" path="res://Entity/Tiger.cs" id="1_nqwy1"]
+[ext_resource type="Texture2D" uid="uid://ct221av2eay58" path="res://Asset/KatiElorantaTiger/tiger-horizontal.png" id="2_5mxn5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptegv"]
+size = Vector2(34, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phwa2"]
+atlas = ExtResource("2_5mxn5")
+region = Rect2(0, 63, 64, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74xlg"]
+atlas = ExtResource("2_5mxn5")
+region = Rect2(64, 63, 64, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suhcq"]
+atlas = ExtResource("2_5mxn5")
+region = Rect2(128, 63, 64, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge48q"]
+atlas = ExtResource("2_5mxn5")
+region = Rect2(192, 63, 64, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wrk5"]
+atlas = ExtResource("2_5mxn5")
+region = Rect2(0, 0, 64, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tn7so"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phwa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74xlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suhcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge48q")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wrk5")
+}],
+"loop": true,
+"name": &"stationary",
+"speed": 5.0
+}]
+
+[node name="Tiger" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 30
+script = ExtResource("1_nqwy1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ptegv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.514286, 0.514286)
+sprite_frames = SubResource("SpriteFrames_tn7so")
+animation = &"right"
+frame_progress = 0.138352

@@ -4,6 +4,7 @@ using System.Text;
 using Godot;
 using Kenting.Common;
 using Kenting.Interface;
+using KentingStation.Entity;
 using KentingStation.Exception;
 using KentingStation.Interface;
 
@@ -14,6 +15,7 @@ public partial class EntityService : Node2D
     private readonly Dictionary<Type, IEntityContainer<Node2D>> _entityContainers = new()
     {
         { typeof(Cow), new EntityContainer<Cow>(new ChunkedEntityCounter<Cow>(128, 200)) },
+        { typeof(Tiger), new EntityContainer<Tiger>(new ChunkedEntityCounter<Tiger>(128, 200)) },
         { typeof(Tree), new EntityContainer<Tree>(new ChunkedEntityCounter<Tree>(256, 400)) }
     };
 

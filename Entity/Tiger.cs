@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
 using Godot;
 using Kenting.Common;
+using Kenting.Entity;
 using Kenting.Interface;
-using KentingStation.Item;
-using Vector2 = Godot.Vector2;
 
-namespace Kenting.Entity;
+namespace KentingStation.Entity;
 
-public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
+public partial class Tiger : CharacterBody2D, ITrackedEntity<Tiger>, IFreeze
 {
     private AnimatedSprite2D _animatedSprite2D;
-    private EntityContainer<Cow> _entityContainer;
+    private EntityContainer<Tiger> _entityContainer;
     private bool _frozen;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
-    private SkittishMover _skittishMover;
 
     [Export] public float DiagonalWalk;
     [Export] public int MaxRunDuration = 50;
@@ -26,7 +22,6 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
     [Export] public int MinRunDuration = 20;
     [Export] public float MinRunSpeed = 30f;
     [Export] public int MinWalkDuration = 20;
-    [Export] public float SkittishRadius = 100f;
 
     public bool Freeze()
     {
@@ -41,7 +36,7 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
         return true;
     }
 
-    public void RegisterEntityContainer(EntityContainer<Cow> container)
+    public void RegisterEntityContainer(EntityContainer<Tiger> container)
     {
         _entityContainer = container;
     }
@@ -49,10 +44,8 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
     public void Die()
     {
         if (!_entityContainer.TryRemoveEntity(this))
-            throw new Exception(
+            throw new System.Exception(
                 $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
-        var beef = ItemProvider.Singleton.Get<Beef>();
-        ItemDropService.Singleton.Spawn(beef, 1, Position);
         GD.Print($"{Name} was killed");
         QueueFree();
     }
@@ -66,10 +59,6 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxXWalkSpeed, MaxXWalkSpeed);
         _randomOneAxisYMover =
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
-        var enemyGroups = new List<IUpdatingGroup<CharacterBody2D>> { OnlinePlayers.Singleton };
-        _skittishMover =
-            new SkittishMover(this, enemyGroups, SkittishRadius, MinRunDuration, MaxRunDuration, MinRunSpeed,
-                MaxRunSpeed);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -77,8 +66,6 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
         if (_frozen) return;
 
         var move = Vector2.Zero;
-
-        if (_skittishMover.NextMove(out var skittishMove)) move += skittishMove;
 
         if (_randomOneAxisXMover.NextMove(out var randomXMove))
         {
