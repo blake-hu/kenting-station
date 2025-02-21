@@ -5,13 +5,12 @@ namespace KentingStation.Item;
 
 public class Beef : IItem
 {
-    private readonly ImageTexture _texture;
+    private readonly Texture2D _texture;
 
     public Beef() // Do not construct directly, use ItemProvider instead
     {
         // TODO Low Priority: Find beef texture
-        var image = Image.LoadFromFile("res://Asset/SproutLands/Objects/EggItem.png");
-        _texture = ImageTexture.CreateFromImage(image);
+        _texture = ResourceLoader.Load<CompressedTexture2D>("res://Asset/SproutLands/Objects/EggItem.png");
     }
 
     public int MaxCountPerStack()

@@ -12,6 +12,7 @@ public partial class InventoryButton : Button
     private Inventory _inventory;
     private IItem _item;
     public bool IsActive { get; set; }
+    public int Count => _counter.Count;
 
     public void Register(Inventory inventory, InventoryButtonId buttonId)
     {
@@ -21,14 +22,18 @@ public partial class InventoryButton : Button
         _inventory = inventory;
     }
 
-    public bool SetItem(IItem newItem)
+    public bool SetItem(IItem newItem, int count, out int overflowAmount)
     {
+        overflowAmount = count;
         if (newItem is null)
             return false;
         if (_counter.Count > 0)
             return false; // cannot set to new item if there are still items left
-        _item = newItem;
         _counter.ResetMaxCapacity(newItem);
+        // TODO: Add logic for handling overflow amount
+        _counter.Add(count, out var overflow);
+        overflowAmount = overflow;
+        _item = newItem;
         Icon = newItem.GetDisplayTexture();
         return true;
     }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=14 format=4 uid="uid://ba08oviccnkt4"]
 
 [ext_resource type="Script" path="res://Common/WorldBoundary.cs" id="1_lfuxk"]
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Asset/HanaCaraka/Tileset/Dirt.png" id="2_4ct2n"]
 [ext_resource type="Script" path="res://Entity/EntityService.cs" id="3_f7ti0"]
+[ext_resource type="Script" path="res://Item/ItemDropService.cs" id="4_4eyw1"]
 [ext_resource type="Script" path="res://Entity/Spawner/Instance/CowDensitySpawner.cs" id="4_c4sys"]
 [ext_resource type="PackedScene" uid="uid://di2i2ghhd7gyp" path="res://Scene/Cow.tscn" id="5_jvahp"]
 [ext_resource type="Script" path="res://Entity/Spawner/Instance/CowRandomSpawner.cs" id="6_jo85i"]
@@ -75,6 +76,9 @@ tile_set = SubResource("TileSet_4kr52")
 [node name="EntityService" type="Node2D" parent="."]
 script = ExtResource("3_f7ti0")
 CounterTimeToLive = 200
+
+[node name="ItemDropService" type="Node2D" parent="."]
+script = ExtResource("4_4eyw1")
 
 [node name="AllSpawners" type="Node2D" parent="."]
 

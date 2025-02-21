@@ -17,9 +17,19 @@ public class Inventory
     // TODO: Add priority queue of free inventory slots to allows us to add new items faster
 
     // TODO: Write algorithm for adding an item to inventory using above two data structures
-    public bool AddItem(IItem item, int count)
+    public int AddItem(IItem item, int count)
     {
-        throw new NotImplementedException();
+        // Basic algorithm that puts item in first free slot
+        // Does not attempt to stack items
+        for (var r = 0; r < _buttonArray.GetLength(0); r++)
+        for (var c = 0; c < _buttonArray.GetLength(1); c++)
+            if (_buttonArray[r, c].Count == 0)
+            {
+                _buttonArray[r, c].SetItem(item, count, out var overflow);
+                return overflow;
+            }
+
+        return count; // No free slots to add item
     }
 
     public void RegisterButtonArray(InventoryButton[,] newButtonArray)
@@ -30,10 +40,6 @@ public class Inventory
             throw new Exception(
                 $"newButtonArray has invalid dimensions [{newButtonArray.GetLength(0)},{newButtonArray.GetLength(1)}].");
         _buttonArray = newButtonArray;
-
-        // DEBUG
-        _buttonArray[0, 0].SetItem(ItemProvider.Singleton.Get<Beef>()); // Icon should be an egg
-        _buttonArray[0, 1].SetItem(ItemProvider.Singleton.Get<Sword>()); // Icon should be a chicken coop
     }
 
     public void UpdateActiveButton(InventoryButtonId newActiveButtonId)

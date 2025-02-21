@@ -5,13 +5,12 @@ namespace KentingStation.Item;
 
 public class Sword : IItem
 {
-    private readonly ImageTexture _texture;
+    private readonly Texture2D _texture;
 
     public Sword()
     {
         // TODO Low Priority: Find sword texture
-        var image = Image.LoadFromFile("res://Asset/SproutLands/Objects/ChickenHouse.png");
-        _texture = ImageTexture.CreateFromImage(image);
+        _texture = ResourceLoader.Load<CompressedTexture2D>("res://Asset/SproutLands/Objects/ChickenHouse.png");
     }
 
     public int MaxCountPerStack()

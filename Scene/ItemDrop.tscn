@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccmlahtoflxbs"]
+
+[ext_resource type="Script" path="res://Item/ItemDrop.cs" id="1_3w2si"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17ihf"]
+
+[node name="ItemDrop" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_3w2si")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_17ihf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

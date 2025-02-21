@@ -2,6 +2,7 @@ using System;
 using Godot;
 using Kenting.Common;
 using KentingStation.Interface;
+using KentingStation.Item;
 
 namespace Kenting.Entity;
 
@@ -74,5 +75,10 @@ public partial class Player : CharacterBody2D
     {
         Velocity = Input.GetVector("left", "right", "up", "down") * Speed;
         MoveAndSlide();
+    }
+
+    public int TryPickUp(IItem item, int count)
+    {
+        return _inventory.AddItem(item, count);
     }
 }
