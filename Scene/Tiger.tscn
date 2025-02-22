@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4hbfik82j13l"]
+[gd_scene load_steps=12 format=3 uid="uid://b4hbfik82j13l"]
 
 [ext_resource type="Script" path="res://Entity/Instance/Tiger.cs" id="1_x5g4q"]
 [ext_resource type="Texture2D" uid="uid://cpv0uee36dv2s" path="res://Asset/KatiElorantaTiger/tiger-horizontal.png" id="2_5mxn5"]
 [ext_resource type="PackedScene" uid="uid://cwed1ucsm4sin" path="res://Scene/PredatorPreyMover.tscn" id="3_t0q4s"]
+[ext_resource type="PackedScene" uid="uid://uf4t8hehxy1p" path="res://Scene/AttackRange.tscn" id="4_vbab8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptegv"]
 size = Vector2(34, 20)
@@ -71,3 +72,5 @@ animation = &"stationary"
 
 [node name="PredatorPreyMover" parent="." instance=ExtResource("3_t0q4s")]
 SpeedMultiplier = 20
+
+[node name="AttackRange" parent="." instance=ExtResource("4_vbab8")]

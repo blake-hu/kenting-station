@@ -6,7 +6,6 @@ namespace KentingStation.Item;
 
 public partial class ItemDrop : Area2D
 {
-    private CollisionShape2D _collisionShape;
     private IItem _item;
     private int _itemCount;
     private Sprite2D _sprite;
@@ -16,7 +15,6 @@ public partial class ItemDrop : Area2D
     {
         if (_item is null)
             throw new System.Exception($"{nameof(ItemDrop)}: {nameof(_item)} field is null.");
-        _collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
         _sprite = GetNode<Sprite2D>("Sprite2D");
         _sprite.Texture = _item.GetDisplayTexture();
 
