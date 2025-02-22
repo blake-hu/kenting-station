@@ -13,8 +13,6 @@ public partial class UnfreezeArea : Area2D
         // To work around this, all IFreeze entities should start out frozen
         // EntityService.Spawn() enforces this rule
         BodyExited += OnBodyExited;
-
-        Monitoring = true;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

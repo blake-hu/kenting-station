@@ -20,7 +20,6 @@ public partial class ItemDrop : Area2D
         _sprite.Texture = _item.GetDisplayTexture();
 
         BodyEntered += OnBodyEntered;
-        Monitoring = true;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
