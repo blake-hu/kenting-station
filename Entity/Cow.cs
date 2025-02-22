@@ -1,148 +1,24 @@
 using System;
-using System.Collections.Frozen;
 using System.Collections.Generic;
 using Godot;
-using Kenting.Common;
 using Kenting.Interface;
-using KentingStation.Common;
 using KentingStation.Entity;
-using KentingStation.Interface;
 using KentingStation.Item;
-using Vector2 = Godot.Vector2;
 
 namespace Kenting.Entity;
 
-public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFoodChainEntity, IFreeze
+public partial class Cow : PredatorPreyEntity<Cow>, ITrackedEntity<Cow>, IFreeze
 {
-    private readonly HashSet<Type> _predators =
+    protected override HashSet<Type> Predators { get; } =
     [
         typeof(Tiger),
         typeof(Player)
     ];
 
-    private readonly HashSet<Type> _prey = [];
-    private AnimatedSprite2D _animatedSprite2D;
-    private EntityContainer<Cow> _entityContainer;
-    private bool _frozen;
-    private PredatorPreyMover _predatorPreyMover;
-    private RandomOneAxisMover _randomOneAxisXMover;
-    private RandomOneAxisMover _randomOneAxisYMover;
-
-    [Export] public float DiagonalWalk;
-    [Export] public int MaxRunDuration = 50;
-    [Export] public float MaxRunSpeed = 80f;
-    [Export] public int MaxWalkDuration = 100;
-    [Export] public float MaxXWalkSpeed = 20f;
-    [Export] public float MaxYWalkSpeed = 10f;
-    [Export] public int MinRunDuration = 20;
-    [Export] public float MinRunSpeed = 30f;
-    [Export] public int MinWalkDuration = 20;
-    [Export] public float SkittishRadius = 100f;
-
-    public FrozenSet<Type> PreyTypes()
+    protected override void DieCustomLogic()
     {
-        return _prey.ToFrozenSet();
-    }
-
-    public Type EntityType()
-    {
-        return typeof(Cow);
-    }
-
-    public FrozenSet<Type> PredatorTypes()
-    {
-        return _predators.ToFrozenSet();
-    }
-
-    public bool Freeze()
-    {
-        _frozen = true;
-        _animatedSprite2D?.Stop();
-        return true;
-    }
-
-    public bool Unfreeze()
-    {
-        _frozen = false;
-        return true;
-    }
-
-    public void RegisterEntityContainer(EntityContainer<Cow> container)
-    {
-        _entityContainer = container;
-    }
-
-    public void Die()
-    {
-        if (!_entityContainer.TryRemoveEntity(this))
-            throw new Exception(
-                $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
         var beef = ItemProvider.Singleton.Get<Beef>();
         ItemDropService.Singleton.Spawn(beef, 1, Position);
         GD.Print($"{Name} was killed");
-        QueueFree();
-    }
-
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        _animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        _randomOneAxisXMover =
-            new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxXWalkSpeed, MaxXWalkSpeed);
-        _randomOneAxisYMover =
-            new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
-        _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        if (_frozen) return;
-
-        var move = Vector2.Zero;
-
-        if (_predatorPreyMover.NextMove(out var skittishMove))
-            move += skittishMove;
-
-        if (_randomOneAxisXMover.NextMove(out var randomXMove))
-        {
-            move.X += randomXMove;
-            // For more realistic movement, also move slightly up/down when moving horizontally
-            move.Y += randomXMove * RandomScalar.Generate(-DiagonalWalk, DiagonalWalk);
-        }
-
-        if (_randomOneAxisYMover.NextMove(out var randomYMove))
-        {
-            move.Y += randomYMove;
-            // For more realistic movement, also move slightly left/right when moving vertically
-            move.X += randomYMove * RandomScalar.Generate(-DiagonalWalk, DiagonalWalk);
-        }
-
-        if (move != Vector2.Zero)
-        {
-            MoveX(move.X);
-            MoveY(move.Y);
-        }
-
-        MoveAndSlide();
-    }
-
-    private void MoveX(float speed)
-    {
-        Velocity = speed * Vector2.Right;
-        var scale = _animatedSprite2D.Scale;
-        var absX = Math.Abs(scale.X);
-        if (speed > 0f)
-            scale.X = absX;
-        else
-            scale.X = -absX; // Flip sprite horizontally
-        _animatedSprite2D.Scale = scale;
-
-        _animatedSprite2D.Play("right");
-    }
-
-    private void MoveY(float speed)
-    {
-        Velocity = new Vector2(Velocity.X, speed);
     }
 }

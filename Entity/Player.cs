@@ -10,7 +10,7 @@ using KentingStation.UI;
 
 namespace Kenting.Entity;
 
-public partial class Player : CharacterBody2D, IFoodChainEntity
+public partial class Player : CharacterBody2D, IPredatorPreyEntity
 {
     private readonly HashSet<Type> _predators =
     [

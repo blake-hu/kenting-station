@@ -76,10 +76,10 @@ public partial class PredatorPreyMover : Area2D
     public override void _Ready()
     {
         var parentNode = GetParent();
-        if (parentNode is not IFoodChainEntity fcEntity)
-            throw new System.Exception($"Parent of {nameof(PredatorPreyMover)} must be {nameof(IFoodChainEntity)}");
-        _predatorTypes = fcEntity.PredatorTypes();
-        _preyTypes = fcEntity.PreyTypes();
+        if (parentNode is not IPredatorPreyEntity predPreyEntity)
+            throw new System.Exception($"Parent of {nameof(PredatorPreyMover)} must be {nameof(IPredatorPreyEntity)}");
+        _predatorTypes = predPreyEntity.PredatorTypes();
+        _preyTypes = predPreyEntity.PreyTypes();
 
         if (parentNode is not CharacterBody2D charBody)
             throw new System.Exception($"Parent of {nameof(PredatorPreyMover)} must be {nameof(CharacterBody2D)}");
@@ -99,10 +99,10 @@ public partial class PredatorPreyMover : Area2D
     {
         if (body is not CharacterBody2D entity)
             return;
-        if (entity is not IFoodChainEntity fcEntity)
+        if (entity is not IPredatorPreyEntity predPreyEntity)
             return;
 
-        var entityType = fcEntity.EntityType();
+        var entityType = predPreyEntity.EntityType();
         if (_predatorTypes.Contains(entityType))
             _predators.Remove(entity);
         if (_preyTypes.Contains(entityType))
@@ -113,7 +113,7 @@ public partial class PredatorPreyMover : Area2D
     {
         if (body is not CharacterBody2D entity)
             return;
-        if (entity is not IFoodChainEntity fcEntity)
+        if (entity is not IPredatorPreyEntity fcEntity)
             return;
 
         var entityType = fcEntity.EntityType();

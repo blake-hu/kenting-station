@@ -59,6 +59,7 @@ animations = [{
 collision_layer = 8
 collision_mask = 30
 script = ExtResource("1_nqwy1")
+SkittishRadius = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ptegv")
@@ -70,4 +71,4 @@ sprite_frames = SubResource("SpriteFrames_tn7so")
 animation = &"stationary"
 
 [node name="PredatorPreyMover" parent="." instance=ExtResource("3_t0q4s")]
-SpeedMultiplier = 30
+SpeedMultiplier = 20
