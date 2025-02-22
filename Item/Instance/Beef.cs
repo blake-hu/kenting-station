@@ -30,7 +30,6 @@ public class Beef : IItem
 
     public bool RightClick(Player player)
     {
-        GD.Print("Ate beef!");
         return true;
     }
 }

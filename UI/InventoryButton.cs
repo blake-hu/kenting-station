@@ -46,7 +46,6 @@ public partial class InventoryButton : Button
 
     private void OnButtonDown()
     {
-        GD.Print($"Pressed {Name}");
         IsActive = true;
         _inventory.UpdateActiveButton(_buttonId);
     }

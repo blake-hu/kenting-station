@@ -19,6 +19,5 @@ public partial class Cow : PredatorPreyEntity<Cow>, ITrackedEntity<Cow>, IFreeze
     {
         var beef = ItemProvider.Singleton.Get<Beef>();
         ItemDropService.Singleton.Spawn(beef, 1, Position);
-        GD.Print($"{Name} was killed");
     }
 }

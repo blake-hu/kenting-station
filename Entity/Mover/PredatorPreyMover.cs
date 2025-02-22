@@ -68,7 +68,6 @@ public partial class PredatorPreyMover : Area2D
         // Amount of movement should be inversely proportional to ratio of distance to DetectionRadius
         // Motivation: the closer a predator/prey is, the faster you run
         var scaledVector = normalizedVector * DetectionRadius / unscaled.Length();
-        GD.Print($"Scaled vector: {scaledVector}");
         return scaledVector;
     }
 

@@ -30,7 +30,6 @@ public partial class ItemDrop : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        GD.Print($"{body} entered {nameof(ItemDrop)}");
         if (body is not Player player) return;
         var overflow = player.TryPickUp(_item, _itemCount);
         if (overflow == 0)

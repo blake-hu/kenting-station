@@ -32,8 +32,5 @@ public partial class ItemDropService : Node2D
         var boundedSpawnLocation = Rect2Ex.ClosestPointWithin(WorldBoundary.Singleton.Boundary, spawnLocation);
         itemDrop.Position = boundedSpawnLocation;
         Singleton.AddChild(itemDrop);
-
-        // DEBUG
-        GD.Print($"Spawned {itemDrop.Name} at location {boundedSpawnLocation}");
     }
 }

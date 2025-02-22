@@ -47,7 +47,7 @@ public class ChunkedEntityCounter<TEntity> where TEntity : Node2D
     {
         if (_entityDict is not null)
             throw new Exception(
-                "ChunkEntityCounter: Attempted to set non-empty _entityDict. Entity dict should only be initialized once");
+                $"{nameof(ChunkedEntityCounter<TEntity>)}: Attempted to set non-empty {nameof(_entityDict)}. Entity dict should only be initialized once");
         _entityDict = dict;
     }
 
@@ -58,7 +58,6 @@ public class ChunkedEntityCounter<TEntity> where TEntity : Node2D
         {
             UpdateCounts();
             _timeSinceUpdate = 0;
-            GD.Print(ToString());
         }
     }
 

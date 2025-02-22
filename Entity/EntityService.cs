@@ -75,10 +75,6 @@ public partial class EntityService : Node2D
         if (!container.TryAddEntity(entity))
             throw new Exception($"Internal error: Unable to add entity {entity.Name} to container");
         entity.RegisterEntityContainer(container);
-
-        // DEBUG
-        GD.Print($"Spawned {entity.Name} at location {boundedSpawnLocation}");
-        GD.Print(Singleton.ToString());
     }
 
     public override string ToString()

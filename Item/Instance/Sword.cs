@@ -30,7 +30,6 @@ public class Sword : IItem
 
     public bool LeftClick(Player player)
     {
-        GD.Print("Swing sword!");
         return true;
     }
 }
