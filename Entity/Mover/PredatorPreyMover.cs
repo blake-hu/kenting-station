@@ -28,7 +28,6 @@ public partial class PredatorPreyMover : Area2D
 
     public bool NextMove(out Vector2 moveValues)
     {
-        // TODO: Wait random number of ticks, then calculate distance to all predators and prey
         if (!_randomDelay.Done())
         {
             moveValues = Vector2.Zero;

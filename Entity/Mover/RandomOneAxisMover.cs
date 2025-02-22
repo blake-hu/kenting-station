@@ -9,8 +9,6 @@ public class RandomOneAxisMover : IOneAxisMover
     private readonly float _minOutput;
     private readonly RandomDelay _randomDelay;
 
-    // TODO: Implement IDisposable and Dispose the IEnumerator<>?
-
     public RandomOneAxisMover(int minTicksPerMove, int maxTicksPerMove, float minOutput, float maxOutput)
     {
         _minOutput = minOutput;

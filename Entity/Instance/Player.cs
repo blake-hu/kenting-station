@@ -59,6 +59,7 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity
         DetectWeaponHit();
     }
 
+    // TODO: Propagate left and right mouse click to inventory items
     private void DetectWeaponHit()
     {
         if (Input.IsActionJustPressed("mouse_left"))
