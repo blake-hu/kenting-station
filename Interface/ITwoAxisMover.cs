@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Kenting.Interface;
+namespace KentingStation.Interface;
 
 public interface ITwoAxisMover
 {

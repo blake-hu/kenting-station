@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Kenting.Common;
+namespace KentingStation.Common.Util;
 
 public static class Rect2Ex
 {

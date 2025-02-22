@@ -1,5 +1,7 @@
 using Godot;
-using Kenting.Interface;
+using KentingStation.Interface;
+
+namespace KentingStation.Entity;
 
 public partial class UnfreezeArea : Area2D
 {

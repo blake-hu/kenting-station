@@ -1,6 +1,6 @@
-using KentingStation.Item;
+using KentingStation.Interface;
 
-namespace Kenting.Common;
+namespace KentingStation.Common.Util;
 
 // Counter that acts like a jar with a max capacity
 // Min capacity assumed to be 0 (empty jar)

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Kenting.Entity;
-using Kenting.Interface;
 using KentingStation.Interface;
 
-namespace KentingStation.Entity;
+namespace KentingStation.Entity.Instance;
 
 public partial class Tiger : PredatorPreyEntity<Tiger>, ITrackedEntity<Tiger>, IPredatorPreyEntity, IFreeze
 {

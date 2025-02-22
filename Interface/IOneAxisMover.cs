@@ -1,4 +1,4 @@
-namespace Kenting.Interface;
+namespace KentingStation.Interface;
 
 public interface IOneAxisMover
 {

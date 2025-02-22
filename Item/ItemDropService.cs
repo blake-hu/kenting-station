@@ -1,5 +1,7 @@
 using Godot;
-using Kenting.Common;
+using KentingStation.Common.Util;
+using KentingStation.Interface;
+using WorldBoundary = KentingStation.Common.WorldBoundary;
 
 namespace KentingStation.Item;
 

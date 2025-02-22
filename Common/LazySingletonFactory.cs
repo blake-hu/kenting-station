@@ -1,7 +1,7 @@
 using System;
-using Kenting.Interface;
+using KentingStation.Interface;
 
-namespace Kenting.Common;
+namespace KentingStation.Common;
 
 public class LazySingletonFactory<T> : IFactory<T> where T : new()
 {

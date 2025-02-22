@@ -1,7 +1,8 @@
 using Godot;
-using Kenting.Entity;
+using KentingStation.Interface;
+using Player = KentingStation.Entity.Instance.Player;
 
-namespace KentingStation.Item;
+namespace KentingStation.Item.Instance;
 
 public class Beef : IItem
 {

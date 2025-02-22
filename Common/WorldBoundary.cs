@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Kenting.Common;
+namespace KentingStation.Common;
 
 public partial class WorldBoundary : StaticBody2D
 {

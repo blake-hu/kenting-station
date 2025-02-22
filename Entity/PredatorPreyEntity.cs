@@ -3,8 +3,8 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using Godot;
 using Kenting.Common;
-using Kenting.Entity;
 using KentingStation.Common;
+using KentingStation.Common.Util;
 using KentingStation.Exception;
 using KentingStation.Interface;
 

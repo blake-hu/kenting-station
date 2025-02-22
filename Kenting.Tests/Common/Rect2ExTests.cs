@@ -1,5 +1,5 @@
 using Godot;
-using Kenting.Common;
+using KentingStation.Common.Util;
 
 namespace Kenting.Tests;
 

@@ -1,6 +1,6 @@
-using Kenting.Interface;
+using KentingStation.Interface;
 
-namespace Kenting.Common;
+namespace KentingStation.Common;
 
 public class NewInstanceFactory<T> : IFactory<T> where T : new()
 {

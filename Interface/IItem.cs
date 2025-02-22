@@ -1,7 +1,8 @@
 using Godot;
-using Kenting.Entity;
+using KentingStation.Item;
+using Player = KentingStation.Entity.Instance.Player;
 
-namespace KentingStation.Item;
+namespace KentingStation.Interface;
 
 public interface IItem
 {

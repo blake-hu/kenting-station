@@ -1,8 +1,7 @@
 using Godot;
-using Kenting.Entity;
-using KentingStation.Interface;
+using KentingStation.Entity;
 
-namespace Kenting.Interface;
+namespace KentingStation.Interface;
 
 // Represents in-game characters which are tracked with an entity container
 public interface ITrackedEntity<TEntity> : IKillableEntity where TEntity : Node2D

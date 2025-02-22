@@ -1,6 +1,6 @@
 using System;
 
-namespace Kenting.Common;
+namespace KentingStation.Common.Util;
 
 public static class RandomScalar
 {

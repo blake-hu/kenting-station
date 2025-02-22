@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-namespace Kenting.Common;
+namespace KentingStation.Common;
 
 public static class CharacterGroupEx
 {

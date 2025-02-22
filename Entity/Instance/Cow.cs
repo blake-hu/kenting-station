@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Godot;
-using Kenting.Interface;
-using KentingStation.Entity;
+using KentingStation.Interface;
 using KentingStation.Item;
+using KentingStation.Item.Instance;
 
-namespace Kenting.Entity;
+namespace KentingStation.Entity.Instance;
 
 public partial class Cow : PredatorPreyEntity<Cow>, ITrackedEntity<Cow>, IFreeze
 {

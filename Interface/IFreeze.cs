@@ -1,4 +1,4 @@
-namespace Kenting.Interface;
+namespace KentingStation.Interface;
 
 // Interface for entities that should freeze when too far from players
 // This is primarily an optimization to reduce the number of moving entities

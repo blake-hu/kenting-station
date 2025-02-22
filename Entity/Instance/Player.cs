@@ -2,13 +2,11 @@ using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using Godot;
-using Kenting.Common;
-using KentingStation.Entity;
+using KentingStation.Common;
 using KentingStation.Interface;
-using KentingStation.Item;
 using KentingStation.UI;
 
-namespace Kenting.Entity;
+namespace KentingStation.Entity.Instance;
 
 public partial class Player : CharacterBody2D, IPredatorPreyEntity
 {
@@ -68,7 +66,7 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity
             if (collider == null)
                 return;
             if (collider is not IKillableEntity entity)
-                throw new Exception($"Player attacked collider ({collider}) that was not an IEntity");
+                throw new System.Exception($"Player attacked collider ({collider}) that was not an IEntity");
             entity.Die();
         }
     }

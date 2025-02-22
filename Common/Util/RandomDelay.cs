@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Kenting.Common;
 
-namespace KentingStation.Common;
+namespace KentingStation.Common.Util;
 
 public class RandomDelay
 {

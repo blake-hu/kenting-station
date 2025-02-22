@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Godot;
-using Kenting.Entity;
+using KentingStation.Common;
 
-namespace Kenting.Common;
+namespace KentingStation.Entity;
 
 public class ChunkedEntityCounter<TEntity> where TEntity : Node2D
 {
@@ -46,7 +45,7 @@ public class ChunkedEntityCounter<TEntity> where TEntity : Node2D
     public void RegisterEntityDict(Dictionary<EntityId, TEntity> dict)
     {
         if (_entityDict is not null)
-            throw new Exception(
+            throw new System.Exception(
                 $"{nameof(ChunkedEntityCounter<TEntity>)}: Attempted to set non-empty {nameof(_entityDict)}. Entity dict should only be initialized once");
         _entityDict = dict;
     }

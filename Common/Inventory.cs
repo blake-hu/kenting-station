@@ -1,10 +1,9 @@
-using System;
 using System.Text;
 using KentingStation.Exception;
-using KentingStation.Item;
+using KentingStation.Interface;
 using KentingStation.UI;
 
-namespace Kenting.Common;
+namespace KentingStation.Common;
 
 public record struct InventoryButtonId(int Row, int Col);
 
@@ -37,7 +36,7 @@ public class Inventory
         if (_buttonArray is not null)
             throw new KsReregistrationException(nameof(_buttonArray));
         if (newButtonArray.GetLength(0) == 0 || newButtonArray.GetLength(1) == 0)
-            throw new Exception(
+            throw new System.Exception(
                 $"newButtonArray has invalid dimensions [{newButtonArray.GetLength(0)},{newButtonArray.GetLength(1)}].");
         _buttonArray = newButtonArray;
     }
@@ -61,7 +60,7 @@ public class Inventory
         StringBuilder sb = new();
         sb.AppendLine("Active buttons: ");
         if (_buttonArray is null)
-            throw new Exception($"{nameof(_buttonArray)} has not been instantiated yet.");
+            throw new System.Exception($"{nameof(_buttonArray)} has not been instantiated yet.");
         for (var r = 0; r < _buttonArray.GetLength(0); r++)
         for (var c = 0; c < _buttonArray.GetLength(1); c++)
             if (_buttonArray[r, c].IsActive)

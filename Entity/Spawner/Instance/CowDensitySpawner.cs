@@ -1,6 +1,7 @@
-using Kenting.Entity.Spawner.Strategy;
+using KentingStation.Entity.Instance;
+using KentingStation.Entity.Spawner.Strategy;
 
-namespace Kenting.Entity.Spawner.Instance;
+namespace KentingStation.Entity.Spawner.Instance;
 
 public partial class CowDensitySpawner : DensitySpawner<Cow>
 {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Godot;
-using Kenting.Entity;
-using Kenting.Interface;
+using KentingStation.Interface;
+using Player = KentingStation.Entity.Instance.Player;
 
-namespace Kenting.Common;
+namespace KentingStation.Common;
 
 public class OnlinePlayers : IUpdatingGroup<CharacterBody2D>
 {

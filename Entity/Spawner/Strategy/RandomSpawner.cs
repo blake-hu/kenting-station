@@ -1,8 +1,8 @@
 using Godot;
-using Kenting.Common;
-using Kenting.Interface;
+using KentingStation.Common.Util;
+using KentingStation.Interface;
 
-namespace Kenting.Entity.Spawner.Strategy;
+namespace KentingStation.Entity.Spawner.Strategy;
 
 public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, ITrackedEntity<TEntity>
 {

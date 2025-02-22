@@ -2,10 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Godot;
-using Kenting.Common;
 using KentingStation.Interface;
 
-namespace Kenting.Entity;
+namespace KentingStation.Entity;
 
 public class EntityContainer<TEntity> : IEntityContainer<TEntity> where TEntity : Node2D
 {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using Godot;
+using KentingStation.Common.Util;
 using KentingStation.Interface;
 
 namespace KentingStation.Common;
@@ -111,10 +112,10 @@ public partial class PredatorPreyMover : Area2D
     {
         if (body is not CharacterBody2D entity)
             return;
-        if (entity is not IPredatorPreyEntity fcEntity)
+        if (entity is not IPredatorPreyEntity predPreyEntity)
             return;
 
-        var entityType = fcEntity.EntityType();
+        var entityType = predPreyEntity.EntityType();
         if (_predatorTypes.Contains(entityType))
             _predators.Add(entity);
         if (_preyTypes.Contains(entityType))

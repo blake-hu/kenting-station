@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Godot;
-using Kenting.Common;
-using Kenting.Interface;
-using KentingStation.Entity;
+using KentingStation.Common.Util;
+using KentingStation.Entity.Instance;
 using KentingStation.Exception;
 using KentingStation.Interface;
+using Tiger = KentingStation.Entity.Instance.Tiger;
+using Tree = KentingStation.Entity.Instance.Tree;
+using WorldBoundary = KentingStation.Common.WorldBoundary;
 
-namespace Kenting.Entity;
+namespace KentingStation.Entity;
 
 public partial class EntityService : Node2D
 {
@@ -32,7 +34,7 @@ public partial class EntityService : Node2D
     {
         Singleton = this;
         if (CounterTimeToLive < 0)
-            throw new Exception(
+            throw new System.Exception(
                 $"TimeToLive for ChunkedEntityCounter is {CounterTimeToLive}, but must be non-negative.");
     }
 
@@ -73,7 +75,7 @@ public partial class EntityService : Node2D
         Singleton.AddChild(entity);
         var container = Singleton.GetContainer<TEntity>();
         if (!container.TryAddEntity(entity))
-            throw new Exception($"Internal error: Unable to add entity {entity.Name} to container");
+            throw new System.Exception($"Internal error: Unable to add entity {entity.Name} to container");
         entity.RegisterEntityContainer(container);
     }
 

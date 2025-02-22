@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Kenting.Entity;
+namespace KentingStation.Entity;
 
 // Defined as record struct to ensure that equality comparison is done using ID value, not using object reference (like for classes)
 public record struct EntityId
