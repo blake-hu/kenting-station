@@ -17,6 +17,6 @@ public partial class Cow : PredatorPreyEntity<Cow>, IFreeze
     protected override void DieCustomLogic()
     {
         var beef = ItemProvider.Singleton.Get<Beef>();
-        ItemDropService.Singleton.Spawn(beef, 1, Position);
+        ItemDropService.Singleton.QueueSpawn(beef, 1, Position);
     }
 }

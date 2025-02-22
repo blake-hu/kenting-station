@@ -40,6 +40,6 @@ public partial class AttackRange : Area2D
 
         var entityType = predPreyEntity.EntityType();
         if (_predatorTypes.Contains(entityType))
-            _parentEntity.QueueDie();
+            _parentEntity.Die();
     }
 }

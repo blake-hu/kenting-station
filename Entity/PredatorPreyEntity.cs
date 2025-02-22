@@ -63,16 +63,11 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     // - Spawning an ItemDrop involves instantiating an Area2D in the scene tree
     // - The Godot physics engine does not allow modifying an Area2D while in an event handler
     // - Hence, we need to queue the die request and only handle it once we exit the event handler
-    public void QueueDie()
-    {
-        _died = true;
-    }
-
-    private void Die()
+    public void Die()
     {
         DieCustomLogic();
         if (this is not TEntity derivedEntity)
-            throw new KsInvalidCastException(nameof(QueueDie), nameof(PredatorPreyEntity<TEntity>), nameof(TEntity),
+            throw new KsInvalidCastException(nameof(Die), nameof(PredatorPreyEntity<TEntity>), nameof(TEntity),
                 "Likely because entity inheritance hierarchy was not set up correctly.");
         if (!_entityContainer.TryRemoveEntity(derivedEntity))
             throw new System.Exception(
@@ -111,12 +106,6 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
     public override void _PhysicsProcess(double delta)
     {
-        if (_died)
-        {
-            Die();
-            return;
-        }
-
         if (_frozen) return;
 
         var move = Vector2.Zero;
