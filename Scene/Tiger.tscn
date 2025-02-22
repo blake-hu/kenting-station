@@ -1,45 +1,46 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4hbfik82j13l"]
+[gd_scene load_steps=11 format=3 uid="uid://b4hbfik82j13l"]
 
 [ext_resource type="Script" path="res://Entity/Tiger.cs" id="1_nqwy1"]
-[ext_resource type="Texture2D" uid="uid://ct221av2eay58" path="res://Asset/KatiElorantaTiger/tiger-horizontal.png" id="2_5mxn5"]
+[ext_resource type="Texture2D" uid="uid://cpv0uee36dv2s" path="res://Asset/KatiElorantaTiger/tiger-horizontal.png" id="2_5mxn5"]
+[ext_resource type="PackedScene" uid="uid://cwed1ucsm4sin" path="res://Scene/PredatorPreyMover.tscn" id="3_t0q4s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptegv"]
 size = Vector2(34, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_phwa2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_euhb3"]
 atlas = ExtResource("2_5mxn5")
-region = Rect2(0, 63, 64, 35)
+region = Rect2(0, 64, 64, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_74xlg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3ydi"]
 atlas = ExtResource("2_5mxn5")
-region = Rect2(64, 63, 64, 35)
+region = Rect2(64, 64, 64, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_suhcq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_laonl"]
 atlas = ExtResource("2_5mxn5")
-region = Rect2(128, 63, 64, 35)
+region = Rect2(128, 64, 64, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ge48q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0ggv"]
 atlas = ExtResource("2_5mxn5")
-region = Rect2(192, 63, 64, 35)
+region = Rect2(192, 64, 64, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0wrk5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfkfy"]
 atlas = ExtResource("2_5mxn5")
-region = Rect2(0, 0, 64, 35)
+region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tn7so"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_phwa2")
+"texture": SubResource("AtlasTexture_euhb3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_74xlg")
+"texture": SubResource("AtlasTexture_g3ydi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_suhcq")
+"texture": SubResource("AtlasTexture_laonl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ge48q")
+"texture": SubResource("AtlasTexture_o0ggv")
 }],
 "loop": true,
 "name": &"right",
@@ -47,7 +48,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0wrk5")
+"texture": SubResource("AtlasTexture_yfkfy")
 }],
 "loop": true,
 "name": &"stationary",
@@ -66,5 +67,7 @@ shape = SubResource("RectangleShape2D_ptegv")
 y_sort_enabled = true
 scale = Vector2(0.514286, 0.514286)
 sprite_frames = SubResource("SpriteFrames_tn7so")
-animation = &"right"
-frame_progress = 0.138352
+animation = &"stationary"
+
+[node name="PredatorPreyMover" parent="." instance=ExtResource("3_t0q4s")]
+SpeedMultiplier = 30

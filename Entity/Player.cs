@@ -1,19 +1,47 @@
 using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
 using Godot;
 using Kenting.Common;
+using KentingStation.Entity;
 using KentingStation.Interface;
 using KentingStation.Item;
 using KentingStation.UI;
 
 namespace Kenting.Entity;
 
-public partial class Player : CharacterBody2D
+public partial class Player : CharacterBody2D, IFoodChainEntity
 {
+    private readonly HashSet<Type> _predators =
+    [
+        typeof(Tiger)
+    ];
+
+    private readonly HashSet<Type> _prey =
+    [
+        typeof(Cow)
+    ];
+
     private AnimatedSprite2D _animatedSprite2D;
     private Inventory _inventory;
     private RayCast2D _weaponHitDetector;
 
     [Export] public float Speed = 100.0f;
+
+    public Type EntityType()
+    {
+        return typeof(Player);
+    }
+
+    public FrozenSet<Type> PredatorTypes()
+    {
+        return _predators.ToFrozenSet();
+    }
+
+    public FrozenSet<Type> PreyTypes()
+    {
+        return _prey.ToFrozenSet();
+    }
 
     public override void _Ready()
     {

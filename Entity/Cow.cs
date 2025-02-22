@@ -1,21 +1,32 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using Godot;
 using Kenting.Common;
 using Kenting.Interface;
+using KentingStation.Common;
+using KentingStation.Entity;
+using KentingStation.Interface;
 using KentingStation.Item;
 using Vector2 = Godot.Vector2;
 
 namespace Kenting.Entity;
 
-public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
+public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFoodChainEntity, IFreeze
 {
+    private readonly HashSet<Type> _predators =
+    [
+        typeof(Tiger),
+        typeof(Player)
+    ];
+
+    private readonly HashSet<Type> _prey = [];
     private AnimatedSprite2D _animatedSprite2D;
     private EntityContainer<Cow> _entityContainer;
     private bool _frozen;
+    private PredatorPreyMover _predatorPreyMover;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
-    private SkittishMover _skittishMover;
 
     [Export] public float DiagonalWalk;
     [Export] public int MaxRunDuration = 50;
@@ -27,6 +38,21 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
     [Export] public float MinRunSpeed = 30f;
     [Export] public int MinWalkDuration = 20;
     [Export] public float SkittishRadius = 100f;
+
+    public FrozenSet<Type> PreyTypes()
+    {
+        return _prey.ToFrozenSet();
+    }
+
+    public Type EntityType()
+    {
+        return typeof(Cow);
+    }
+
+    public FrozenSet<Type> PredatorTypes()
+    {
+        return _predators.ToFrozenSet();
+    }
 
     public bool Freeze()
     {
@@ -66,10 +92,7 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxXWalkSpeed, MaxXWalkSpeed);
         _randomOneAxisYMover =
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
-        var enemyGroups = new List<IUpdatingGroup<CharacterBody2D>> { OnlinePlayers.Singleton };
-        _skittishMover =
-            new SkittishMover(this, enemyGroups, SkittishRadius, MinRunDuration, MaxRunDuration, MinRunSpeed,
-                MaxRunSpeed);
+        _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -78,7 +101,8 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
 
         var move = Vector2.Zero;
 
-        if (_skittishMover.NextMove(out var skittishMove)) move += skittishMove;
+        if (_predatorPreyMover.NextMove(out var skittishMove))
+            move += skittishMove;
 
         if (_randomOneAxisXMover.NextMove(out var randomXMove))
         {
@@ -107,8 +131,13 @@ public partial class Cow : CharacterBody2D, ITrackedEntity<Cow>, IFreeze
     {
         Velocity = speed * Vector2.Right;
         var scale = _animatedSprite2D.Scale;
-        scale.X *= -1; // Invert sprite horizontally
+        var absX = Math.Abs(scale.X);
+        if (speed > 0f)
+            scale.X = absX;
+        else
+            scale.X = -absX; // Flip sprite horizontally
         _animatedSprite2D.Scale = scale;
+
         _animatedSprite2D.Play("right");
     }
 

@@ -1,15 +1,29 @@
+using System;
+using System.Collections.Frozen;
+using System.Collections.Generic;
 using Godot;
 using Kenting.Common;
 using Kenting.Entity;
 using Kenting.Interface;
+using KentingStation.Common;
+using KentingStation.Interface;
 
 namespace KentingStation.Entity;
 
-public partial class Tiger : CharacterBody2D, ITrackedEntity<Tiger>, IFreeze
+public partial class Tiger : CharacterBody2D, ITrackedEntity<Tiger>, IFoodChainEntity, IFreeze
 {
+    private readonly HashSet<Type> _predators = [];
+
+    private readonly HashSet<Type> _prey =
+    [
+        typeof(Cow),
+        typeof(Player)
+    ];
+
     private AnimatedSprite2D _animatedSprite2D;
     private EntityContainer<Tiger> _entityContainer;
     private bool _frozen;
+    private PredatorPreyMover _predatorPreyMover;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
 
@@ -22,6 +36,21 @@ public partial class Tiger : CharacterBody2D, ITrackedEntity<Tiger>, IFreeze
     [Export] public int MinRunDuration = 20;
     [Export] public float MinRunSpeed = 30f;
     [Export] public int MinWalkDuration = 20;
+
+    public Type EntityType()
+    {
+        return typeof(Tiger);
+    }
+
+    public FrozenSet<Type> PredatorTypes()
+    {
+        return _predators.ToFrozenSet();
+    }
+
+    public FrozenSet<Type> PreyTypes()
+    {
+        return _prey.ToFrozenSet();
+    }
 
     public bool Freeze()
     {
@@ -59,6 +88,7 @@ public partial class Tiger : CharacterBody2D, ITrackedEntity<Tiger>, IFreeze
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxXWalkSpeed, MaxXWalkSpeed);
         _randomOneAxisYMover =
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
+        _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -66,6 +96,9 @@ public partial class Tiger : CharacterBody2D, ITrackedEntity<Tiger>, IFreeze
         if (_frozen) return;
 
         var move = Vector2.Zero;
+
+        if (_predatorPreyMover.NextMove(out var skittishMove))
+            move += skittishMove;
 
         if (_randomOneAxisXMover.NextMove(out var randomXMove))
         {
@@ -94,8 +127,13 @@ public partial class Tiger : CharacterBody2D, ITrackedEntity<Tiger>, IFreeze
     {
         Velocity = speed * Vector2.Right;
         var scale = _animatedSprite2D.Scale;
-        scale.X *= -1; // Invert sprite horizontally
+        var absX = Math.Abs(scale.X);
+        if (speed > 0f)
+            scale.X = absX;
+        else
+            scale.X = -absX; // Flip sprite horizontally
         _animatedSprite2D.Scale = scale;
+
         _animatedSprite2D.Play("right");
     }
 

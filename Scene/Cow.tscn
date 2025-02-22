@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://di2i2ghhd7gyp"]
+[gd_scene load_steps=11 format=3 uid="uid://di2i2ghhd7gyp"]
 
 [ext_resource type="Script" path="res://Entity/Cow.cs" id="1_723xs"]
 [ext_resource type="Texture2D" uid="uid://dgvy0ffjcdswd" path="res://Asset/SproutLands/Characters/Cow.png" id="1_nh67y"]
+[ext_resource type="PackedScene" uid="uid://cwed1ucsm4sin" path="res://Scene/PredatorPreyMover.tscn" id="3_glx00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptegv"]
 size = Vector2(28, 20)
@@ -70,3 +71,5 @@ y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_tn7so")
 animation = &"right"
 frame_progress = 0.525394
+
+[node name="PredatorPreyMover" parent="." instance=ExtResource("3_glx00")]
