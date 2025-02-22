@@ -10,10 +10,11 @@ using KentingStation.Interface;
 
 namespace KentingStation.Entity;
 
-public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPreyEntity
+public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPreyEntity, ITrackedEntity<TEntity>
     where TEntity : CharacterBody2D
 {
     private AnimatedSprite2D _animatedSprite2D;
+    private bool _died;
     private EntityContainer<TEntity> _entityContainer;
     private bool _frozen;
     private PredatorPreyMover _predatorPreyMover;
@@ -51,6 +52,34 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         return Predators.ToFrozenSet();
     }
 
+    public void RegisterEntityContainer(EntityContainer<TEntity> container)
+    {
+        _entityContainer = container;
+    }
+
+    // We use QueueDie instead of Die here. This added complexity is needed because:
+    // - Die is often called by an event handler in AttackRange
+    // - Die will often spawn an ItemDrop in DieCustomLogic
+    // - Spawning an ItemDrop involves instantiating an Area2D in the scene tree
+    // - The Godot physics engine does not allow modifying an Area2D while in an event handler
+    // - Hence, we need to queue the die request and only handle it once we exit the event handler
+    public void QueueDie()
+    {
+        _died = true;
+    }
+
+    private void Die()
+    {
+        DieCustomLogic();
+        if (this is not TEntity derivedEntity)
+            throw new KsInvalidCastException(nameof(QueueDie), nameof(PredatorPreyEntity<TEntity>), nameof(TEntity),
+                "Likely because entity inheritance hierarchy was not set up correctly.");
+        if (!_entityContainer.TryRemoveEntity(derivedEntity))
+            throw new System.Exception(
+                $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
+        QueueFree();
+    }
+
     public bool Freeze()
     {
         _frozen = true;
@@ -64,25 +93,8 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         return true;
     }
 
-    public void RegisterEntityContainer(EntityContainer<TEntity> container)
-    {
-        _entityContainer = container;
-    }
-
     protected virtual void DieCustomLogic()
     {
-    }
-
-    public void Die()
-    {
-        DieCustomLogic();
-        if (this is not TEntity derivedEntity)
-            throw new KsInvalidCastException(nameof(Die), nameof(PredatorPreyEntity<TEntity>), nameof(TEntity),
-                "Likely because entity inheritance hierarchy was not set up correctly.");
-        if (!_entityContainer.TryRemoveEntity(derivedEntity))
-            throw new System.Exception(
-                $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
-        QueueFree();
     }
 
 
@@ -99,6 +111,12 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
     public override void _PhysicsProcess(double delta)
     {
+        if (_died)
+        {
+            Die();
+            return;
+        }
+
         if (_frozen) return;
 
         var move = Vector2.Zero;

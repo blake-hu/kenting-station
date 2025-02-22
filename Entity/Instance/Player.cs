@@ -67,7 +67,7 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity
                 return;
             if (collider is not IKillableEntity entity)
                 throw new System.Exception($"Player attacked collider ({collider}) that was not an IEntity");
-            entity.Die();
+            entity.QueueDie();
         }
     }
 
