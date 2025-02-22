@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://br7yvclghewdu"]
 
-[ext_resource type="Script" path="res://Entity/Tree.cs" id="1_lwgwo"]
+[ext_resource type="Script" path="res://Entity/Instance/Tree.cs" id="1_lwgwo"]
 [ext_resource type="Texture2D" uid="uid://kpuccv5lvj1y" path="res://Asset/HanaCaraka/Props/Tree.png" id="1_yy7vb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6q2x1"]

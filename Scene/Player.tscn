@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://qth75vb37jpa"]
 
 [ext_resource type="Texture2D" uid="uid://c6ykscqqat3mn" path="res://Asset/SproutLands/Characters/Character.png" id="1_pa0d8"]
-[ext_resource type="Script" path="res://Entity/Player.cs" id="1_us4dx"]
+[ext_resource type="Script" path="res://Entity/Instance/Player.cs" id="1_us4dx"]
 [ext_resource type="Script" path="res://Entity/UnfreezeArea.cs" id="3_ts374"]
 [ext_resource type="PackedScene" uid="uid://1kqi0c6nldqc" path="res://Scene/Hud.tscn" id="4_m6y8m"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b4hbfik82j13l"]
 
-[ext_resource type="Script" path="res://Entity/Tiger.cs" id="1_nqwy1"]
+[ext_resource type="Script" path="res://Entity/Instance/Tiger.cs" id="1_x5g4q"]
 [ext_resource type="Texture2D" uid="uid://cpv0uee36dv2s" path="res://Asset/KatiElorantaTiger/tiger-horizontal.png" id="2_5mxn5"]
 [ext_resource type="PackedScene" uid="uid://cwed1ucsm4sin" path="res://Scene/PredatorPreyMover.tscn" id="3_t0q4s"]
 
@@ -58,8 +58,7 @@ animations = [{
 [node name="Tiger" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 30
-script = ExtResource("1_nqwy1")
-SkittishRadius = null
+script = ExtResource("1_x5g4q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ptegv")

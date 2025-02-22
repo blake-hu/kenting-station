@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://di2i2ghhd7gyp"]
 
-[ext_resource type="Script" path="res://Entity/Cow.cs" id="1_723xs"]
 [ext_resource type="Texture2D" uid="uid://dgvy0ffjcdswd" path="res://Asset/SproutLands/Characters/Cow.png" id="1_nh67y"]
+[ext_resource type="Script" path="res://Entity/Instance/Cow.cs" id="1_wgrii"]
 [ext_resource type="PackedScene" uid="uid://cwed1ucsm4sin" path="res://Scene/PredatorPreyMover.tscn" id="3_glx00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptegv"]
@@ -58,7 +58,7 @@ animations = [{
 [node name="Cow" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 30
-script = ExtResource("1_723xs")
+script = ExtResource("1_wgrii")
 DiagonalWalk = 0.2
 MaxXWalkSpeed = 50.0
 MaxYWalkSpeed = 30.0
