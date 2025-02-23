@@ -3,7 +3,7 @@ using Godot;
 using KentingStation.Common;
 using KentingStation.Interface;
 
-namespace Kenting.Common;
+namespace KentingStation.Entity.Mover;
 
 public class SkittishMover : ITwoAxisMover
 {

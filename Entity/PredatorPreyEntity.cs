@@ -2,11 +2,12 @@ using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using Godot;
-using Kenting.Common;
 using KentingStation.Common;
 using KentingStation.Common.Util;
+using KentingStation.Entity.Mover;
 using KentingStation.Exception;
 using KentingStation.Interface;
+using PredatorPreyMover = KentingStation.Entity.Mover.PredatorPreyMover;
 
 namespace KentingStation.Entity;
 

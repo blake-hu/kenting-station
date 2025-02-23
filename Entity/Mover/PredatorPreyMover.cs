@@ -5,7 +5,7 @@ using Godot;
 using KentingStation.Common.Util;
 using KentingStation.Interface;
 
-namespace KentingStation.Common;
+namespace KentingStation.Entity.Mover;
 
 public partial class PredatorPreyMover : Area2D
 {

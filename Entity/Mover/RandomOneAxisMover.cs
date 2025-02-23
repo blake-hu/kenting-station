@@ -1,7 +1,7 @@
 using KentingStation.Common.Util;
 using KentingStation.Interface;
 
-namespace Kenting.Common;
+namespace KentingStation.Entity.Mover;
 
 public class RandomOneAxisMover : IOneAxisMover
 {
