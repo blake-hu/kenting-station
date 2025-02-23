@@ -11,7 +11,7 @@ public class Beef : IItem
     public Beef() // Do not construct directly, use ItemProvider instead
     {
         // TODO Low Priority: Find beef texture
-        _texture = ResourceLoader.Load<CompressedTexture2D>("res://Asset/SproutLands/Objects/EggItem.png");
+        _texture = ResourceLoader.Load<CompressedTexture2D>("res://Asset/CadmiumRedMeatPixelArt/beef-16px.png");
     }
 
     public ItemType ItemType()
