@@ -24,7 +24,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
 
-    [Export] public int BaseHealth = 100;
+    [Export] [DebugInfo("Base HP")] public int BaseHealth = 100;
 
     // Default values simulate movement of cow, can be overwritten by users in Godot
     [Export] public int RunDurationMax = 50;
@@ -36,7 +36,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     [Export] public int WalkDurationMax = 100;
     [Export] public int WalkDurationMin = 20;
     [Export] public Vector2 WalkSpeedMax = new(10f, 20f);
-    public int CurrentHealth { get; protected set; }
+    [DebugInfo("HP")] public int CurrentHealth { get; protected set; }
 
     // By default, the entity has no prey or predators
     // Override these properties to add prey or predators
@@ -154,8 +154,8 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     {
         if (_randomDelayHealth.Done())
         {
-            BaseHealth--;
-            if (BaseHealth <= 0)
+            CurrentHealth--;
+            if (CurrentHealth <= 0)
                 Die();
         }
     }
