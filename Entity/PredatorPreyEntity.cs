@@ -15,13 +15,13 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     where TEntity : CharacterBody2D
 {
     private AnimatedSprite2D _animatedSprite2D;
+    private Label _debugLabel;
     private bool _died;
     private EntityContainer<TEntity> _entityContainer;
     private bool _frozen;
     private PredatorPreyMover _predatorPreyMover;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
-    private Label _debugLabel;
 
     // Default values simulate movement of cow, can be overwritten by users in Godot
     [Export] public float DiagonalWalk;
@@ -62,12 +62,6 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         _entityContainer = container;
     }
 
-    // We use QueueDie instead of Die here. This added complexity is needed because:
-    // - Die is often called by an event handler in AttackRange
-    // - Die will often spawn an ItemDrop in DieCustomLogic
-    // - Spawning an ItemDrop involves instantiating an Area2D in the scene tree
-    // - The Godot physics engine does not allow modifying an Area2D while in an event handler
-    // - Hence, we need to queue the die request and only handle it once we exit the event handler
     public void Die()
     {
         DieCustomLogic();

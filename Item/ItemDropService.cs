@@ -33,6 +33,11 @@ public partial class ItemDropService : Node2D
         _spawnQueue.Clear();
     }
 
+    // We use QueueSpawn instead of Die here. This added complexity is needed because:
+    // - Spawning is often called by Die in an event handler context
+    // - Spawning an ItemDrop involves instantiating an Area2D in the scene tree
+    // - The Godot physics engine does not allow modifying an Area2D while in an event handler
+    // - Hence, we need to queue the spawn request and only handle it once we exit the event handler
     public void QueueSpawn(IItem item, int count, Vector2 spawnLocation)
     {
         _spawnQueue.Add(new ItemSpawnInfo(item, count, spawnLocation));
