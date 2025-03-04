@@ -30,7 +30,7 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
     [Export] public int BaseHealth = 100;
     [DebugInfo("HP")] protected int CurrentHealth = 100;
     [Export] public int MaxHealth = 150;
-
+    [Export] public bool NoClipMode;
     [Export] public float Speed = 100.0f;
 
     public Type EntityType()
@@ -76,6 +76,12 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
         _inventory = inventoryContainer.Inventory;
         OnlinePlayers.RegisterPlayer(this);
         _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
+
+        if (NoClipMode)
+        {
+            CollisionLayer = 0;
+            CollisionMask = 0;
+        }
     }
 
     public override void _PhysicsProcess(double delta)
