@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Frozen;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 using Godot;
 using KentingStation.Common.Util;
 using KentingStation.Entity.Mover;
@@ -40,8 +40,8 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
     // By default, the entity has no prey or predators
     // Override these properties to add prey or predators
-    protected virtual HashSet<Type> Prey { get; } = [];
-    protected virtual HashSet<Type> Predators { get; } = [];
+    protected virtual ImmutableHashSet<Type> Prey { get; } = [];
+    protected virtual ImmutableHashSet<Type> Predators { get; } = [];
 
     public FrozenSet<Type> PreyTypes()
     {

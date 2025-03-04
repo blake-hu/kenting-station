@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Frozen;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 using Godot;
 using KentingStation.Common;
 using KentingStation.Interface;
@@ -11,12 +11,12 @@ namespace KentingStation.Entity.Instance;
 // Do not inherit from PredatorPreyEntity<Player> because we do not want all the walk/run fields related to mob movement
 public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebugInfo
 {
-    private readonly HashSet<Type> _predators =
+    private readonly ImmutableHashSet<Type> _predators =
     [
         typeof(Tiger)
     ];
 
-    private readonly HashSet<Type> _prey =
+    private readonly ImmutableHashSet<Type> _prey =
     [
         typeof(Cow)
     ];

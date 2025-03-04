@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using KentingStation.Interface;
 using KentingStation.Item;
 using KentingStation.Item.Instance;
@@ -8,7 +9,7 @@ namespace KentingStation.Entity.Instance;
 
 public partial class Cow : PredatorPreyEntity<Cow>, IFreeze
 {
-    protected override HashSet<Type> Predators { get; } =
+    protected override ImmutableHashSet<Type> Predators { get; } =
     [
         typeof(Tiger),
         typeof(Player)
