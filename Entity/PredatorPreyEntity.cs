@@ -20,6 +20,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     private EntityContainer<TEntity> _entityContainer;
     private bool _frozen;
     private PredatorPreyMover _predatorPreyMover;
+    private RandomDelay _randomDelayHealth;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
 
@@ -101,6 +102,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         _randomOneAxisYMover =
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
         _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
+        _randomDelayHealth = new RandomDelay(30, 100);
         _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
 
@@ -135,7 +137,19 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
         MoveAndSlide();
 
+        UpdateHealth();
+
         (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
+    }
+
+    private void UpdateHealth()
+    {
+        if (_randomDelayHealth.Done())
+        {
+            HealthPoints--;
+            if (HealthPoints <= 0)
+                Die();
+        }
     }
 
     private void MoveX(float speed)
