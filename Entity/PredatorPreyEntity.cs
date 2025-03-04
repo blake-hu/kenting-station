@@ -110,6 +110,22 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     {
         if (_frozen) return;
 
+        var move = ComputeMove();
+        if (move != Vector2.Zero)
+        {
+            MoveX(move.X);
+            MoveY(move.Y);
+        }
+
+        MoveAndSlide();
+
+        UpdateHealth();
+
+        (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
+    }
+
+    private Vector2 ComputeMove()
+    {
         var move = Vector2.Zero;
 
         if (_predatorPreyMover.NextMove(out var skittishMove))
@@ -129,18 +145,9 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
             move.X += randomYMove * RandomScalar.Generate(-DiagonalWalk, DiagonalWalk);
         }
 
-        if (move != Vector2.Zero)
-        {
-            MoveX(move.X);
-            MoveY(move.Y);
-        }
-
-        MoveAndSlide();
-
-        UpdateHealth();
-
-        (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
+        return move;
     }
+
 
     private void UpdateHealth()
     {
