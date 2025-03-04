@@ -146,6 +146,9 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
             move.X += randomYMove * RandomScalar.Generate(-WalkDiagonal, WalkDiagonal);
         }
 
+        // Scale movement by amount of health left
+        move *= CurrentHealth / (float)BaseHealth;
+
         return move;
     }
 
