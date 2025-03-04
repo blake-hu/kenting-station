@@ -45,7 +45,7 @@ public class JarCounter
     {
         if (Count > 0)
             return false; // operation fails because there are still items left in Jar
-        MaxCapacity = itemToCount.MaxCountPerStack();
+        MaxCapacity = itemToCount.MaxCountPerStack;
         return true;
     }
 }

@@ -14,20 +14,16 @@ public class Sword : IItem
         _texture = ResourceLoader.Load<CompressedTexture2D>("res://Asset/SproutLands/Objects/ChickenHouse.png");
     }
 
-    public ItemType ItemType()
-    {
-        return Item.ItemType.Sword;
-    }
+    public int MaxCountPerStack => 1;
 
-    public int MaxCountPerStack()
-    {
-        return 1;
-    }
+    public ItemType ItemType => ItemType.Sword;
+
 
     public Texture2D GetDisplayTexture()
     {
         return _texture;
     }
+
 
     public bool LeftClick(Player player)
     {

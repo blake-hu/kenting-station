@@ -9,9 +9,8 @@ namespace KentingStation.Interface;
 
 public interface IItem
 {
-    public ItemType ItemType();
-
-    public int MaxCountPerStack();
+    public int MaxCountPerStack { get; }
+    public ItemType ItemType { get; }
 
     public Texture2D GetDisplayTexture();
 
