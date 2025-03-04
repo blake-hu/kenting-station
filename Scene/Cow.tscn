@@ -61,6 +61,7 @@ collision_layer = 8
 collision_mask = 30
 script = ExtResource("1_wgrii")
 DiagonalWalk = 0.2
+HealthPoints = 75
 MaxXWalkSpeed = 50.0
 MaxYWalkSpeed = 30.0
 

@@ -15,16 +15,19 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     where TEntity : CharacterBody2D
 {
     private AnimatedSprite2D _animatedSprite2D;
-    private Label _debugLabel;
     private bool _died;
     private EntityContainer<TEntity> _entityContainer;
     private bool _frozen;
     private PredatorPreyMover _predatorPreyMover;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
+    protected Label DebugLabel;
 
     // Default values simulate movement of cow, can be overwritten by users in Godot
     [Export] public float DiagonalWalk;
+
+    [Export] [DebugInfo("HP")] public int HealthPoints = 100;
+
     [Export] public int MaxRunDuration = 50;
     [Export] public float MaxRunSpeed = 80f;
     [Export] public int MaxWalkDuration = 100;
@@ -104,7 +107,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         _randomOneAxisYMover =
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
         _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
-        _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
+        DebugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -138,7 +141,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
         MoveAndSlide();
 
-        (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
+        (this as IDisplayDebugInfo).UpdateDebugInfo(DebugLabel);
     }
 
     private void MoveX(float speed)

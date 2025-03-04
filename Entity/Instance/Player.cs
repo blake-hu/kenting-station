@@ -32,6 +32,7 @@ public partial class Player : PredatorPreyEntity<Player>
         var inventoryContainer = GetNode<InventoryContainer>("Hud/InventoryContainer");
         _inventory = inventoryContainer.Inventory;
         OnlinePlayers.RegisterPlayer(this);
+        DebugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -39,6 +40,7 @@ public partial class Player : PredatorPreyEntity<Player>
         Move();
         MovementUpdate();
         DetectWeaponHit();
+        (this as IDisplayDebugInfo).UpdateDebugInfo(DebugLabel);
     }
 
     // TODO: Propagate left and right mouse click to inventory items
