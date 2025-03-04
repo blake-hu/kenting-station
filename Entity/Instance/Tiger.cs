@@ -4,7 +4,7 @@ using KentingStation.Interface;
 
 namespace KentingStation.Entity.Instance;
 
-public partial class Tiger : PredatorPreyEntity<Tiger>, ITrackedEntity<Tiger>, IPredatorPreyEntity, IFreeze
+public partial class Tiger : PredatorPreyEntity<Tiger>, IFreeze
 {
     protected override HashSet<Type> Prey { get; } =
     [

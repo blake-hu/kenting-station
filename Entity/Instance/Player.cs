@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Frozen;
 using System.Collections.Generic;
 using Godot;
 using KentingStation.Common;
@@ -8,7 +7,7 @@ using KentingStation.UI;
 
 namespace KentingStation.Entity.Instance;
 
-public partial class Player : CharacterBody2D, IPredatorPreyEntity
+public partial class Player : PredatorPreyEntity<Player>
 {
     private readonly HashSet<Type> _predators =
     [
@@ -25,21 +24,6 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity
     private RayCast2D _weaponHitDetector;
 
     [Export] public float Speed = 100.0f;
-
-    public Type EntityType()
-    {
-        return typeof(Player);
-    }
-
-    public FrozenSet<Type> PredatorTypes()
-    {
-        return _predators.ToFrozenSet();
-    }
-
-    public FrozenSet<Type> PreyTypes()
-    {
-        return _prey.ToFrozenSet();
-    }
 
     public override void _Ready()
     {
