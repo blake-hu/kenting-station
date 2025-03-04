@@ -14,13 +14,16 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     IDisplayDebugInfo
     where TEntity : CharacterBody2D
 {
+    private const int HealthDecayTimerMin = 10;
+    private const int HealthDecayTimerMax = 50;
+
     private AnimatedSprite2D _animatedSprite2D;
     private Label _debugLabel;
     private bool _died;
     private EntityContainer<TEntity> _entityContainer;
     private bool _frozen;
+    private RandomDelay _healthDecayTimer;
     private PredatorPreyMover _predatorPreyMover;
-    private RandomDelay _randomDelayHealth;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
 
@@ -119,7 +122,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
             new RandomOneAxisMover(WalkDurationMin, WalkDurationMax, -WalkSpeedMax.Y, WalkSpeedMax.Y);
         _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
         CurrentHealth = BaseHealth;
-        _randomDelayHealth = new RandomDelay(30, 100);
+        _healthDecayTimer = new RandomDelay(HealthDecayTimerMin, HealthDecayTimerMax);
         _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
 
@@ -171,7 +174,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
     private void UpdateHealth()
     {
-        if (_randomDelayHealth.Done())
+        if (_healthDecayTimer.Done())
         {
             CurrentHealth--;
             if (CurrentHealth <= 0)

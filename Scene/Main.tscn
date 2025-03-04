@@ -95,7 +95,7 @@ MinSpawnTime = 300.0
 script = ExtResource("6_jo85i")
 EntityScene = ExtResource("5_jvahp")
 MaxSpawnTime = 1000.0
-MinSpawnTime = 500.0
+MinSpawnTime = 300.0
 SpawnArea = Rect2(-280, -280, 560, 560)
 
 [node name="TreeRandomSpawner" type="Node2D" parent="AllSpawners"]
@@ -108,15 +108,15 @@ SpawnArea = Rect2(-280, -280, 560, 560)
 [node name="TigerRandomSpawner" type="Node2D" parent="AllSpawners"]
 script = ExtResource("10_cdkf5")
 EntityScene = ExtResource("12_yjieq")
-MaxSpawnTime = 1000.0
-MinSpawnTime = 500.0
+MaxSpawnTime = 4000.0
+MinSpawnTime = 1000.0
 SpawnArea = Rect2(-150, -150, 300, 300)
 
 [node name="TigerDensitySpawner" type="Node2D" parent="AllSpawners"]
 script = ExtResource("11_w4gk7")
 EntityScene = ExtResource("12_yjieq")
-MaxSpawnTime = 1500.0
-MinSpawnTime = 500.0
+MaxSpawnTime = 2000.0
+MinSpawnTime = 750.0
 
 [node name="Player" parent="." instance=ExtResource("9_2bnbu")]
 z_as_relative = false
