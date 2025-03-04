@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using Godot;
 using KentingStation.Common;
@@ -7,7 +8,8 @@ using KentingStation.UI;
 
 namespace KentingStation.Entity.Instance;
 
-public partial class Player : PredatorPreyEntity<Player>
+// Do not inherit from PredatorPreyEntity<Player> because we do not want all the walk/run fields related to mob movement
+public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebugInfo
 {
     private readonly HashSet<Type> _predators =
     [
@@ -20,10 +22,26 @@ public partial class Player : PredatorPreyEntity<Player>
     ];
 
     private AnimatedSprite2D _animatedSprite2D;
+    private Label _debugLabel;
     private Inventory _inventory;
     private RayCast2D _weaponHitDetector;
 
     [Export] public float Speed = 100.0f;
+
+    public Type EntityType()
+    {
+        return typeof(Player);
+    }
+
+    public FrozenSet<Type> PredatorTypes()
+    {
+        return _predators.ToFrozenSet();
+    }
+
+    public FrozenSet<Type> PreyTypes()
+    {
+        return _prey.ToFrozenSet();
+    }
 
     public override void _Ready()
     {
@@ -32,7 +50,7 @@ public partial class Player : PredatorPreyEntity<Player>
         var inventoryContainer = GetNode<InventoryContainer>("Hud/InventoryContainer");
         _inventory = inventoryContainer.Inventory;
         OnlinePlayers.RegisterPlayer(this);
-        DebugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
+        _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -40,7 +58,7 @@ public partial class Player : PredatorPreyEntity<Player>
         Move();
         MovementUpdate();
         DetectWeaponHit();
-        (this as IDisplayDebugInfo).UpdateDebugInfo(DebugLabel);
+        (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
     }
 
     // TODO: Propagate left and right mouse click to inventory items
