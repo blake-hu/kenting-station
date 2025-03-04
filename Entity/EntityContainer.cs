@@ -27,6 +27,11 @@ public class EntityContainer<TEntity> : IEntityContainer<TEntity> where TEntity 
         ChunkedCounter?.Tick();
     }
 
+    public int EntityCount()
+    {
+        return _activeEntities.Count;
+    }
+
     public bool TryAddEntity(TEntity entity)
     {
         return _activeEntities.TryAdd(entity.Name, entity);

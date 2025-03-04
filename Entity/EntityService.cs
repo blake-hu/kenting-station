@@ -21,7 +21,11 @@ public partial class EntityService : Node2D
         { typeof(Tree), new EntityContainer<Tree>(new ChunkedEntityCounter<Tree>(256, 400)) }
     };
 
+    private int _printInterval = 60;
+    private int _timestamp;
+
     [Export] public int CounterTimeToLive;
+    [Export] public bool PrintEntityCounts;
 
     private EntityService() // prevent public instantiation
     {
@@ -43,6 +47,19 @@ public partial class EntityService : Node2D
     {
         foreach (var container in _entityContainers.Values)
             container.Tick();
+
+        if (PrintEntityCounts) PrintCounts();
+    }
+
+    private void PrintCounts()
+    {
+        _timestamp += 1;
+        if (_timestamp % _printInterval == 0)
+        {
+            foreach (var (type, container) in _entityContainers)
+                GD.Print($"{type}: {container.EntityCount()}");
+            GD.Print();
+        }
     }
 
     public EntityContainer<TEntity> GetContainer<TEntity>() where TEntity : Node2D

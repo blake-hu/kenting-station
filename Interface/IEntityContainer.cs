@@ -7,4 +7,6 @@ namespace KentingStation.Interface;
 public interface IEntityContainer<out TEntity> where TEntity : Node2D
 {
     public void Tick();
+
+    public int EntityCount();
 }
