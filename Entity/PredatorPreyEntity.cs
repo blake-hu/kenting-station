@@ -24,19 +24,19 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
 
+    [Export] public int BaseHealth = 100;
+
     // Default values simulate movement of cow, can be overwritten by users in Godot
-    [Export] public float DiagonalWalk;
+    [Export] public int RunDurationMax = 50;
+    [Export] public int RunDurationMin = 20;
+    [Export] public float RunSpeedMax = 80f;
+    [Export] public float RunSpeedMin = 30f;
 
-    [Export] [DebugInfo("HP")] public int HealthPoints = 100;
-
-    [Export] public int MaxRunDuration = 50;
-    [Export] public float MaxRunSpeed = 80f;
-    [Export] public int MaxWalkDuration = 100;
-    [Export] public float MaxXWalkSpeed = 20f;
-    [Export] public float MaxYWalkSpeed = 10f;
-    [Export] public int MinRunDuration = 20;
-    [Export] public float MinRunSpeed = 30f;
-    [Export] public int MinWalkDuration = 20;
+    [Export] public float WalkDiagonal = 0.2f;
+    [Export] public int WalkDurationMax = 100;
+    [Export] public int WalkDurationMin = 20;
+    [Export] public Vector2 WalkSpeedMax = new(10f, 20f);
+    public int CurrentHealth { get; protected set; }
 
     // By default, the entity has no prey or predators
     // Override these properties to add prey or predators
@@ -98,10 +98,11 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     {
         _animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _randomOneAxisXMover =
-            new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxXWalkSpeed, MaxXWalkSpeed);
+            new RandomOneAxisMover(WalkDurationMin, WalkDurationMax, -WalkSpeedMax.X, WalkSpeedMax.X);
         _randomOneAxisYMover =
-            new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
+            new RandomOneAxisMover(WalkDurationMin, WalkDurationMax, -WalkSpeedMax.Y, WalkSpeedMax.Y);
         _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
+        CurrentHealth = BaseHealth;
         _randomDelayHealth = new RandomDelay(30, 100);
         _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
@@ -135,14 +136,14 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         {
             move.X += randomXMove;
             // For more realistic movement, also move slightly up/down when moving horizontally
-            move.Y += randomXMove * RandomScalar.Generate(-DiagonalWalk, DiagonalWalk);
+            move.Y += randomXMove * RandomScalar.Generate(-WalkDiagonal, WalkDiagonal);
         }
 
         if (_randomOneAxisYMover.NextMove(out var randomYMove))
         {
             move.Y += randomYMove;
             // For more realistic movement, also move slightly left/right when moving vertically
-            move.X += randomYMove * RandomScalar.Generate(-DiagonalWalk, DiagonalWalk);
+            move.X += randomYMove * RandomScalar.Generate(-WalkDiagonal, WalkDiagonal);
         }
 
         return move;
@@ -153,8 +154,8 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     {
         if (_randomDelayHealth.Done())
         {
-            HealthPoints--;
-            if (HealthPoints <= 0)
+            BaseHealth--;
+            if (BaseHealth <= 0)
                 Die();
         }
     }
