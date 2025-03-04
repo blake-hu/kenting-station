@@ -5,13 +5,13 @@ namespace KentingStation.Common.Util;
 public class RandomDelay
 {
     private readonly IEnumerator<bool> _enumerator;
-    private readonly int _maxTicksPerMove;
-    private readonly int _minTicksPerMove;
+    private readonly int _maximum;
+    private readonly int _minimum;
 
-    public RandomDelay(int minTicksPerMove, int maxTicksPerMove)
+    public RandomDelay(int minimum, int maximum)
     {
-        _minTicksPerMove = minTicksPerMove;
-        _maxTicksPerMove = maxTicksPerMove;
+        _minimum = minimum;
+        _maximum = maximum;
         _enumerator = Enumerator();
     }
 
@@ -25,7 +25,7 @@ public class RandomDelay
     {
         while (true) // infinite enumerator
         {
-            var randomDelay = (int)RandomScalar.GeneratePositive(_minTicksPerMove, _maxTicksPerMove);
+            var randomDelay = (int)RandomScalar.GeneratePositive(_minimum, _maximum);
             for (var i = 0; i < randomDelay; i++)
                 yield return false;
 
