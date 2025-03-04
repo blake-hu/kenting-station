@@ -10,10 +10,12 @@ using PredatorPreyMover = KentingStation.Entity.Mover.PredatorPreyMover;
 
 namespace KentingStation.Entity;
 
-public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPreyEntity, ITrackedEntity<TEntity>
+public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPreyEntity, ITrackedEntity<TEntity>,
+    IDisplayDebugInfo
     where TEntity : CharacterBody2D
 {
     private AnimatedSprite2D _animatedSprite2D;
+    private Label _debugLabel;
     private bool _died;
     private EntityContainer<TEntity> _entityContainer;
     private bool _frozen;
@@ -102,6 +104,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         _randomOneAxisYMover =
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
         _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
+        _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -134,6 +137,8 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         }
 
         MoveAndSlide();
+
+        (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
     }
 
     private void MoveX(float speed)
