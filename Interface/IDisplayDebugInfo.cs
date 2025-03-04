@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Text;
 using Godot;
 using KentingStation.Common.Util;
@@ -17,15 +18,23 @@ public interface IDisplayDebugInfo
 
     public void UpdateDebugInfo(Label debugLabel)
     {
-        var type = GetType();
-        var fields = type.GetFields();
         var sb = new StringBuilder();
+        var type = GetType();
 
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         foreach (var field in fields)
         {
             var attribute = (DebugInfo)Attribute.GetCustomAttribute(field, typeof(DebugInfo));
             if (attribute is not null)
                 sb.AppendLine($"{attribute.DisplayName ?? field.Name}: {field.GetValue(this)}");
+        }
+
+        var properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        foreach (var property in properties)
+        {
+            var attribute = (DebugInfo)Attribute.GetCustomAttribute(property, typeof(DebugInfo));
+            if (attribute is not null)
+                sb.AppendLine($"{attribute.DisplayName ?? property.Name}: {property.GetValue(this)}");
         }
 
         debugLabel.Text = sb.ToString();
