@@ -14,10 +14,14 @@ public interface IItem
 
     public Texture2D GetDisplayTexture();
 
-    public FrozenSet<Type> PickedUpBy()
+    public FrozenSet<Type> EntitiesThatCanPickUp()
     {
         return new HashSet<Type>().ToFrozenSet(); // default behavior: cannot be picked up by non-Players
     }
+
+    public void PickedUpBy(IPredatorPreyEntity entity)
+    {
+    } // default behavior: nothing happens when item picked up by entities that are not Player
 
     public bool LeftClick(Player player)
     {

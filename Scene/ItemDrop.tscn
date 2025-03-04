@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://Item/ItemDrop.cs" id="1_3w2si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17ihf"]
+size = Vector2(24, 24)
 
 [node name="ItemDrop" type="Area2D"]
 collision_layer = 32
-collision_mask = 2
+collision_mask = 26
 script = ExtResource("1_3w2si")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -24,7 +24,9 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
 
-    [Export] [DebugInfo("Base HP")] public int BaseHealth = 100;
+    [Export] public int BaseHealth = 100;
+    [DebugInfo("HP")] protected int CurrentHealth;
+    [Export] public int MaxHealth;
 
     // Default values simulate movement of cow, can be overwritten by users in Godot
     [Export] public int RunDurationMax = 50;
@@ -36,7 +38,6 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     [Export] public int WalkDurationMax = 100;
     [Export] public int WalkDurationMin = 20;
     [Export] public Vector2 WalkSpeedMax = new(10f, 20f);
-    [DebugInfo("HP")] public int CurrentHealth { get; protected set; }
 
     // By default, the entity has no prey or predators
     // Override these properties to add prey or predators
@@ -46,6 +47,20 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     public FrozenSet<Type> PreyTypes()
     {
         return Prey.ToFrozenSet();
+    }
+
+    public void IncreaseHealth(int healthPoints)
+    {
+        CurrentHealth += healthPoints;
+        if (CurrentHealth > MaxHealth)
+            CurrentHealth = MaxHealth;
+    }
+
+    public void DecreaseHealth(int healthPoints)
+    {
+        CurrentHealth -= healthPoints;
+        if (CurrentHealth < 0)
+            Die();
     }
 
     public Type EntityType()
@@ -74,6 +89,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
                 $"Internal error: Unable to remove entity {Name} from entity container {_entityContainer.GetType()} on death.");
         QueueFree();
     }
+
 
     public bool Freeze()
     {

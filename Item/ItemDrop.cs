@@ -28,12 +28,20 @@ public partial class ItemDrop : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        if (body is not Player player) return;
-        var overflow = player.TryPickUp(_item, _itemCount);
-        if (overflow == 0)
+        if (body is Player player)
+        {
+            var overflow = player.TryPickUp(_item, _itemCount);
+            if (overflow == 0)
+                QueueFree();
+            else
+                _itemCount = overflow;
+        }
+        else if (body is IPredatorPreyEntity predPreyEntity &&
+                 _item.EntitiesThatCanPickUp().Contains(body.GetType()))
+        {
+            _item.PickedUpBy(predPreyEntity);
             QueueFree();
-        else
-            _itemCount = overflow;
+        }
     }
 
     public void SetItem(IItem item, int count)

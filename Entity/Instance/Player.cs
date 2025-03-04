@@ -3,6 +3,7 @@ using System.Collections.Frozen;
 using System.Collections.Immutable;
 using Godot;
 using KentingStation.Common;
+using KentingStation.Common.Util;
 using KentingStation.Interface;
 using KentingStation.UI;
 
@@ -26,6 +27,10 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
     private Inventory _inventory;
     private RayCast2D _weaponHitDetector;
 
+    [Export] public int BaseHealth = 100;
+    [DebugInfo("HP")] protected int CurrentHealth = 100;
+    [Export] public int MaxHealth = 150;
+
     [Export] public float Speed = 100.0f;
 
     public Type EntityType()
@@ -41,6 +46,26 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
     public FrozenSet<Type> PreyTypes()
     {
         return _prey.ToFrozenSet();
+    }
+
+    public void IncreaseHealth(int healthPoints)
+    {
+        CurrentHealth += healthPoints;
+        if (CurrentHealth > MaxHealth)
+            CurrentHealth = MaxHealth;
+    }
+
+    public void DecreaseHealth(int healthPoints)
+    {
+        CurrentHealth -= healthPoints;
+        if (CurrentHealth < 0)
+            Die();
+    }
+
+    private void Die()
+    {
+        // TODO: Game over when player dies
+        throw new NotImplementedException();
     }
 
     public override void _Ready()

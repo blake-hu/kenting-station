@@ -10,9 +10,10 @@ namespace KentingStation.Item.Instance;
 
 public class Beef : IItem
 {
-    private readonly ImmutableHashSet<Type> _pickedUpBy =
+    private const int HealthPoints = 40;
+
+    private readonly ImmutableHashSet<Type> _canPickUp =
     [
-        typeof(Player),
         typeof(Tiger)
     ];
 
@@ -30,9 +31,14 @@ public class Beef : IItem
         return _texture;
     }
 
-    public FrozenSet<Type> PickedUpBy()
+    public FrozenSet<Type> EntitiesThatCanPickUp()
     {
-        return _pickedUpBy.ToFrozenSet();
+        return _canPickUp.ToFrozenSet();
+    }
+
+    public void PickedUpBy(IPredatorPreyEntity entity)
+    {
+        entity.IncreaseHealth(HealthPoints);
     }
 
     public bool RightClick(Player player)
