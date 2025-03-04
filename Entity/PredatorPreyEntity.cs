@@ -21,7 +21,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     private PredatorPreyMover _predatorPreyMover;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
-    protected Label DebugLabel;
+    private Label _debugLabel;
 
     // Default values simulate movement of cow, can be overwritten by users in Godot
     [Export] public float DiagonalWalk;
@@ -107,7 +107,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         _randomOneAxisYMover =
             new RandomOneAxisMover(MinWalkDuration, MaxWalkDuration, -MaxYWalkSpeed, MaxYWalkSpeed);
         _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
-        DebugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
+        _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -141,7 +141,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
         MoveAndSlide();
 
-        (this as IDisplayDebugInfo).UpdateDebugInfo(DebugLabel);
+        (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
     }
 
     private void MoveX(float speed)
