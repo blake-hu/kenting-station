@@ -16,6 +16,8 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 {
     private const int HealthDecayTimerMin = 10;
     private const int HealthDecayTimerMax = 50;
+    private int _age;
+    [DebugInfo("AgeDecay")] public int _ageDecayMultiplier = 1;
 
     private AnimatedSprite2D _animatedSprite2D;
     private Label _debugLabel;
@@ -175,9 +177,13 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     {
         if (_healthDecayTimer.Done())
         {
-            CurrentHealth--;
+            CurrentHealth -= _ageDecayMultiplier;
             if (CurrentHealth <= 0)
                 Die();
+
+            _age++;
+            if (_age % BaseHealth == 0)
+                _ageDecayMultiplier++;
         }
     }
 
