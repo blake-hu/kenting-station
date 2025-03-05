@@ -19,7 +19,6 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
     private AnimatedSprite2D _animatedSprite2D;
     private Label _debugLabel;
-    private bool _died;
     private EntityContainer<TEntity> _entityContainer;
     private bool _frozen;
     private RandomDelay _healthDecayTimer;

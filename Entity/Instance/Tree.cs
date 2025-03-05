@@ -5,7 +5,6 @@ namespace KentingStation.Entity.Instance;
 
 public partial class Tree : StaticBody2D, ITrackedEntity<Tree>
 {
-    private bool _died;
     private EntityContainer<Tree> _entityContainer;
 
     public void RegisterEntityContainer(EntityContainer<Tree> container)
