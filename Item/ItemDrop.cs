@@ -6,9 +6,12 @@ namespace KentingStation.Item;
 
 public partial class ItemDrop : Area2D
 {
+    private const int DespawnTimer = 10000;
+
     private IItem _item;
     private int _itemCount;
     private Sprite2D _sprite;
+    private int _timestamp;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -24,6 +27,9 @@ public partial class ItemDrop : Area2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        _timestamp++;
+        if (_timestamp > DespawnTimer)
+            QueueFree();
     }
 
     private void OnBodyEntered(Node2D body)
