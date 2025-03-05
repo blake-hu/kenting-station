@@ -41,3 +41,7 @@ Desktop.ini
 
 ##### Added by Blake
 Export/
+*.log
+*.png
+*.jpg
+*.jpeg
