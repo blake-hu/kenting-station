@@ -17,7 +17,7 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, ITr
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _nextSpawnPeriod = (int)RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
+        _nextSpawnPeriod = (int)RandomFloat.GeneratePositive(MinSpawnTime, MaxSpawnTime);
     }
 
 
@@ -28,7 +28,7 @@ public partial class RandomSpawner<TEntity> : Node2D where TEntity : Node2D, ITr
         {
             var spawnLocation = RandomLocation.Generate(SpawnArea);
             EntityService.Singleton.Spawn<TEntity>(EntityScene, spawnLocation);
-            _nextSpawnPeriod = (int)RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
+            _nextSpawnPeriod = (int)RandomFloat.GeneratePositive(MinSpawnTime, MaxSpawnTime);
             _tickCounter = 0;
         }
         else

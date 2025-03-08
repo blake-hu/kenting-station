@@ -25,7 +25,7 @@ public class RandomDelay
     {
         while (true) // infinite enumerator
         {
-            var randomDelay = (int)RandomScalar.GeneratePositive(_minimum, _maximum);
+            var randomDelay = (int)RandomFloat.GeneratePositive(_minimum, _maximum);
             for (var i = 0; i < randomDelay; i++)
                 yield return false;
 

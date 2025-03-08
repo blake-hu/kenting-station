@@ -2,7 +2,7 @@ using System;
 
 namespace KentingStation.Common.Util;
 
-public static class RandomScalar
+public static class RandomFloat
 {
     private static readonly Random Rng = new();
 

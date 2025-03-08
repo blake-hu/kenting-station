@@ -19,7 +19,7 @@ public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, IT
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _nextSpawnPeriod = (int)RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
+        _nextSpawnPeriod = (int)RandomFloat.GeneratePositive(MinSpawnTime, MaxSpawnTime);
         var entityContainer = EntityService.Singleton.GetContainer<TEntity>();
         _chunkedCounter = entityContainer.ChunkedCounter;
     }
@@ -30,7 +30,7 @@ public partial class DensitySpawner<TEntity> : Node2D where TEntity : Node2D, IT
         if (_tickCounter >= _nextSpawnPeriod && GetSpawnLocation(out var location))
         {
             EntityService.Singleton.Spawn<TEntity>(EntityScene, location);
-            _nextSpawnPeriod = (int)RandomScalar.GeneratePositive(MinSpawnTime, MaxSpawnTime);
+            _nextSpawnPeriod = (int)RandomFloat.GeneratePositive(MinSpawnTime, MaxSpawnTime);
             _tickCounter = 0;
         }
         else

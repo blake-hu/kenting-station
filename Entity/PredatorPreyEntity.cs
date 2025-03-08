@@ -156,14 +156,14 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         {
             move.X += randomXMove;
             // For more realistic movement, also move slightly up/down when moving horizontally
-            move.Y += randomXMove * RandomScalar.Generate(-WalkDiagonal, WalkDiagonal);
+            move.Y += randomXMove * RandomFloat.Generate(-WalkDiagonal, WalkDiagonal);
         }
 
         if (_randomOneAxisYMover.NextMove(out var randomYMove))
         {
             move.Y += randomYMove;
             // For more realistic movement, also move slightly left/right when moving vertically
-            move.X += randomYMove * RandomScalar.Generate(-WalkDiagonal, WalkDiagonal);
+            move.X += randomYMove * RandomFloat.Generate(-WalkDiagonal, WalkDiagonal);
         }
 
         // Scale movement by amount of health left

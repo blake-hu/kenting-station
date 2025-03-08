@@ -20,7 +20,7 @@ public class RandomOneAxisMover : IOneAxisMover
     {
         if (_randomDelay.Done())
         {
-            moveValue = RandomScalar.Generate(_minOutput, _maxOutput);
+            moveValue = RandomFloat.Generate(_minOutput, _maxOutput);
             return true;
         }
 
