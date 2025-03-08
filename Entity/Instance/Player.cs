@@ -27,9 +27,6 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
     private Inventory _inventory;
     private RayCast2D _weaponHitDetector;
 
-    [Export] public int BaseHealth = 100;
-    protected int CurrentHealth = 100;
-    [Export] public int MaxHealth = 150;
     [Export] public bool NoClipMode;
     [Export] public float Speed = 100.0f;
 
@@ -50,16 +47,12 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
 
     public void IncreaseHealth(int healthPoints)
     {
-        CurrentHealth += healthPoints;
-        if (CurrentHealth > MaxHealth)
-            CurrentHealth = MaxHealth;
+        _healthBar.Value += healthPoints;
     }
 
     public void DecreaseHealth(int healthPoints)
     {
-        CurrentHealth -= healthPoints;
-        if (CurrentHealth < 0)
-            PlayerDie();
+        _healthBar.Value -= healthPoints;
     }
 
     public void PlayerDie()
@@ -70,7 +63,8 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
     private void RespawnPlayer()
     {
         GlobalPosition = Vector2.Zero;
-        _healthBar.Value = BaseHealth;
+        // TODO: HealthBar is still affected by AttackRange for a fraction of a second after respawn 
+        _healthBar.ResetHealth();
     }
 
     public override void _Ready()
@@ -82,7 +76,7 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
 
         _healthBar = GetNode<HealthBar>("Hud/HealthBar");
         _healthBar.RegisterPlayer(this);
-        _healthBar.Value = BaseHealth;
+        _healthBar.ResetHealth();
 
         OnlinePlayers.RegisterPlayer(this);
         _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
@@ -100,7 +94,6 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
         MovementUpdate();
         DetectWeaponHit();
         (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
-        _healthBar.Value -= 0.5;
     }
 
     // TODO: Propagate left and right mouse click to inventory items

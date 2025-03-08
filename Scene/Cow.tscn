@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://di2i2ghhd7gyp"]
+[gd_scene load_steps=11 format=3 uid="uid://di2i2ghhd7gyp"]
 
 [ext_resource type="Texture2D" uid="uid://dgvy0ffjcdswd" path="res://Asset/SproutLands/Characters/Cow.png" id="1_nh67y"]
 [ext_resource type="Script" path="res://Entity/Instance/Cow.cs" id="1_wgrii"]
 [ext_resource type="PackedScene" uid="uid://cwed1ucsm4sin" path="res://Scene/PredatorPreyMover.tscn" id="3_glx00"]
-[ext_resource type="PackedScene" uid="uid://uf4t8hehxy1p" path="res://Scene/AttackRange.tscn" id="4_tafa5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptegv"]
 size = Vector2(28, 20)
@@ -73,5 +72,3 @@ animation = &"right"
 frame_progress = 0.525394
 
 [node name="PredatorPreyMover" parent="." instance=ExtResource("3_glx00")]
-
-[node name="AttackRange" parent="." instance=ExtResource("4_tafa5")]

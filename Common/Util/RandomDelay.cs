@@ -8,6 +8,13 @@ public class RandomDelay
     private readonly int _maximum;
     private readonly int _minimum;
 
+    public RandomDelay(int constantDelay)
+    {
+        _minimum = constantDelay;
+        _maximum = constantDelay;
+        _enumerator = Enumerator();
+    }
+
     public RandomDelay(int minimum, int maximum)
     {
         _minimum = minimum;

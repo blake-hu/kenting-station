@@ -76,3 +76,7 @@ animation = &"stationary"
 SpeedMultiplier = 20
 
 [node name="AttackRange" parent="." instance=ExtResource("4_vbab8")]
+AttackDamage = 20
+AttackDelayMax = 100
+AttackDelayMin = 60
+DetectionRadius = 20.0

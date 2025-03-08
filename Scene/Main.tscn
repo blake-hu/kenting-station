@@ -108,7 +108,7 @@ SpawnArea = Rect2(-280, -280, 560, 560)
 [node name="TigerRandomSpawner" type="Node2D" parent="AllSpawners"]
 script = ExtResource("10_cdkf5")
 EntityScene = ExtResource("12_yjieq")
-MaxSpawnTime = 4000.0
+MaxSpawnTime = 1000.0
 MinSpawnTime = 1000.0
 SpawnArea = Rect2(-150, -150, 300, 300)
 
