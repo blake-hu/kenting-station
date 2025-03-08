@@ -3,7 +3,6 @@ using System.Collections.Frozen;
 using System.Collections.Immutable;
 using Godot;
 using KentingStation.Common;
-using KentingStation.Common.Util;
 using KentingStation.Interface;
 using KentingStation.UI;
 
@@ -24,11 +23,12 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
 
     private AnimatedSprite2D _animatedSprite2D;
     private Label _debugLabel;
+    private HealthBar _healthBar;
     private Inventory _inventory;
     private RayCast2D _weaponHitDetector;
 
     [Export] public int BaseHealth = 100;
-    [DebugInfo("HP")] protected int CurrentHealth = 100;
+    protected int CurrentHealth = 100;
     [Export] public int MaxHealth = 150;
     [Export] public bool NoClipMode;
     [Export] public float Speed = 100.0f;
@@ -59,13 +59,18 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
     {
         CurrentHealth -= healthPoints;
         if (CurrentHealth < 0)
-            Die();
+            PlayerDie();
     }
 
-    private void Die()
+    public void PlayerDie()
     {
-        // TODO: Game over when player dies
-        throw new NotImplementedException();
+        RespawnPlayer();
+    }
+
+    private void RespawnPlayer()
+    {
+        GlobalPosition = Vector2.Zero;
+        _healthBar.Value = BaseHealth;
     }
 
     public override void _Ready()
@@ -74,6 +79,11 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
         _weaponHitDetector = GetNode<RayCast2D>("WeaponHitDetector");
         var inventoryContainer = GetNode<InventoryContainer>("Hud/InventoryContainer");
         _inventory = inventoryContainer.Inventory;
+
+        _healthBar = GetNode<HealthBar>("Hud/HealthBar");
+        _healthBar.RegisterPlayer(this);
+        _healthBar.Value = BaseHealth;
+
         OnlinePlayers.RegisterPlayer(this);
         _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
 
@@ -90,6 +100,7 @@ public partial class Player : CharacterBody2D, IPredatorPreyEntity, IDisplayDebu
         MovementUpdate();
         DetectWeaponHit();
         (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
+        _healthBar.Value -= 0.5;
     }
 
     // TODO: Propagate left and right mouse click to inventory items

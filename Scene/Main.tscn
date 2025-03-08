@@ -79,7 +79,6 @@ tile_set = SubResource("TileSet_4kr52")
 [node name="EntityService" type="Node2D" parent="."]
 script = ExtResource("3_f7ti0")
 CounterTimeToLive = 200
-PrintEntityCounts = true
 
 [node name="ItemDropService" type="Node2D" parent="."]
 script = ExtResource("4_4eyw1")

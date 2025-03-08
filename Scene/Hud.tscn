@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1kqi0c6nldqc"]
+[gd_scene load_steps=4 format=3 uid="uid://1kqi0c6nldqc"]
 
 [ext_resource type="Script" path="res://UI/InventoryContainer.cs" id="1_dxoy5"]
 [ext_resource type="PackedScene" uid="uid://b3u1jcuq11ywk" path="res://Scene/InventoryButton.tscn" id="1_ftvnq"]
+[ext_resource type="Script" path="res://UI/HealthBar.cs" id="3_apeu2"]
 
 [node name="Hud" type="CanvasLayer"]
 
@@ -16,3 +17,14 @@ grow_vertical = 0
 alignment = 1
 script = ExtResource("1_dxoy5")
 InventoryButton = ExtResource("1_ftvnq")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.87
+anchor_right = 0.6
+anchor_bottom = 0.89
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+script = ExtResource("3_apeu2")
