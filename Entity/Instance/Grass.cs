@@ -60,6 +60,9 @@ public partial class Grass : Area2D, IPredatorPreyEntity, ITrackedEntity<Grass>,
 
     public void Die()
     {
+        // Sometimes Die() is called more than once in the same frame
+        if (IsQueuedForDeletion()) return;
+
         DieCustomLogic();
         if (!_entityContainer.TryRemoveEntity(this))
             throw new System.Exception(

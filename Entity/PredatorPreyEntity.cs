@@ -86,6 +86,9 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
     public void Die()
     {
+        // Sometimes Die() is called more than once in the same frame
+        if (IsQueuedForDeletion()) return;
+
         DieCustomLogic();
         if (this is not TEntity derivedEntity)
             throw new KsInvalidCastException(nameof(Die), nameof(PredatorPreyEntity<TEntity>), nameof(TEntity),
