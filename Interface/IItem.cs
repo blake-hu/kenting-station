@@ -12,7 +12,10 @@ public interface IItem
     public int MaxCountPerStack { get; }
     public ItemType ItemType { get; }
 
-    public Texture2D GetDisplayTexture();
+    public Texture2D GetDisplayTexture()
+    {
+        return ResourceLoader.Load<CompressedTexture2D>("res://Asset/Shutterstock/2439022185/question-mark.png");
+    }
 
     public FrozenSet<Type> EntitiesThatCanPickUp()
     {
