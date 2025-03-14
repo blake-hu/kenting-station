@@ -14,22 +14,23 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     IDisplayDebugInfo
     where TEntity : CharacterBody2D
 {
-    private const int HealthDecayTimerMin = 10;
-    private const int HealthDecayTimerMax = 50;
+    protected const int HealthDecayTimerMin = 10;
+    protected const int HealthDecayTimerMax = 50;
     private int _age;
     [DebugInfo("AgeDecay")] public int _ageDecayMultiplier = 1;
 
+    // TODO: Make another version of this class for characters that do not move and do not have animations
     private AnimatedSprite2D _animatedSprite2D;
-    private Label _debugLabel;
     private EntityContainer<TEntity> _entityContainer;
     private bool _frozen;
-    private RandomDelay _healthDecayTimer;
     private PredatorPreyMover _predatorPreyMover;
     private RandomOneAxisMover _randomOneAxisXMover;
     private RandomOneAxisMover _randomOneAxisYMover;
 
     [Export] public int BaseHealth = 100;
     [DebugInfo("HP")] protected int CurrentHealth;
+    protected Label DebugLabel;
+    protected RandomDelay HealthDecayTimer;
     [Export] public int MaxHealth;
 
     // Default values simulate movement of cow, can be overwritten by users in Godot
@@ -123,8 +124,8 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
             new RandomOneAxisMover(WalkDurationMin, WalkDurationMax, -WalkSpeedMax.Y, WalkSpeedMax.Y);
         _predatorPreyMover = GetNode<PredatorPreyMover>("PredatorPreyMover");
         CurrentHealth = BaseHealth;
-        _healthDecayTimer = new RandomDelay(HealthDecayTimerMin, HealthDecayTimerMax);
-        _debugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
+        HealthDecayTimer = new RandomDelay(HealthDecayTimerMin, HealthDecayTimerMax);
+        DebugLabel = (this as IDisplayDebugInfo).SetupDebugInfo();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -142,7 +143,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
         UpdateHealth();
 
-        (this as IDisplayDebugInfo).UpdateDebugInfo(_debugLabel);
+        (this as IDisplayDebugInfo).UpdateDebugInfo(DebugLabel);
     }
 
     private Vector2 ComputeMove()
@@ -175,7 +176,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
 
     private void UpdateHealth()
     {
-        if (_healthDecayTimer.Done())
+        if (HealthDecayTimer.Done())
         {
             CurrentHealth -= _ageDecayMultiplier;
             if (CurrentHealth <= 0)
@@ -198,7 +199,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
             scale.X = -absX; // Flip sprite horizontally
         _animatedSprite2D.Scale = scale;
 
-        _animatedSprite2D.Play("right");
+        _animatedSprite2D?.Play("right");
     }
 
     private void MoveY(float speed)

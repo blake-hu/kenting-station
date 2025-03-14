@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using KentingStation.Interface;
 using KentingStation.Item;
@@ -15,9 +14,14 @@ public partial class Cow : PredatorPreyEntity<Cow>, IFreeze
         typeof(Player)
     ];
 
+    protected override ImmutableHashSet<Type> Prey { get; } =
+    [
+        typeof(Grass)
+    ];
+
     protected override void DieCustomLogic()
     {
-        var beef = ItemProvider.Singleton.Get<Beef>();
-        ItemDropService.Singleton.QueueSpawn(beef, 1, Position);
+        var item = ItemProvider.Singleton.Get<Beef>();
+        ItemDropService.Singleton.QueueSpawn(item, 1, Position);
     }
 }

@@ -4,5 +4,6 @@ public enum ItemType
 {
     Unknown,
     Beef,
-    Sword
+    Sword,
+    Hay
 }

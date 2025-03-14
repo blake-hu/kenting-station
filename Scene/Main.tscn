@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ba08oviccnkt4"]
+[gd_scene load_steps=20 format=4 uid="uid://ba08oviccnkt4"]
 
 [ext_resource type="Script" path="res://Common/WorldBoundary.cs" id="1_lfuxk"]
 [ext_resource type="Texture2D" uid="uid://3ews0hxiypgy" path="res://Asset/HanaCaraka/Tileset/Dirt.png" id="2_4ct2n"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://Entity/Spawner/Instance/TigerRandomSpawner.cs" id="10_cdkf5"]
 [ext_resource type="Script" path="res://Entity/Spawner/Instance/TigerDensitySpawner.cs" id="11_w4gk7"]
 [ext_resource type="PackedScene" uid="uid://b4hbfik82j13l" path="res://Scene/Tiger.tscn" id="12_yjieq"]
+[ext_resource type="Script" path="res://Entity/Spawner/Instance/GrassDensitySpawner.cs" id="13_m7a4l"]
+[ext_resource type="PackedScene" uid="uid://2q06dmgpay7y" path="res://Scene/Grass.tscn" id="14_nj3vx"]
+[ext_resource type="Script" path="res://Entity/Spawner/Instance/GrassRandomSpawner.cs" id="14_ptpjm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wg2kq"]
 normal = Vector2(0, 1)
@@ -117,6 +120,19 @@ script = ExtResource("11_w4gk7")
 EntityScene = ExtResource("12_yjieq")
 MaxSpawnTime = 2000.0
 MinSpawnTime = 750.0
+
+[node name="GrassDensitySpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("13_m7a4l")
+EntityScene = ExtResource("14_nj3vx")
+MaxSpawnTime = 80.0
+MinSpawnTime = 10.0
+
+[node name="GrassRandomSpawner" type="Node2D" parent="AllSpawners"]
+script = ExtResource("14_ptpjm")
+EntityScene = ExtResource("14_nj3vx")
+MaxSpawnTime = 100.0
+MinSpawnTime = 50.0
+SpawnArea = Rect2(-280, -280, 560, 560)
 
 [node name="Player" parent="." instance=ExtResource("9_2bnbu")]
 z_as_relative = false

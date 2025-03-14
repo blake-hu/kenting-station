@@ -13,6 +13,7 @@ public class ItemProvider : ProviderBase<IItem>
     protected override Dictionary<Type, IFactory<IItem>> FactoryDict { get; init; } = new()
     {
         { typeof(Beef), new LazySingletonFactory<Beef>() },
-        { typeof(Sword), new NewInstanceFactory<Sword>() }
+        { typeof(Sword), new NewInstanceFactory<Sword>() },
+        { typeof(Hay), new LazySingletonFactory<Hay>() }
     };
 }

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://2q06dmgpay7y"]
+
+[ext_resource type="Script" path="res://Entity/Instance/Grass.cs" id="1_br0ta"]
+[ext_resource type="Texture2D" uid="uid://cb0uv8t50u5xh" path="res://Asset/Shutterstock/2255025689/plants.png" id="2_a14n8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptegv"]
+size = Vector2(22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b36o5"]
+atlas = ExtResource("2_a14n8")
+region = Rect2(104, 86, 72, 64)
+
+[node name="Grass" type="Area2D"]
+collision_layer = 8
+collision_mask = 30
+script = ExtResource("1_br0ta")
+BaseHealth = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ptegv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3125, 0.3125)
+texture = SubResource("AtlasTexture_b36o5")
