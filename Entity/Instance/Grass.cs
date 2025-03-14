@@ -12,8 +12,8 @@ namespace KentingStation.Entity.Instance;
 // TODO: Turn grass into Area2D
 public partial class Grass : Area2D, IPredatorPreyEntity, ITrackedEntity<Grass>, IDisplayDebugInfo
 {
-    private const int HealthDecayTimerMax = 200;
-    private const int HealthDecayTimerMin = 50;
+    private const int HealthDecayTimerMax = 100;
+    private const int HealthDecayTimerMin = 20;
 
     [Export] [DebugInfo("HP")] public int _currentHealth;
     private EntityContainer<Grass> _entityContainer;

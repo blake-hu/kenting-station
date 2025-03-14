@@ -19,7 +19,7 @@ public partial class EntityService : Node2D
         { typeof(Cow), new EntityContainer<Cow>(new ChunkedEntityCounter<Cow>(128, 200)) },
         { typeof(Tiger), new EntityContainer<Tiger>(new ChunkedEntityCounter<Tiger>(128, 200)) },
         { typeof(Tree), new EntityContainer<Tree>(new ChunkedEntityCounter<Tree>(256, 400)) },
-        { typeof(Grass), new EntityContainer<Grass>(new ChunkedEntityCounter<Grass>(32, 100)) }
+        { typeof(Grass), new EntityContainer<Grass>(new ChunkedEntityCounter<Grass>(64, 100)) }
     };
 
     private int _printInterval = 60;

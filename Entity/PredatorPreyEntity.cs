@@ -14,6 +14,7 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
     IDisplayDebugInfo
     where TEntity : CharacterBody2D
 {
+    private const float MaxSpeed = 100f;
     protected const int HealthDecayTimerMin = 10;
     protected const int HealthDecayTimerMax = 50;
     private int _age;
@@ -170,9 +171,16 @@ public partial class PredatorPreyEntity<TEntity> : CharacterBody2D, IPredatorPre
         // Scale movement by amount of health left
         move *= CurrentHealth / (float)BaseHealth;
 
-        return move;
+        return LimitSpeed(move);
     }
 
+    private Vector2 LimitSpeed(Vector2 move)
+    {
+        var speed = move.Length();
+        if (speed > MaxSpeed)
+            move = move.Normalized() * MaxSpeed;
+        return move;
+    }
 
     private void UpdateHealth()
     {

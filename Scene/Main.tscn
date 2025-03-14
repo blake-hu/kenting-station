@@ -125,7 +125,7 @@ MinSpawnTime = 750.0
 script = ExtResource("13_m7a4l")
 EntityScene = ExtResource("14_nj3vx")
 MaxSpawnTime = 80.0
-MinSpawnTime = 10.0
+MinSpawnTime = 20.0
 
 [node name="GrassRandomSpawner" type="Node2D" parent="AllSpawners"]
 script = ExtResource("14_ptpjm")
