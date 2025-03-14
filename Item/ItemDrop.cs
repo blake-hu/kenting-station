@@ -6,7 +6,7 @@ namespace KentingStation.Item;
 
 public partial class ItemDrop : Area2D
 {
-    private const int DespawnTimer = 10000;
+    private const int DespawnTimer = 1000;
 
     private IItem _item;
     private int _itemCount;
