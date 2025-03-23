@@ -83,7 +83,7 @@ public partial class EntityService : Node2D
         var entity = entityScene.Instantiate<TEntity>();
         entity.Name = new EntityId(entity.Name);
 
-        var boundedSpawnLocation = Rect2Ex.ClosestPointWithin(WorldBoundary.Singleton.Boundary, spawnLocation);
+        var boundedSpawnLocation = WorldBoundary.Singleton.Boundary.ClosestPointTo(spawnLocation);
         entity.Position = boundedSpawnLocation;
 
         // Because entities spawned outside UnfreezeArea do not trigger BodyExited event,

@@ -48,7 +48,7 @@ public partial class ItemDropService : Node2D
         var itemDrop = _itemDrop.Instantiate<ItemDrop>();
         itemDrop.SetItem(itemInfo.Item, itemInfo.Count);
 
-        var boundedSpawnLocation = Rect2Ex.ClosestPointWithin(WorldBoundary.Singleton.Boundary, itemInfo.SpawnLocation);
+        var boundedSpawnLocation = WorldBoundary.Singleton.Boundary.ClosestPointTo(itemInfo.SpawnLocation);
         itemDrop.Position = boundedSpawnLocation;
         Singleton.AddChild(itemDrop);
     }
